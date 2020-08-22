@@ -1,2 +1,0 @@
-      invoke  active_record
-      create    db/migrate/20200822171229_add_index_to_enterprises.rb
