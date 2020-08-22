@@ -1,0 +1,3 @@
+class Enterprise < ApplicationRecord
+  has_many :users
+end
