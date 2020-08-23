@@ -1,6 +1,7 @@
 class Api::V1::EnterprisesController < ApplicationController
 
   def index
+    authorize Enterprise
     @enterprises = Enterprise.all
     render json: EnterpriseSerializer.new(@enterprises)
   end

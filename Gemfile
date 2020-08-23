@@ -12,6 +12,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 gem 'fast_jsonapi'
 gem 'devise'
+gem 'pundit'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 group :development, :test do
