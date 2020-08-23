@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+   enum role: [:notifier, :receiver, :admin]
+
   belongs_to :enterprise, optional: true
   
   has_one :user_informations
