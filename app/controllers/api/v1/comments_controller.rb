@@ -1,6 +1,19 @@
 class Api::V1::CommentsController < ApplicationController
-  def index
-    @comments = Comment.all
-    render json: CommentSerializer.new(@comments)
+
+  def show
+    # TDO
   end
+
+  def create
+    # TDO
+  end
+
+  def update
+    # TDO
+  end
+
+  def destroy
+    # TDO
+  end
+
 end

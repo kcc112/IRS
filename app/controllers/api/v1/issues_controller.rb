@@ -1,11 +1,23 @@
 class Api::V1::IssuesController < ApplicationController
-  def index
-    @issues = Issue.all
-    render json: IssueSerializer.new(@issues, index_issue_serialization_options)
+
+  def show
+    # TDO
   end
 
-
-  def index_issue_serialization_options
-    { include: %i[reported_by.user_informations assigned_to.user_informations] }
+  def create
+    # TDO
   end
+
+  def update
+    # TDO
+  end
+
+  def destroy
+    # TDO
+  end
+
+  def change_status
+    # TDO
+  end
+
 end
