@@ -9,6 +9,7 @@
     "sourceMap": true,
     "target": "es5",
     "jsx": "react",
+    "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true
   },
   "exclude": [

@@ -9,12 +9,10 @@ import { mapJSONToEnterprisesIndex } from './mappers';
 export function* onFetchEnterprises() {
   try {
     const { data } = yield call(api.fetchEnterprises);
-    console.log(data)
     const enterprises = mapJSONToEnterprisesIndex(data);
 
     yield put(enterprisesOverwrite(enterprises));
   } catch (err) {
-    console.log(err)
   }
 }
 
