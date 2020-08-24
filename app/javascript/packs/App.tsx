@@ -1,13 +1,10 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-
-const Hello = ({name}) => (
-  <div>Hello {name}!</div>
-)
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { App } from '../src/app/app';
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
-    <Hello name="React" />,
+    <App />,
     document.body.appendChild(document.createElement('div')),
   )
 })

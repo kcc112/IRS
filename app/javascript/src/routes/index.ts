@@ -1,0 +1,1 @@
+export { IrsRoutes } from './irs-routes';

@@ -1,0 +1,1 @@
+export { IssuesIndex } from './container';
