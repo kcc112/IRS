@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Switch, useLocation } from 'react-router-dom';
 
 import routes from './routes';
-import { EnterprisesIndex } from '../components/enterprises';
+import { EnterprisesIndex } from '../components/enterprises/index';
 import { UsersIndex } from '../components/users';
 import { IssuesIndex } from '../components/issues';
 import { CommentsIndex } from '../components/comments';

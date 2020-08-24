@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
   root 'app#index'
-  get '*path', to: 'app#index'
 
   namespace :api do
     namespace :v1 do
@@ -24,4 +23,6 @@ Rails.application.routes.draw do
       resources :comments, only: [:show, :create, :update, :destroy]
     end
   end
+
+  get '*path', to: 'app#index'
 end
