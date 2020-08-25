@@ -4,17 +4,18 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+
+      namespace :session do
+        resources :current_user, only: [:index]
+        resources :roles, only: [:index]
+        put :change_role
+      end
+
       resources :enterprises, only: [:index, :show, :create, :update, :destroy]
       
       resources :issues, only: [:show, :create, :update, :destroy] do
         member do
           put :change_status
-        end
-      end
-      
-      resources :users, only: [] do
-        member do
-          put :change_role
         end
       end
       
