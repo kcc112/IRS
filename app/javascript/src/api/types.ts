@@ -27,3 +27,14 @@ export type IResponseObjectRelationships = {
 export interface IResponseObjectRelationship {
   data: IResponseBase | IResponseBase[];
 }
+
+export interface ICurrentUser {
+  data: {
+    id: string;
+    role:	string;
+    email: string;
+    name:	string;
+    surname: string;
+    enterprise: string;
+  }
+}

@@ -925,6 +925,18 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
+"@casl/ability@^4.1.5":
+  version "4.1.5"
+  resolved "https://registry.yarnpkg.com/@casl/ability/-/ability-4.1.5.tgz#c34fedc1fd7e631f9f70309eecd5c8a2a7550ead"
+  integrity sha512-9nY2ear3CfCi0ckRZ4V6dRiy+f0wxj/aUPkelmGrZuEJusXfhROKahRHFGxXf5xLi3oA10SS/vbSLK4RAy7ttA==
+  dependencies:
+    sift "^13.0.0"
+
+"@casl/react@^2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@casl/react/-/react-2.1.1.tgz#8c2d886e3147a25b99a2cb84860c8cb4f2564dd3"
+  integrity sha512-DD0j40OZ+dcQopRdt1tsFaAZ79a1+HGCuMWvExdRcqrbjXFVnFi2kN26KMtwQuzL5FFiH4fmCADCxW3Xjxhs9A==
+
 "@csstools/convert-colors@^1.4.0":
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
@@ -6891,6 +6903,11 @@ shebang-regex@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/shebang-regex/-/shebang-regex-1.0.0.tgz#da42f49740c0b42db2ca9728571cb190c98efea3"
   integrity sha1-2kL0l0DAtC2yypcoVxyxkMmO/qM=
+
+sift@^13.0.0:
+  version "13.3.0"
+  resolved "https://registry.yarnpkg.com/sift/-/sift-13.3.0.tgz#d17fa7d9f6cd4cfa3fe7abe3473d6a1f49ae215c"
+  integrity sha512-7QU0yomqQhu9O4dGfHpURRZBnIGfz6sio1V6jlb1N4Z7hTqSJxTI5kPWycH1fUgDcJLOg8dfdkrHDDCM3m+hKw==
 
 signal-exit@^3.0.0:
   version "3.0.3"

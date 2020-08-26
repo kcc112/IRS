@@ -1,15 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Switch,
   Route,
-  Redirect
+  Redirect,
 } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { IrsLayout } from '../layout';
 import routes from '../../routes/routes';
 import { IrsRoutes } from '../../routes/irs-routes';
+import { fetchCurrentUser } from './actions';
+import { selectCurrentUser } from '../../session/redux/selectors';
 
 export function IrsApp() {
+  const dispatch = useDispatch();
+  const currentUser = useSelector(selectCurrentUser);
+
+  useEffect(() => {
+    if (!currentUser) dispatch(fetchCurrentUser());
+  }, [dispatch, currentUser]);
+
   return (
     <>
       <Switch>
