@@ -10,5 +10,6 @@ class User < ApplicationRecord
   has_many :issues_assigned, class_name: 'Issue', foreign_key: 'assigned_to_id'
   
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable,
+         :trackable
 end
