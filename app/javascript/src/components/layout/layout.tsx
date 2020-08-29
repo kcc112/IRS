@@ -1,7 +1,9 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 
-import paths from '../../api/paths';
+import { useStyles } from './styles';
+import { Footer } from './components/footer';
+import { Header } from './components/header';
+import { Sidebar } from './components/sidebar';
 
 interface Props {
   routes: React.ReactNode;
@@ -10,12 +12,26 @@ interface Props {
 export function IrsLayout({
   routes,
 }: Props) {
-  const { t } = useTranslation();
+  const classes = useStyles();
 
   return (
-    <div>
-      <a rel="nofollow" data-method="delete" href={paths.devise.delete}>{t('Logout')}</a>
-      {routes}
+    <div className={classes.root} >
+      <div className={classes.header}>
+        <Header />
+      </div>
+      <div className={classes.main}>
+        <nav className={classes.sidebar}>
+          <Sidebar />
+        </nav>
+        <div className={classes.container}>
+          <div className={classes.body}>
+            {routes}
+          </div>
+        </div>
+      </div>
+      <div className={classes.footer}>
+        <Footer />
+      </div>
     </div>
   );
 }
