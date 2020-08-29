@@ -11,11 +11,15 @@ export const useStyles = makeStyles({
     flexDirection: 'column',
   },
   main: {
-    minHeight: '90%',
+    height: '100%',
     display: 'flex',
   },
   footer: {
     borderTop: `1px solid ${coloursRGBA.grayLighter}`,
+    position: 'fixed',
+    bottom: 0,
+    left: 0,
+    right: 0,
   },
   sidebar: {
     minWidth: '10%',

@@ -4,10 +4,12 @@ import { useTranslation } from 'react-i18next';
 
 import { fetchEnterprises } from './actions';
 import { selectIndexEnterprises } from '../redux/selectors';
+import { useStyles } from './styles';
 
 export function EnterprisesIndex() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const classes = useStyles({});
   const enterprises = useSelector(selectIndexEnterprises);
 
   useEffect(() => {
@@ -15,7 +17,7 @@ export function EnterprisesIndex() {
   }, [dispatch])
 
   return (
-    <div>
+    <div className={classes.container}>
       <h1>{t('Enterprises')}</h1>
       { enterprises && enterprises.map(enterprise => (
           <div key={enterprise.id}>

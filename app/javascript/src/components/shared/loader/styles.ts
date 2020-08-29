@@ -1,8 +1,8 @@
-import { createStyles, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 import { colours } from '../../../styles/colours';
 
-export const useStyles = makeStyles(() => createStyles({
+export const useStyles = makeStyles({
   container: {
     display: 'flex',
     flexDirection: 'column',
@@ -35,4 +35,4 @@ export const useStyles = makeStyles(() => createStyles({
   loader: {
     margin: '0 auto',
   },
-}));
+});
