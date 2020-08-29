@@ -11,10 +11,12 @@ import routes from '../../routes/routes';
 import { IrsRoutes } from '../../routes/irs-routes';
 import { fetchCurrentUser } from './actions';
 import { selectCurrentUser } from '../../session/redux/selectors';
+import { selectLoaderState } from './redux/selectors';
 
 export function IrsApp() {
   const dispatch = useDispatch();
   const currentUser = useSelector(selectCurrentUser);
+  const isLoading = useSelector(selectLoaderState);
 
   useEffect(() => {
     if (!currentUser) dispatch(fetchCurrentUser());
@@ -27,6 +29,7 @@ export function IrsApp() {
         <Route path={routes.irs.root}>
           <IrsLayout
             routes={<IrsRoutes />}
+            isLoading={isLoading}
           />
         </Route>
       </Switch>

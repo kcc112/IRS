@@ -31,9 +31,9 @@ export interface IResponseObjectRelationship {
 export interface ICurrentUser {
   data: {
     id: string;
-    role:	string;
+    role: string;
     email: string;
-    name:	string;
+    name: string;
     surname: string;
     enterprise: string;
   }

@@ -4,13 +4,16 @@ import { useStyles } from './styles';
 import { Footer } from './components/footer';
 import { Header } from './components/header';
 import { Sidebar } from './components/sidebar';
+import { Loader } from '../shared/loader/loader';
 
 interface Props {
   routes: React.ReactNode;
+  isLoading: boolean;
 }
 
 export function IrsLayout({
   routes,
+  isLoading,
 }: Props) {
   const classes = useStyles();
 
@@ -32,6 +35,7 @@ export function IrsLayout({
       <div className={classes.footer}>
         <Footer />
       </div>
+      <Loader visible={isLoading} />
     </div>
   );
 }
