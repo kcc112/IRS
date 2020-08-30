@@ -23,7 +23,6 @@ export const useStyles = makeStyles({
   },
   sidebar: {
     minWidth: '10%',
-    borderRight: `1px solid ${coloursRGBA.grayLighter}`,
   },
   container: {
     minWidth: '90%',

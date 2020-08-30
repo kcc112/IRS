@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { fetchEnterprises } from './actions';
 import { selectIndexEnterprises } from '../redux/selectors';
 import { useStyles } from './styles';
+import { EnterprisesGridList } from './components/grid-list';
 
 export function EnterprisesIndex() {
   const { t } = useTranslation();
@@ -16,16 +17,12 @@ export function EnterprisesIndex() {
     dispatch(fetchEnterprises());
   }, [dispatch])
 
+  if (!enterprises) return <></>;
+
   return (
     <div className={classes.container}>
-      <h1>{t('Enterprises')}</h1>
-      { enterprises && enterprises.map(enterprise => (
-          <div key={enterprise.id}>
-            <div>{enterprise.attributes.name}</div>
-            <div>{enterprise.attributes.description}</div>
-          </div>
-        ))
-      }
+      <h1 className={classes.title}>{t('Enterprises')}</h1>
+      <EnterprisesGridList  enterprises={enterprises} />
     </div>
   );
 }
