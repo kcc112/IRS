@@ -6,7 +6,6 @@ export const useStyles = makeStyles({
   container: {
     minHeight: '100%',
     maxHeight: '100%',
-    overflowY: 'scroll',
     borderLeft: `1px solid ${coloursRGBA.grayLighter}`,
   },
   title: {
