@@ -1,5 +1,6 @@
 class Api::V1::EnterprisesController < ApplicationController
   before_action :authorize_user, only: [:index, :show, :create, :update, :destroy]
+  before_action :set_enterprise, only: [:show, :update]
 
   def index
     @enterprises = Enterprise.all
@@ -7,7 +8,6 @@ class Api::V1::EnterprisesController < ApplicationController
   end
 
   def show
-    @enterprise = Enterprise.find(params[:id])
     render json: EnterpriseSerializer.new(@enterprise)
   end
 
@@ -18,7 +18,8 @@ class Api::V1::EnterprisesController < ApplicationController
   end
 
   def update
-    # TDO
+    @enterprise.update!(enterprise_params)
+    render json: EnterpriseSerializer.new(@enterprise)
   end
 
   def destroy
@@ -26,6 +27,10 @@ class Api::V1::EnterprisesController < ApplicationController
   end
 
   private
+    def set_enterprise
+      @enterprise = Enterprise.find(params[:id])
+    end
+
     def authorize_user
       authorize Enterprise
     end

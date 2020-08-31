@@ -49,4 +49,29 @@ RSpec.describe Api::V1::EnterprisesController, type: :controller do
       it { expect { subject }.to_not change(Enterprise, :count) }
     end
   end
+
+  describe 'PUT #update' do
+    let(:enterprise) { create :enterprise }
+    let(:valid_attributes) { { id: enterprise.id, enterprise: attributes_for(:enterprise, name: 'Test') } }
+    let(:invalid_attributes) { { id: enterprise.id, enterprise: attributes_for(:enterprise, name: 'Test1') } }
+
+    context 'valid attributes' do
+      subject { put :update, params: valid_attributes }
+      it { is_expected.to be_successful }
+      it 'should change enterprise name' do
+        subject
+        expect(enterprise.reload.name).to eq('Test')
+      end
+    end
+
+    context 'invalid attributes' do
+      subject { put :update, params: invalid_attributes }
+      it { is_expected.to have_http_status :bad_request }
+      it 'should not change enterprise name' do
+        subject
+        expect(enterprise.reload.name).not_to eq('Test1')
+      end
+    end
+  end
+
 end
