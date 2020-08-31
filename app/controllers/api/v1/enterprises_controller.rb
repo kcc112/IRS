@@ -1,17 +1,17 @@
 class Api::V1::EnterprisesController < ApplicationController
+  before_action :authorize_user, only: [:index, :show, :create, :update, :destroy]
 
   def index
-    authorize Enterprise
     @enterprises = Enterprise.all
     render json: EnterpriseSerializer.new(@enterprises)
   end
 
   def show
-    # TDO
+    @enterprise = Enterprise.find(params[:id])
+    render json: EnterpriseSerializer.new(@enterprise)
   end
 
   def create
-    authorize Enterprise
     @enterprise = Enterprise.new(enterprise_params)
     @enterprise.save!
     render json: EnterpriseSerializer.new(@enterprise), status: :created
@@ -26,6 +26,10 @@ class Api::V1::EnterprisesController < ApplicationController
   end
 
   private
+    def authorize_user
+      authorize Enterprise
+    end
+
     def enterprise_params
       params.require(:enterprise).permit(:name, :description)
     end

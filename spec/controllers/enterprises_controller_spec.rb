@@ -19,6 +19,20 @@ RSpec.describe Api::V1::EnterprisesController, type: :controller do
     end
   end
 
+  describe 'GET #show' do
+    let(:enterprise) { create :enterprise }
+
+    context 'valid id' do
+      subject { get :show, params: { id: enterprise.id } }
+      it { is_expected.to be_successful }
+    end
+
+    context 'invalid id' do
+      subject { get :show, params: { id: '1' } }
+      it { is_expected.to have_http_status :not_found }
+    end
+  end
+
   describe 'POST #create' do
     let(:valid_attributes) { { enterprise: attributes_for(:enterprise, name: 'Test') } }
     let(:invalid_attributes) { { enterprise: attributes_for(:enterprise, name: 'Test1') } }
