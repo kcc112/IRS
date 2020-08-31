@@ -1,6 +1,6 @@
 class Api::V1::EnterprisesController < ApplicationController
   before_action :authorize_user, only: [:index, :show, :create, :update, :destroy]
-  before_action :set_enterprise, only: [:show, :update]
+  before_action :set_enterprise, only: [:show, :update, :destroy]
 
   def index
     @enterprises = Enterprise.all
@@ -23,7 +23,7 @@ class Api::V1::EnterprisesController < ApplicationController
   end
 
   def destroy
-    # TDO
+    @enterprise.destroy
   end
 
   private

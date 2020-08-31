@@ -74,4 +74,31 @@ RSpec.describe Api::V1::EnterprisesController, type: :controller do
     end
   end
 
+  describe 'DELETE #destroy' do
+    let(:enterprise) { create :enterprise }
+    let(:user) { create :user, enterprise_id: enterprise.find(id) }
+    subject { delete :destroy, params: { id: enterprise.id } }
+
+    describe 'succesfull response' do
+      it { is_expected.to be_successful }
+    end
+
+    context 'enterprise' do
+      it 'should delete enterprise' do
+        enterprise
+        expect { subject }.to change(Enterprise, :count).by(-1)
+      end
+    end
+
+    context 'users' do
+      let(:enterprise) { create :enterprise }
+      let(:user) { create :user, enterprise_id: enterprise.find(id) }
+
+      it 'should not delete user' do
+        enterprise
+        expect { subject }.not_to change(User, :count)
+      end
+    end
+  end
+
 end
