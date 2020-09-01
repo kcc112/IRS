@@ -13,7 +13,9 @@ class Api::V1::UsersInformationsController < ApplicationController
   end
 
   def create
-    return :success unless current_user.user_informations.nil?
+    unless current_user.user_informations.nil?
+      return render json: { error: 'User informations already exist' }, status: :bad_request
+    end
     @user_informations = UserInformations.new(user_informations_params)
     @user_informations.user = current_user
     @user_informations.save!

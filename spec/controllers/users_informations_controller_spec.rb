@@ -71,7 +71,7 @@ RSpec.describe Api::V1::UsersInformationsController, type: :controller do
     context 'user_informations' do
       before { sign_in user_second }
       subject { post :create, params: valid_attributes }
-      it { is_expected.to be_successful }
+      it { is_expected.to have_http_status :bad_request }
       it { expect { subject }.to_not change(UserInformations, :count) }
     end
   end
