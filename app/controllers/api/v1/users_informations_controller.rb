@@ -13,7 +13,11 @@ class Api::V1::UsersInformationsController < ApplicationController
   end
 
   def create
-    # TDO
+    return :success unless current_user.user_informations.nil?
+    @user_informations = UserInformations.new(user_informations_params)
+    @user_informations.user = current_user
+    @user_informations.save!
+    render json: UserInformationsSerializer.new(@user_informations)
   end
 
   def update
@@ -27,6 +31,10 @@ class Api::V1::UsersInformationsController < ApplicationController
 
     def set_user_informations
       @user_informations = UserInformations.find(params[:id])
+    end
+
+    def user_informations_params
+      params.require(:user_informations).permit(:name, :surname, :phone_number)  
     end
 
 end
