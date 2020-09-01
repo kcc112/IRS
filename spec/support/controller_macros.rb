@@ -1,5 +1,13 @@
 module ControllerMacros
-  def login_user
+  def login_notifier
+    before(:each) do
+      @request.env["devise.mapping"] = Devise.mappings[:user]
+      user = FactoryBot.create(:user, role: :notifier)
+      sign_in user
+    end
+  end
+
+  def login_admin
     before(:each) do
       @request.env["devise.mapping"] = Devise.mappings[:user]
       user = FactoryBot.create(:user)
