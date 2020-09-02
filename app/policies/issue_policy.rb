@@ -1,26 +1,26 @@
 class IssuePolicy < ApplicationPolicy
 
-  def show
+  def show?
     true
   end
   
-  def create
+  def create?
     user.notifier?
   end
   
-  def update
+  def update?
     user.notifier? and record.issue.notifier_id = user.id
   end
   
-  def destroy
+  def destroy?
     user.adimi? or ( user.notifier? and record.issue.notifier_id = user.id )
   end
   
-  def change_status
+  def change_status?
     user.receiver? and record.issue.receiver_id = user.id
   end
 
-  def assign_receiver
+  def assign_receiver?
     user.receiver?
   end
 
