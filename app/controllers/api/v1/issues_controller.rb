@@ -7,7 +7,9 @@ class Api::V1::IssuesController < ApplicationController
   end
 
   def create
-    # TDO
+    @issue = Issue.new(issue_params)
+    @issue.save!
+    render json: IssueSerializer.new(@issue)
   end
 
   def update
@@ -34,5 +36,9 @@ class Api::V1::IssuesController < ApplicationController
     def authorize_user
       authorize Issue
     end 
+
+    def issue_params
+      params.require(:issue).permit(:description, :issue_type, :reported_by_id )
+    end
 
 end
