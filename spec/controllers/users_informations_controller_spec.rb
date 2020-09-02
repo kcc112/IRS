@@ -44,4 +44,38 @@ RSpec.describe Api::V1::UsersInformationsController, type: :controller do
     end
   end
 
+  describe 'PUT #udate' do
+    let(:user) { create :user }
+    let(:valid_attributes) { { id: user.user_informations.id, user_informations: attributes_for(:user_informations, name: 'Test') } }
+    let(:invalid_attributes) { { id: user.user_informations.id, user_informations: attributes_for(:user_informations, name: 'Test1') } }
+
+    context 'valid attributes' do
+      subject { put :update, params: valid_attributes }
+      it { is_expected.to be_successful }
+      it 'should change user name' do
+        subject
+        expect(user.user_informations.reload.name).to eq('Test')
+      end
+    end
+
+    context 'invalid attributes' do
+      subject { put :update, params: invalid_attributes }
+      it { is_expected.to have_http_status :bad_request }
+      it 'should not change user name' do
+        subject
+        expect(user.user_informations.reload.name).not_to eq('Test1')
+      end
+    end
+
+    context 'forbidden' do
+      login_notifier
+      subject { put :update, params: valid_attributes }
+      it { is_expected.to have_http_status :forbidden }
+      it 'should not change user name' do
+        subject
+        expect(user.user_informations.reload.name).to eq(nil)
+      end
+    end
+  end
+
 end

@@ -13,7 +13,9 @@ class Api::V1::UsersInformationsController < ApplicationController
   end
 
   def update
-    # TDO
+    authorize @user_informations
+    @user_informations.update!(user_informations_params)
+    render json: UserInformationsSerializer.new(@user_informations)
   end
 
   private
