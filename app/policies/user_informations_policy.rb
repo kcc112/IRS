@@ -8,10 +8,6 @@ class UserInformationsPolicy < ApplicationPolicy
     user.admin? or record.user_id == user.id
   end
 
-  def create?
-    true
-  end
-
   def update?
     user.admin? or record.user_id == user.id
   end

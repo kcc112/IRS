@@ -28,4 +28,14 @@ RSpec.describe UserInformations, type: :model do
   describe 'relations' do
     it { is_expected.to belong_to :user }
   end
+
+  describe 'callbacks' do
+    context 'after_create' do
+      let(:user) { create :user }
+      it 'should create user informations' do
+        expect(UserInformations.where(user_id: user.id)).to exist  
+      end
+    end
+  end
+
 end

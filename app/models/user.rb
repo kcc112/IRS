@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  after_create :create_user_informations
+
   enum role: [:notifier, :receiver, :admin]
 
   belongs_to :enterprise, optional: true
@@ -12,4 +14,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :trackable
+
+  private
+    def create_user_informations
+      self.build_user_informations.save(validate: false)
+    end
 end

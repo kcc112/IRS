@@ -19,7 +19,7 @@ Rails.application.routes.draw do
         end
       end
       
-      resources :users_informations, only: [:index, :show, :create, :update]
+      resources :users_informations, only: [:index, :show, :update]
       
       resources :comments, only: [:show, :create, :update, :destroy]
     end

@@ -1,5 +1,5 @@
 class Api::V1::UsersInformationsController < ApplicationController
-  before_action :authorize_user, only: [:index, :create]
+  before_action :authorize_user, only: [:index]
   before_action :set_user_informations, only: [:show, :update]
 
   def index
@@ -9,16 +9,6 @@ class Api::V1::UsersInformationsController < ApplicationController
 
   def show
     authorize @user_informations
-    render json: UserInformationsSerializer.new(@user_informations)
-  end
-
-  def create
-    unless current_user.user_informations.nil?
-      return render json: { error: 'User informations already exist' }, status: :bad_request
-    end
-    @user_informations = UserInformations.new(user_informations_params)
-    @user_informations.user = current_user
-    @user_informations.save!
     render json: UserInformationsSerializer.new(@user_informations)
   end
 
