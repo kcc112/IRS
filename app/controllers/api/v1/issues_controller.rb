@@ -20,4 +20,8 @@ class Api::V1::IssuesController < ApplicationController
     # TDO
   end
 
+  def assign_receiver
+    # TDO
+  end
+
 end
