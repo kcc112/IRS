@@ -9,15 +9,15 @@ class IssuePolicy < ApplicationPolicy
   end
   
   def update?
-    user.notifier? and record.issue.notifier_id = user.id
+    user.notifier? and record.reported_by_id = user.id
   end
   
   def destroy?
-    user.adimi? or ( user.notifier? and record.issue.notifier_id = user.id )
+    user.adimi? or ( user.notifier? and record.reported_by_id = user.id )
   end
   
   def change_status?
-    user.receiver? and record.issue.receiver_id = user.id
+    user.receiver? and record.reported_by_id = user.id
   end
 
   def assign_receiver?
