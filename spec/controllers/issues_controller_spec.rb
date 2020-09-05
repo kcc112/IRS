@@ -81,4 +81,40 @@ RSpec.describe Api::V1::IssuesController, type: :controller do
     end
   end
 
+  describe '#DELETE destroy' do
+    let(:user) { create :user }
+    let(:issue) { create :issue, reported_by_id: user.id }
+    subject { delete :destroy, params: { id: issue.id } }
+    
+    describe 'succesfull response' do
+      it { is_expected.to be_successful }
+    end
+
+    context 'issue' do
+      it 'should delete issue' do
+        issue
+        expect { subject }.to change(Issue, :count).by(-1)
+      end
+
+      it 'should not delete user' do
+        issue
+        expect { subject }.to_not change(User, :count)
+      end
+    end
+
+    context 'forbidden' do
+      login_notifier
+
+      it 'should return forbidden status' do
+        issue
+        expect(subject).to have_http_status :forbidden
+      end
+
+      it 'should not delete issue' do
+        issue
+        expect { subject }.to_not change(Issue, :count)
+      end
+    end
+  end
+
 end

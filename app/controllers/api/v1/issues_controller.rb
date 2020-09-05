@@ -19,7 +19,8 @@ class Api::V1::IssuesController < ApplicationController
   end
 
   def destroy
-    # TDO
+    authorize @issue
+    @issue.destroy
   end
 
   def change_status
