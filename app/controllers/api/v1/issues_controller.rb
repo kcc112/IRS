@@ -1,6 +1,6 @@
 class Api::V1::IssuesController < ApplicationController
-  before_action :set_issue, only: [:show, :update, :destroy, :change_status, :assign_reciver]
-  before_action :authorize_user, only: [:show, :create, :assign_receiver]
+  before_action :set_issue, only: [:show, :update, :destroy, :assign_receiver, :change_status]
+  before_action :authorize_user, only: [:show, :create]
 
   def show
     render json: IssueSerializer.new(@issue)
@@ -23,11 +23,13 @@ class Api::V1::IssuesController < ApplicationController
     @issue.destroy
   end
 
-  def change_status
-    # TDO
+  def assign_receiver
+    authorize @issue
+    @issue.update!(assign_receiver_params)
+    render json: IssueSerializer.new(@issue)
   end
 
-  def assign_receiver
+  def change_status
     # TDO
   end
 
@@ -46,6 +48,10 @@ class Api::V1::IssuesController < ApplicationController
 
     def issue_update_params
       params.require(:issue).permit(:description, :issue_type)
+    end
+
+    def assign_receiver_params
+      params.require(:issue).permit(:assigned_to_id)
     end
 
 end

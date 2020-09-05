@@ -117,4 +117,46 @@ RSpec.describe Api::V1::IssuesController, type: :controller do
     end
   end
 
+  describe 'PUT #assign_receiver' do
+    login_receiver
+    let(:reported_by) { create :user }
+    let(:assigned_to) { create :user }
+    let(:issue) { create :issue, reported_by_id: reported_by.id }
+    let(:valid_attributes) { { id: issue.id, issue: attributes_for(:issue, assigned_to_id: assigned_to.id) } }
+    let(:invalid_attributes) { { id: issue.id, issue: attributes_for(:issue, assigned_to_id: '1') } }
+
+    context 'valid attributes' do
+      subject { put :assign_receiver, params: valid_attributes }
+      it { is_expected.to be_successful }
+      it 'should update issue' do
+        subject
+        expect(issue.reload.assigned_to_id).to eq(assigned_to.id)
+      end
+    end
+
+    context 'invalid attributes' do
+      subject { put :assign_receiver, params: invalid_attributes }
+      it { is_expected.to be_successful }
+      it 'should not update issue' do
+        subject
+        expect(issue.reload.assigned_to_id).to_not eq('1')
+      end
+    end
+
+    context 'already assigned' do
+      let(:reported_by) { create :user }
+      let(:assigned_to) { create :user }
+      let(:user) { create :user }
+      let(:issue) { create :issue, reported_by_id: reported_by.id, assigned_to_id: assigned_to.id }
+      let(:attributes) { { id: issue.id, issue: attributes_for(:issue, assigned_to_id: user.id) } }
+      subject { put :assign_receiver, params: attributes }
+
+      it { is_expected.to have_http_status :forbidden }
+      it 'should not update issue' do
+        subject
+        expect(issue.reload.assigned_to_id).to_not eq(user.id)
+      end
+    end
+  end
+
 end

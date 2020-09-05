@@ -15,13 +15,13 @@ class IssuePolicy < ApplicationPolicy
   def destroy?
     user.admin? or ( user.notifier? and record.reported_by_id == user.id )
   end
-  
-  def change_status?
-    user.receiver? and record.reported_by_id == user.id
-  end
 
   def assign_receiver?
-    user.receiver?
+    user.receiver? and record.assigned_to_id.nil?
+  end
+
+  def change_status?
+    user.receiver? and record.assigned_to_id == user.id
   end
 
 end
