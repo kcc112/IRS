@@ -15,7 +15,7 @@ Rails.application.routes.draw do
       
       resources :issues, only: [:show, :create, :update, :destroy] do
         member do
-          put :change_status
+          put :resolve_issue
           put :assign_receiver
         end
       end

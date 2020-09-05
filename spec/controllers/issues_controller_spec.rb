@@ -132,6 +132,10 @@ RSpec.describe Api::V1::IssuesController, type: :controller do
         subject
         expect(issue.reload.assigned_to_id).to eq(assigned_to.id)
       end
+      it 'should change issue status' do
+        subject
+        expect(issue.reload.assigned?).to eq(true)
+      end
     end
 
     context 'invalid attributes' do
@@ -159,4 +163,34 @@ RSpec.describe Api::V1::IssuesController, type: :controller do
     end
   end
 
+  describe 'PUT #resolve_issue' do
+    let(:reported_by) { create :user, role: :notifier }
+    let(:assigned_to) { create :user, role: :receiver }
+    let(:user) { create :user }
+    let(:issue) { create :issue, reported_by_id: reported_by.id, assigned_to_id: assigned_to.id }
+    let(:issue_second) { create :issue, reported_by_id: reported_by.id, assigned_to_id: assigned_to.id }
+    subject { put :resolve_issue, params: { id: issue.id } }
+    before { @request.env["devise.mapping"] = Devise.mappings[:user] }
+    before { sign_in assigned_to }
+
+    describe 'succesfull response' do
+      it { is_expected.to be_successful }
+      it 'should update status' do
+        subject
+        expect(issue.reload.resolved?).to eq(true)
+      end
+    end
+
+    describe 'forbidden' do
+      before { sign_in user }
+      subject { put :resolve_issue, params: { id: issue_second.id } }
+
+      it { is_expected.to have_http_status :forbidden }
+      it 'should not change status' do
+        subject
+        expect(issue_second.reload.resolved?).to eq(false)
+      end
+    end
+  end
+ 
 end

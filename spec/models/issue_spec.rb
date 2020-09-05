@@ -11,7 +11,8 @@ RSpec.describe Issue, type: :model do
         'id',
         'issue_type',
         'reported_by_id',
-        'updated_at'
+        'updated_at',
+        'status'
       )  
     end
   end
@@ -25,5 +26,6 @@ RSpec.describe Issue, type: :model do
     it { is_expected.to belong_to(:assigned_to).optional }
     it { is_expected.to have_many(:comments).dependent(:destroy) }
     it { should define_enum_for(:issue_type).with_values([:other]) }
+    it { should define_enum_for(:status).with_values([:unassigned, :assigned, :resolved]) }
   end
 end

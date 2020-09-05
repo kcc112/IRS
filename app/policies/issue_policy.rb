@@ -20,7 +20,7 @@ class IssuePolicy < ApplicationPolicy
     user.receiver? and record.assigned_to_id.nil?
   end
 
-  def change_status?
+  def resolve_issue?
     user.receiver? and record.assigned_to_id == user.id
   end
 

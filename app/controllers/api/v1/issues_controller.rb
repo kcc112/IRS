@@ -1,5 +1,5 @@
 class Api::V1::IssuesController < ApplicationController
-  before_action :set_issue, only: [:show, :update, :destroy, :assign_receiver, :change_status]
+  before_action :set_issue, only: [:show, :update, :destroy, :assign_receiver, :resolve_issue]
   before_action :authorize_user, only: [:show, :create]
 
   def show
@@ -25,12 +25,15 @@ class Api::V1::IssuesController < ApplicationController
 
   def assign_receiver
     authorize @issue
+    @issue.status = :assigned
     @issue.update!(assign_receiver_params)
     render json: IssueSerializer.new(@issue)
   end
 
-  def change_status
-    # TDO
+  def resolve_issue
+    authorize @issue
+    @issue.update!(status: :resolved)
+    render json: IssueSerializer.new(@issue)
   end
 
   private
