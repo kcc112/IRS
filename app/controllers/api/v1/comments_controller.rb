@@ -12,7 +12,9 @@ class Api::V1::CommentsController < ApplicationController
   end
 
   def update
-    # TDO
+    authorize @comment
+    @comment.update!(issue_update_params)
+    render json: CommentSerializer.new(@comment)
   end
 
   def destroy
@@ -30,6 +32,10 @@ class Api::V1::CommentsController < ApplicationController
 
     def issue_create_params
       params.require(:comment).permit(:comment, :user_id, :issue_id)
+    end
+
+    def issue_update_params
+      params.require(:comment).permit(:comment)
     end
 
 end

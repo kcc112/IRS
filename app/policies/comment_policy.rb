@@ -9,11 +9,11 @@ class CommentPolicy < ApplicationPolicy
   end
 
   def update?
-    user.notifier? and record.user_id == user.id
+    record.user_id == user.id
   end
 
   def destroy?
-    user.admin? or ( user.notifier? and record.user_id == user.id )
+    user.admin? or record.user_id == user.id
   end
 
 end
