@@ -5,7 +5,7 @@ class CommentPolicy < ApplicationPolicy
   end
 
   def create?
-    user.notifier?
+    true
   end
 
   def update?

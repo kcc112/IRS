@@ -1,13 +1,14 @@
 class Api::V1::CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :update, :destory]
-  before_action :authorize_user, only: [:show]
+  before_action :authorize_user, only: [:show, :create]
 
   def show
     render json: CommentSerializer.new(@comment)
   end
 
   def create
-    # TDO
+    @comment = Comment.create!(issue_create_params)
+    render json: CommentSerializer.new(@comment)
   end
 
   def update
@@ -25,6 +26,10 @@ class Api::V1::CommentsController < ApplicationController
 
     def authorize_user
       authorize Comment
+    end
+
+    def issue_create_params
+      params.require(:comment).permit(:comment, :user_id, :issue_id)
     end
 
 end
