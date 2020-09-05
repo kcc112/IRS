@@ -76,4 +76,36 @@ RSpec.describe Api::V1::CommentsController, type: :controller do
     end
   end
 
+  describe 'DELETE #destroy' do
+    let(:user) { create :user, role: :notifier }
+    let(:issue) { create :issue, reported_by_id: user.id }
+    let(:comment) { create :comment, issue: issue, user: user }
+    subject { delete :destroy, params: { id: comment.id } }
+
+    describe 'succesfull response' do
+      it { is_expected.to be_successful }
+    end
+
+    context 'comment' do
+      it 'should delete comment' do
+        comment
+        expect { subject }.to change(Comment, :count).by(-1)
+      end
+    end
+
+    context 'users' do
+      it 'should not delete user' do
+        comment
+        expect { subject }.not_to change(User, :count)
+      end
+    end
+
+    context 'issues' do
+      it 'should not delete issue' do
+        comment
+        expect { subject }.not_to change(Issue, :count)
+      end
+    end
+  end
+
 end

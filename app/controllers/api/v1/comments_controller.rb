@@ -1,5 +1,5 @@
 class Api::V1::CommentsController < ApplicationController
-  before_action :set_comment, only: [:show, :update, :destory]
+  before_action :set_comment, only: [:show, :update, :destroy]
   before_action :authorize_user, only: [:show, :create]
 
   def show
@@ -18,7 +18,8 @@ class Api::V1::CommentsController < ApplicationController
   end
 
   def destroy
-    # TDO
+    authorize @comment
+    @comment.destroy
   end
 
   private
