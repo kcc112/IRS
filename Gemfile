@@ -21,6 +21,7 @@ group :development, :test do
   gem 'faker'
   gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 4.0.1'
+  gem 'rspec-json_expectations'
   gem 'shoulda-matchers', '~> 4.0'
 end
 
