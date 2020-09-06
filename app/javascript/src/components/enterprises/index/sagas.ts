@@ -2,10 +2,14 @@ import {
   debounce, call, all, put
 } from 'redux-saga/effects';
 
-import { enterprisesFetch, enterprisesOverwrite } from '../redux/actions';
+import { enterprisesFetch, enterprisesFetchSuccessfully } from '../redux/actions';
 import { api } from '../../../api/api';
 import { mapJSONToEnterprisesIndex } from './mappers';
-import { apiRequestIncrement, apiRequestDecrement } from '../../app/redux/actions';
+import {
+  apiRequestIncrement,
+  apiRequestDecrement,
+  apiRequestError
+} from '../../app/redux/actions';
 
 export function* onFetchEnterprises() {
   try {
@@ -13,12 +17,12 @@ export function* onFetchEnterprises() {
     const { data } = yield call(api.fetchEnterprises);
     const enterprises = mapJSONToEnterprisesIndex(data);
 
-    yield put(enterprisesOverwrite(enterprises));
+    yield put(enterprisesFetchSuccessfully(enterprises));
     yield put(apiRequestDecrement());
   } catch (err) {
+    yield put(apiRequestError(err));
   }
 }
-
 
 export function* watchEnterprisesIndex() {
   yield all([
