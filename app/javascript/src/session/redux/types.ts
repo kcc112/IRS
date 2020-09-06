@@ -26,11 +26,13 @@ export interface CurrentUser {
 
 export enum Actions {
   CREATE = 'CREATE',
-  VIEW = 'VIEW'
+  VIEW = 'VIEW',
+  EDIT = 'EDIT',
 }
 
 export enum Subjects {
   ENTERPRISES = 'ENTERPRISES',
+  ENTERPRISE = 'ENTERPRISE',
   ISSUES = 'ISSUES',
   COMMENTS = 'COMMENTS',
   USERS = 'USERS',

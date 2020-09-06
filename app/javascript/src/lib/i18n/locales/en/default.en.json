@@ -2,5 +2,7 @@
   "Enterprises": "Enterprises",
   "Logout": "Logout",
   "Users": "Users",
-  "Issues": "Issues"
+  "Issues": "Issues",
+  "Enterprise edit": "Enterprise edit",
+  "Enterprise create": "Enterprise create"
 }

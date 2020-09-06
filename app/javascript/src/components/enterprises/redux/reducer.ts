@@ -5,11 +5,12 @@ import {
   enterprisesFetchSuccessfully,
   enterpriseEditedSuccessfully,
   enterpriseCreatedSuccessfully,
+  enterprisesClear,
 } from './actions';
 
 const initialState: EnterprisesState = {
   entities: {
-    enterprises: undefined,
+    enterprises: [],
     enterprise: undefined,
   },
 };
@@ -21,6 +22,14 @@ enterprises.on(enterprisesFetchSuccessfully, (state, enterprises) => ({
   entities: {
     ...state.entities,
     enterprises,
+  },
+}));
+
+enterprises.on(enterprisesClear, state => ({
+  ...state,
+  entities: {
+    ...state.entities,
+    enterprises: [],
   },
 }));
 

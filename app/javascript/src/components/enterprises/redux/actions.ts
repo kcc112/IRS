@@ -10,6 +10,7 @@ import {
 } from '../../../api/payloads';
 
 export const enterprisesFetch = createAction('fetch enterprises trigger');
+export const enterprisesClear = createAction('clear enterprises');
 export const enterprisesFetchSuccessfully = createAction<EnterprisesIndex[]>('enterprises fetch successfully');
 
 export const enterpriseEdit = createAction<{ 

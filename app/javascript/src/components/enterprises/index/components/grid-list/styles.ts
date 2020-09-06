@@ -8,7 +8,7 @@ export const useStyles = makeStyles({
     flexWrap: 'wrap',
     justifyContent: 'space-around',
     overflow: 'hidden',
-    marginBottom: '60px',
+    paddingBottom: '60px',
   },
   gridList: {
     width: '100%',

@@ -18,6 +18,8 @@ export const useStyles = makeStyles({
   action: {
     display: 'flex',
     width: '100%',
+    color: colours.white,
+    fontSize: '15px',
   },
   actionContainer: {
     padding: '10px 8px',
