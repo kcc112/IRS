@@ -14,6 +14,7 @@ export const useStyles = makeStyles({
   closeButton: {
     '& > svg': {
       color: colours.redDark,
+      fontSize: '30px',
     },
   },
 });

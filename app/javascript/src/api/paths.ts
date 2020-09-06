@@ -13,8 +13,8 @@ const paths = {
   },
   enterprises: {
     index: '/api/v1/enterprises',
-    create: '/api/v1/enterprise',
-    edit: (id: string) => `/api/v1/enterprise/${id}`
+    create: '/api/v1/enterprises',
+    edit: (id: string) => `/api/v1/enterprises/${id}`
   }
 };
 

@@ -39,7 +39,7 @@ export function* onEnterpriseCreate(action: Action<EnterpriseEditPayload>) {
   }
 }
 
-export function* watchEnterprisesIndex() {
+export function* watchEnterpriseCreateEdit() {
   yield all([
     takeLatest(enterpriseEdit, onEditEnterprise),
     takeLatest(enterpriseCreate, onEnterpriseCreate),

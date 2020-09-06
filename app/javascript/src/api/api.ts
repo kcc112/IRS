@@ -1,10 +1,17 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 
 import paths from './paths';
 import { EnterpriseEditPayload, EnterpriseCreatePayload } from './payloads';
 
 export const axiosInstance = axios.create({
   baseURL: paths.baseUrl,
+});
+
+axiosInstance.interceptors.request.use((config: AxiosRequestConfig) => {
+  const customConfig = { ...config };
+  const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+  customConfig.headers['X-CSRF-Token'] = token;
+  return customConfig;
 });
 
 export const api = (axiosIns => {
