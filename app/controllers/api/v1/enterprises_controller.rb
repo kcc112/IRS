@@ -3,7 +3,7 @@ class Api::V1::EnterprisesController < ApplicationController
   before_action :set_enterprise, only: [:show, :update, :destroy]
 
   def index
-    @enterprises = Enterprise.all
+    @enterprises = Enterprise.order(created_at: :desc)
     render json: EnterpriseSerializer.new(@enterprises)
   end
 

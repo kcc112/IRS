@@ -4,5 +4,10 @@
   "Users": "Users",
   "Issues": "Issues",
   "Enterprise edit": "Enterprise edit",
-  "Enterprise create": "Enterprise create"
+  "Enterprise create": "Enterprise create",
+  "Enterprise name": "Enterprise name",
+  "Enterprise description": "Enterprise description",
+  "Submit": "Submit",
+  "Enterprise name is required": "Enterprise name is required",
+  "Enterprise name has wrong format": "Enterprise name has wrong format"
 }

@@ -34,7 +34,7 @@ export function EnterpriseCreateEdit() {
   return (
     <Modal
       onClose={handleClose}
-      width="500px"
+      width='450px'
       visible
     >
       <div className={classes.container}>

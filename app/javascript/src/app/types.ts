@@ -3,3 +3,8 @@ export interface AppLocation {
   cache: any;
   previousLocation: any;
 }
+
+export interface ValidationError {
+  path: string;
+  msg: string;
+}

@@ -13,7 +13,7 @@ export const useStyles = makeStyles({
   },
   closeButton: {
     '& > svg': {
-      color: colours.redDark,
+      color: colours.white,
       fontSize: '30px',
     },
   },

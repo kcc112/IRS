@@ -4,7 +4,8 @@ export interface EnterprisesState {
   entities: {
     enterprises: EnterprisesIndex[];
     enterprise: EnterpriseShow;
-  }
+  },
+  eventAccumulator: EnterpriseEvent[]
 }
 
 export interface EnterpriseShow extends IResponseBase {
@@ -19,4 +20,9 @@ export interface EnterprisesIndex extends IResponseBase {
     name: string;
     description: string;
   }
+}
+
+export enum EnterpriseEvent {
+  EDITED_SUCCESSFULLY = 'EDITED_SUCCESSFULLY',
+  CREATED_SUCCESSFULLY = 'CREATED_SUCCESSFULLY',
 }

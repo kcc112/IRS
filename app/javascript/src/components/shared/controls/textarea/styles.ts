@@ -22,12 +22,14 @@ export const useStyles = makeStyles(() => createStyles({
   },
   error: {
     position: 'relative',
+    '& > div': {
+      marginLeft: 0,
+    },
     '& > p': {
       position: 'absolute',
       top: 0,
-      left: '2px',
-      color: colours.redDark,
-      fontSize: '10px',
+      color: colours.red,
+      fontSize: '13px',
       fontWeight: 400,
       fontFamily: 'inherit',
       minWidth: '100px',

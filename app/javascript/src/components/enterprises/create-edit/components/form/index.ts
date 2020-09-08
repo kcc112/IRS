@@ -1,1 +1,1 @@
-export { FormContainer } from './form-container';
+export { FormContainer } from './form';

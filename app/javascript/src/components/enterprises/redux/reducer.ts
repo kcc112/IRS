@@ -3,9 +3,9 @@ import { createReducer } from 'redux-act';
 import { EnterprisesState } from './types';
 import {
   enterprisesFetchSuccessfully,
-  enterpriseEditedSuccessfully,
-  enterpriseCreatedSuccessfully,
   enterprisesClear,
+  removeEventFromAccumulator,
+  emitEnterpriseEvent,
 } from './actions';
 
 const initialState: EnterprisesState = {
@@ -13,6 +13,7 @@ const initialState: EnterprisesState = {
     enterprises: [],
     enterprise: undefined,
   },
+  eventAccumulator: [],
 };
 
 const enterprises = createReducer<EnterprisesState>({}, initialState);
@@ -33,20 +34,14 @@ enterprises.on(enterprisesClear, state => ({
   },
 }));
 
-enterprises.on(enterpriseEditedSuccessfully, (state, enterprise) => ({
+enterprises.on(removeEventFromAccumulator, (state, newEvent) => ({
   ...state,
-  entities: {
-    ...state.entities,
-    enterprise,
-  },
+  eventAccumulator: state.eventAccumulator.filter(event=> event !== newEvent)
 }));
 
-enterprises.on(enterpriseCreatedSuccessfully, (state, enterprise) => ({
+enterprises.on(emitEnterpriseEvent, (state, event) => ({
   ...state,
-  entities: {
-    ...state.entities,
-    enterprise,
-  },
+  eventAccumulator: [...state.eventAccumulator, event]
 }));
 
 export default enterprises;
