@@ -1,10 +1,13 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 import { useStyles } from './styles';
 import { Footer } from './components/footer';
 import { Header } from './components/header';
 import { Sidebar } from './components/sidebar';
 import { Loader } from '../shared/loader/loader';
+import { Alert } from '../shared/alerts';
+import { selectShowAlert } from '../app/redux/selectors';
 
 interface Props {
   routes: React.ReactNode;
@@ -16,9 +19,13 @@ export function IrsLayout({
   isLoading,
 }: Props) {
   const classes = useStyles();
+  const isAlertVisable = useSelector(selectShowAlert); 
 
   return (
     <div className={classes.root} >
+      <div className={classes.alert}>
+        {isAlertVisable && <Alert /> } 
+      </div>
       <div className={classes.header}>
         <Header />
       </div>

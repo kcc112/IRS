@@ -10,14 +10,14 @@ class ApplicationController < ActionController::Base
   private
 
     def record_not_found(exception)
-      render json: { error: exception.message }.to_json, status: :not_found
+      render json: { error: exception.message, type: "#{$!.class}" }.to_json, status: :not_found
     end
 
     def record_invalid(exception)
-      render json: { error: exception.message }.to_json, status: :bad_request
+      render json: { error: exception.message, type: "#{$!.class}" }.to_json, status: :bad_request
     end
 
     def unauthorized(exception)
-      render json: { error: exception.message }.to_json, status: :forbidden
+      render json: { error: exception.message, type: "#{$!.class}" }.to_json, status: :forbidden
     end
 end

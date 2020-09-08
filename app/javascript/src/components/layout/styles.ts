@@ -34,4 +34,8 @@ export const useStyles = makeStyles({
   body: {
     minHeight: '95%',
   },
+  alert: {
+    justifyContent: 'center',
+    display: 'flex',
+  }
 });

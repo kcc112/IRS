@@ -9,7 +9,7 @@ import { AppLocation } from '../../../app/types';
 import { CreateEditHeader } from './components/header';
 import { FormContainer } from './components/form';
 import { EnterpriseEditPayload } from '../../../api/payloads';
-import { createEnterprise } from './actions';
+import { createEnterprise, hideModal } from './actions';
 
 export function EnterpriseCreateEdit() {
   const { t } = useTranslation();
@@ -20,6 +20,7 @@ export function EnterpriseCreateEdit() {
 
   const handleClose = () => {
     history.push(location.state.backgroundLocation)
+    dispatch(hideModal());
   };
 
   const resolveLocation = (): string => {

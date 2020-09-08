@@ -6,6 +6,8 @@ import {
   apiRequestDecrement,
   showModalSuccess,
   hideModalSuccess,
+  showAlert,
+  hideAlert,
 } from './actions';
 import { AppMeta } from './types';
 
@@ -13,6 +15,8 @@ export const initialState: AppMeta = {
   error: undefined,
   showModal: false,
   showLoader: false,
+  showAlert: false,
+  alertMessag: '',
 };
 
 const meta = createReducer<AppMeta>({}, initialState);
@@ -40,6 +44,18 @@ meta.on(apiRequestIncrement, state => ({
 meta.on(apiRequestDecrement, state => ({
   ...state,
   showLoader: false,
+}));
+
+meta.on(showAlert, (state, payload) => ({
+  ...state,
+  showAlert: true,
+  alertMessag: payload.message,
+}));
+
+meta.on(hideAlert, state => ({
+  ...state,
+  showAlert: false,
+  alertMessag: '',
 }));
 
 export default meta;

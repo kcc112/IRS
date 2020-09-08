@@ -9,10 +9,12 @@ import {
   emitEnterpriseEvent
 } from '../redux/actions';
 import { api } from '../../../api/api';
+import { ApiError, ErrorTypes } from '../../../api/errors';
 import {
   apiRequestIncrement,
   apiRequestDecrement,
-  apiRequestError
+  apiRequestError,
+  showAlert
 } from '../../app/redux/actions';
 import { EnterpriseEditPayload } from '../../../api/payloads';
 import { EnterpriseEvent } from '../redux/types';
@@ -24,9 +26,10 @@ export function* onEditEnterprise(action: Action<{ id: string; payload: Enterpri
     yield put(apiRequestIncrement());
     yield call(api.editEnterprise, id, payload);
     yield put(emitEnterpriseEvent(EnterpriseEvent.EDITED_SUCCESSFULLY));
-    yield put(apiRequestDecrement());
   } catch (err) {
     yield put(apiRequestError(err));
+  } finally {
+    yield put(apiRequestDecrement());
   }
 }
 
@@ -37,9 +40,13 @@ export function* onEnterpriseCreate(action: Action<EnterpriseEditPayload>) {
     yield put(apiRequestIncrement());
     yield call(api.createEnterprise, payload);
     yield put(emitEnterpriseEvent(EnterpriseEvent.CREATED_SUCCESSFULLY));
-    yield put(apiRequestDecrement());
   } catch (err) {
+    const { response } = err;
+    const data = response.data as ApiError;
+    if (data && data.type === ErrorTypes.RECORD_INVALID) yield put(showAlert({ message: data.error }));
     yield put(apiRequestError(err));
+  } finally {
+    yield put(apiRequestDecrement());
   }
 }
 
