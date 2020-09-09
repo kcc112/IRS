@@ -34,6 +34,9 @@ export const api = (axiosIns => {
     },
     async editEnterprise(id: string, payload: EnterpriseEditPayload) {
       return axiosInstance.put(paths.enterprises.edit(id), payload);
-    }
+    },
+    async showEnterprise(id: string) {
+      return axiosInstance.get(paths.enterprises.show(id));
+    },
   };
 })(axiosInstance);

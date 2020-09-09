@@ -1,7 +1,7 @@
-import React from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useHistory, useLocation, matchPath, useRouteMatch } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { useStyles } from './styles';
 import { Modal } from '../../shared/modal/container';
@@ -9,14 +9,32 @@ import { AppLocation } from '../../../app/types';
 import { CreateEditHeader } from './components/header';
 import { FormContainer } from './components/form';
 import { EnterpriseEditPayload } from '../../../api/payloads';
-import { createEnterprise, hideModal } from './actions';
+import { createEnterprise, hideModal, fetchEnterprise, clearEnterprise, editEnterprise } from './actions';
+import routes from '../../../routes/routes';
+
+interface PathParams {
+  id?: string;
+}
 
 export function EnterpriseCreateEdit() {
   const { t } = useTranslation();
   const classes = useStyles({});
   const history = useHistory();
   const dispatch = useDispatch();
+  const match = useRouteMatch<PathParams>();
   const location = useLocation<AppLocation>();
+  const [enterpriseId] = useState<string | undefined>(match && match.params.id ? match.params.id : undefined);
+
+  useEffect(() => {
+    const edit = matchPath(location.pathname, { path: routes.irs.enterprises.edit, exact: true });
+    if (edit !== null && enterpriseId) {
+      dispatch(fetchEnterprise(enterpriseId));
+    }
+  }, [dispatch, location.pathname, enterpriseId]);
+
+  useEffect(() => () => {
+    dispatch(clearEnterprise());
+  }, [dispatch]);
 
   const handleClose = () => {
     history.push(location.state.backgroundLocation)
@@ -24,11 +42,17 @@ export function EnterpriseCreateEdit() {
   };
 
   const resolveLocation = (): string => {
-    return location.pathname.includes('edit') ? t('Enterprise edit') : t('Enterprise create');
+    const edit = matchPath(location.pathname, { path: routes.irs.enterprises.edit, exact: true });
+    const create = matchPath(location.pathname, { path: routes.irs.enterprises.create, exact: true });
+    if (edit !== null) return t('Enterprise edit');
+    if (create !== null) return t('Enterprise create');
   };
 
   const handleSubmit = (formObject: EnterpriseEditPayload) => {
-    dispatch(createEnterprise(formObject));
+    const edit = matchPath(location.pathname, { path: routes.irs.enterprises.edit, exact: true });
+    const create = matchPath(location.pathname, { path: routes.irs.enterprises.create, exact: true });
+    if (create !== null) dispatch(createEnterprise(formObject));
+    if (edit !== null && enterpriseId) dispatch(editEnterprise({ id: enterpriseId, formObject: formObject }));
     handleClose();
   };
 

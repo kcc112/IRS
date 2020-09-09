@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 import * as yup from 'yup';
 
 import { useStyles } from './styles';
@@ -8,6 +9,7 @@ import { TextArea } from '../../../../shared/controls/textarea';
 import { EnterpriseEditPayload } from '../../../../../api/payloads';
 import { validate, findErrorByFieldName } from '../../../../../healpers/validation-helper';
 import { ValidationError } from '../../../../../app/types';
+import { selectEnterprise } from '../../../redux/selectors';
 
 interface Props {
   onHandleSubmit: (formObject: EnterpriseEditPayload) => void;
@@ -23,6 +25,14 @@ export function FormContainer({ onHandleSubmit }: Props) {
   const { t } = useTranslation();
   const [formObject, setformObject] = useState<EnterpriseEditPayload>(defoultFormObject);
   const [errors, setErrors] = useState<ValidationError[]>([]);
+  const enterprise = useSelector(selectEnterprise);
+
+  useEffect(() => {
+    if (enterprise) setformObject({
+      name: enterprise.attributes.name,
+      description: enterprise.attributes.description,
+    })
+  }, [enterprise])
 
   const schema = yup.object().shape({
     name: yup.string()
@@ -41,7 +51,6 @@ export function FormContainer({ onHandleSubmit }: Props) {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const { isValid, errors } = validate(formObject, schema);
-    console.log(errors)
     setErrors(errors);
     if (isValid) onHandleSubmit(formObject);
   };

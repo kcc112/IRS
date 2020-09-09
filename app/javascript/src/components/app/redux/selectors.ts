@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect';
 
 import { AppState } from '../../../store/reducer';
+import { AlertType } from '../../shared/alerts/types';
 
 export const selectShowModal = createSelector<AppState, boolean, boolean>(
   state => state.meta.showModal,
@@ -22,7 +23,7 @@ export const selectShowAlert = createSelector<AppState, boolean, boolean>(
   showAlert => showAlert
 );
 
-export const selectAlertMessage = createSelector<AppState, string, string>(
-  state => state.meta.alertMessag,
+export const selectAlert= createSelector<AppState, { message: string; type: AlertType }, { message: string; type: AlertType }>(
+  state => state.meta.alert,
   alertMessag => alertMessag
 );

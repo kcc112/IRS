@@ -27,5 +27,11 @@ export const useStyles = makeStyles({
   },
   message: {
     margin: '0 2.5px 0 5px',
-  }
+  },
+  error: {
+    backgroundColor: colours.redDark,
+  },
+  success: {
+    backgroundColor: colours.green,
+  },
 });

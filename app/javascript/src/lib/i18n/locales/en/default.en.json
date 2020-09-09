@@ -10,5 +10,7 @@
   "Submit": "Submit",
   "Enterprise name is required": "Enterprise name is required",
   "Enterprise name has wrong format": "Enterprise name has wrong format",
-  "Name has already been taken": "Name has already been taken"
+  "Name has already been taken": "Name has already been taken",
+  "Edit": "Edit",
+  "Enterprise updated successfully": "Enterprise updated successfully"
 }

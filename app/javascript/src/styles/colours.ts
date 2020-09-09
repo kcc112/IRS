@@ -4,6 +4,7 @@ export const colours = {
   white: '#ffffff',
   red: '#e60000',
   redDark: '#b30000',
+  green: '#29a329',
 }
 
 export const coloursRGBA = {

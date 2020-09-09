@@ -6,6 +6,8 @@ import {
   enterprisesClear,
   removeEventFromAccumulator,
   emitEnterpriseEvent,
+  enterpriseFetchSuccessfully,
+  enterpriseClear,
 } from './actions';
 
 const initialState: EnterprisesState = {
@@ -26,11 +28,27 @@ enterprises.on(enterprisesFetchSuccessfully, (state, enterprises) => ({
   },
 }));
 
+enterprises.on(enterpriseFetchSuccessfully, (state, enterprise) => ({
+  ...state,
+  entities: {
+    ...state.entities,
+    enterprise,
+  },
+}));
+
 enterprises.on(enterprisesClear, state => ({
   ...state,
   entities: {
     ...state.entities,
     enterprises: [],
+  },
+}));
+
+enterprises.on(enterpriseClear, state => ({
+  ...state,
+  entities: {
+    ...state.entities,
+    enterprise: undefined,
   },
 }));
 

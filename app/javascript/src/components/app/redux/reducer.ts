@@ -16,7 +16,7 @@ export const initialState: AppMeta = {
   showModal: false,
   showLoader: false,
   showAlert: false,
-  alertMessag: '',
+  alert: { message: '', type: undefined },
 };
 
 const meta = createReducer<AppMeta>({}, initialState);
@@ -49,13 +49,13 @@ meta.on(apiRequestDecrement, state => ({
 meta.on(showAlert, (state, payload) => ({
   ...state,
   showAlert: true,
-  alertMessag: payload.message,
+  alert: { message: payload.message, type: payload.type },
 }));
 
 meta.on(hideAlert, state => ({
   ...state,
   showAlert: false,
-  alertMessag: '',
+  alert: { message: '', type: undefined },
 }));
 
 export default meta;

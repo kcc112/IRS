@@ -2,7 +2,8 @@ import { createAction } from 'redux-act';
 
 import { 
   EnterprisesIndex,
-  EnterpriseEvent
+  EnterpriseEvent,
+  EnterpriseShow
 } from './types';
 import { 
   EnterpriseEditPayload,
@@ -11,12 +12,15 @@ import {
 
 export const enterprisesFetch = createAction('fetch enterprises trigger');
 export const enterprisesClear = createAction('clear enterprises');
+export const enterpriseClear = createAction('clear enterprise');
 export const enterprisesFetchSuccessfully = createAction<EnterprisesIndex[]>('enterprises fetch successfully');
+export const enterpriseFetchSuccessfully = createAction<EnterpriseShow>('enterprise fetch successfully');
 
 export const enterpriseEdit = createAction<{ 
   id: string;
   payload: EnterpriseEditPayload;
 }>('edit enterprise trigger');
+export const fetchEnterpriseToEdit = createAction<{id: string}>('fetch enterprise to edit');
 
 export const enterpriseCreate = createAction<EnterpriseCreatePayload>('create enterprise trigger');
 
