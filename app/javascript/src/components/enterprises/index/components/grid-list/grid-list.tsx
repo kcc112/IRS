@@ -1,7 +1,6 @@
 import React from 'react';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
-import { useTranslation } from 'react-i18next';
 
 import { EnterprisesIndex } from '../../../redux/types';
 import { useStyles } from './styles';
@@ -10,13 +9,14 @@ import { Tile } from '../tile/tile';
 interface Props {
   enterprises: EnterprisesIndex[];
   onRedirectToEnterpriseEdit: (id: string) => void;
+  onRedirectToEnterpriseDelete: (id: string) => void;
 }
 
 export function EnterprisesGridList({ 
   enterprises,
   onRedirectToEnterpriseEdit,
+  onRedirectToEnterpriseDelete,
 }: Props) {
-  const { t } = useTranslation();
   const classes = useStyles();
 
   return (
@@ -27,6 +27,7 @@ export function EnterprisesGridList({
             <Tile 
               enterprise={enterprise}
               onRedirectToEnterpriseEdit={onRedirectToEnterpriseEdit}
+              onRedirectToEnterpriseDelete={onRedirectToEnterpriseDelete}
             />
           </GridListTile>
         ))}

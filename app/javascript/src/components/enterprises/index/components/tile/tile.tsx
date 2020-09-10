@@ -9,11 +9,13 @@ import { useStyles } from './styles';
 interface Props {
   enterprise: EnterprisesIndex;
   onRedirectToEnterpriseEdit: (id: string) => void;
+  onRedirectToEnterpriseDelete: (id: string) => void;
 }
 
 export function Tile({ 
   enterprise,
   onRedirectToEnterpriseEdit,
+  onRedirectToEnterpriseDelete,
 }: Props) {
   const { t } = useTranslation();
   const classes = useStyles();
@@ -33,6 +35,13 @@ export function Tile({
           onClick={() => onRedirectToEnterpriseEdit(enterprise.id)}
         >
           {t('Edit')}
+        </button>
+        <button 
+          type='button'
+          className={`button ${classes.actionButton}`}
+          onClick={() => onRedirectToEnterpriseDelete(enterprise.id)}
+        >
+          {t('Delete')}
         </button>
       </div>
     </div>

@@ -24,7 +24,12 @@ export function EnterprisesIndex() {
   const events = useSelector(selectEnterpriseEvent);
 
   useEffect(() => {
-    const event = events.find(event => event === EnterpriseEvent.CREATED_SUCCESSFULLY || EnterpriseEvent.EDITED_SUCCESSFULLY);
+    const event = events.find(event => {
+      return event === EnterpriseEvent.CREATED_SUCCESSFULLY ||
+        EnterpriseEvent.EDITED_SUCCESSFULLY ||
+        EnterpriseEvent.DELETED_SUCCESSFULLY ||
+        EnterpriseEvent.REFRESH
+    });
     if (event) {
       dispatch(fetchEnterprises());
       dispatch(removeEventFromAccumulator(event));
@@ -46,6 +51,13 @@ export function EnterprisesIndex() {
     dispatch(showModal());
   };
 
+  const redirectToEnterpriseDelete = (id: string) => {
+    history.push(compile(routes.irs.enterprises.delete)({ id: id }),{
+      backgroundLocation: location,
+    });
+    dispatch(showModal());
+  };
+
   if (!enterprises) return <></>;
 
   return (
@@ -54,6 +66,7 @@ export function EnterprisesIndex() {
       <EnterprisesGridList  
         enterprises={enterprises}
         onRedirectToEnterpriseEdit={redirectToEnterpriseEdit}
+        onRedirectToEnterpriseDelete={redirectToEnterpriseDelete}
       />
     </div>
   );

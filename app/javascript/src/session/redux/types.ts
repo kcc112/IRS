@@ -28,6 +28,7 @@ export enum Actions {
   CREATE = 'CREATE',
   VIEW = 'VIEW',
   EDIT = 'EDIT',
+  DELETE  = 'DELETE',
 }
 
 export enum Subjects {

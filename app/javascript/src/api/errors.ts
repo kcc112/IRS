@@ -4,5 +4,6 @@ export interface ApiError {
 }
 
 export enum ErrorTypes {
-  RECORD_INVALID = "ActiveRecord::RecordInvalid"
+  RECORD_INVALID = 'ActiveRecord::RecordInvalid',
+  RECORD_NOT_FOUND = 'ActiveRecord::RecordNotFound'
 }

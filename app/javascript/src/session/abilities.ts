@@ -21,6 +21,8 @@ export function defineAbilitiesFor(user?: CurrentUser): Ability {
     can(Actions.EDIT, Subjects.ENTERPRISE);
 
     can(Actions.CREATE, Subjects.ENTERPRISE);
+
+    can(Actions.DELETE, Subjects.ENTERPRISE);
   }
 
   if (user.role === AppRolesConst.NOTIFIER) {

@@ -24,5 +24,7 @@ export const fetchEnterpriseToEdit = createAction<{id: string}>('fetch enterpris
 
 export const enterpriseCreate = createAction<EnterpriseCreatePayload>('create enterprise trigger');
 
+export const enterpriseDelete = createAction<{id: string}>('enterprise delete');
+
 export const emitEnterpriseEvent = createAction<EnterpriseEvent>('emit enterprise event');
 export const removeEventFromAccumulator = createAction<EnterpriseEvent>('remove event from accumulator');

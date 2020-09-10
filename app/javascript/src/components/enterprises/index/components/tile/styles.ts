@@ -41,5 +41,6 @@ export const useStyles = makeStyles({
   actionButton: {
     fontSize: '13px',
     color: colours.white,
+    margin: '0 2px'
   }
 });

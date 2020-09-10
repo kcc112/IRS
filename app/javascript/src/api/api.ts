@@ -38,5 +38,8 @@ export const api = (axiosIns => {
     async showEnterprise(id: string) {
       return axiosInstance.get(paths.enterprises.show(id));
     },
+    async deleteEnterprise(id: string) {
+      return axiosInstance.delete(paths.enterprises.delete(id));
+    },
   };
 })(axiosInstance);

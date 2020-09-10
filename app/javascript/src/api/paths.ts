@@ -15,7 +15,8 @@ const paths = {
     index: '/api/v1/enterprises',
     create: '/api/v1/enterprises',
     show: (id: string) => `/api/v1/enterprises/${id}`,
-    edit: (id: string) => `/api/v1/enterprises/${id}`
+    edit: (id: string) => `/api/v1/enterprises/${id}`,
+    delete: (id: string) => `/api/v1/enterprises/${id}`,
   }
 };
 

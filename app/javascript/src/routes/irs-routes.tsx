@@ -16,6 +16,7 @@ import { Error404 } from '../errors/404';
 import { selectShowModal } from '../components/app/redux/selectors';
 import { EnterpriseCreateEdit } from '../components/enterprises/create-edit';
 import { AppLocation } from '../app/types';
+import { EnterpriseDelete } from '../components/enterprises/delete';
 
 export function IrsRoutes() {
   const location = useLocation<AppLocation>();
@@ -100,6 +101,18 @@ export function IrsRoutes() {
                 <CanRender
                   render={abilities.can(Actions.EDIT, Subjects.ENTERPRISE)}
                   component={<EnterpriseCreateEdit />}
+                />
+              }
+            />
+          )}
+           {(showModal || hasbackgroundLocation()) && (
+            <Route 
+              exact
+              path={routes.irs.enterprises.delete}
+              render={() =>
+                <CanRender
+                  render={abilities.can(Actions.DELETE , Subjects.ENTERPRISE)}
+                  component={<EnterpriseDelete />}
                 />
               }
             />

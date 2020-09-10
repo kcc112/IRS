@@ -12,5 +12,11 @@
   "Enterprise name has wrong format": "Enterprise name has wrong format",
   "Name has already been taken": "Name has already been taken",
   "Edit": "Edit",
-  "Enterprise updated successfully": "Enterprise updated successfully"
+  "Enterprise updated successfully": "Enterprise updated successfully",
+  "Delete": "Delete",
+  "Are you shure you want to delete enterprise ?": "Are you shure you want to delete enterprise ?",
+  "Yes": "Yes",
+  "No": "No",
+  "Enterprise deleted successfully": "Enterprise deleted successfully",
+  "Couldn't find Enterprise": "Couldn't find Enterprise"
 }

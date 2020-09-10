@@ -25,4 +25,6 @@ export interface EnterprisesIndex extends IResponseBase {
 export enum EnterpriseEvent {
   EDITED_SUCCESSFULLY = 'EDITED_SUCCESSFULLY',
   CREATED_SUCCESSFULLY = 'CREATED_SUCCESSFULLY',
+  DELETED_SUCCESSFULLY = 'DELETED_SUCCESSFULLY',
+  REFRESH = 'REFRESH',
 }
