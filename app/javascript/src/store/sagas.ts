@@ -4,6 +4,7 @@ import { watchEnterprisesIndex } from '../components/enterprises/index/sagas';
 import { watchSession } from '../session/sagas';
 import { watchEnterpriseCreateEdit } from '../components/enterprises/create-edit/sagas';
 import { watchEnterpriseDelete } from '../components/enterprises/delete/sagas';
+import { watchEnterpriseShow } from '../components/enterprises/show/sagas';
 
 export function* rootSaga() {
   yield all([
@@ -11,5 +12,6 @@ export function* rootSaga() {
     watchSession(),
     watchEnterpriseCreateEdit(),
     watchEnterpriseDelete(),
+    watchEnterpriseShow(),
   ]);
 }

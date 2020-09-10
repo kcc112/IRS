@@ -1,6 +1,4 @@
 import React from 'react';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
 import { useTranslation } from 'react-i18next';
 
 import { EnterprisesIndex } from '../../../redux/types';
@@ -10,12 +8,14 @@ interface Props {
   enterprise: EnterprisesIndex;
   onRedirectToEnterpriseEdit: (id: string) => void;
   onRedirectToEnterpriseDelete: (id: string) => void;
+  onRedirectToEnterpriseShow: (id: string) => void;
 }
 
 export function Tile({ 
   enterprise,
   onRedirectToEnterpriseEdit,
   onRedirectToEnterpriseDelete,
+  onRedirectToEnterpriseShow,
 }: Props) {
   const { t } = useTranslation();
   const classes = useStyles();
@@ -35,6 +35,13 @@ export function Tile({
           onClick={() => onRedirectToEnterpriseEdit(enterprise.id)}
         >
           {t('Edit')}
+        </button>
+        <button 
+          type='button'
+          className={`button ${classes.actionButton}`}
+          onClick={() => onRedirectToEnterpriseShow(enterprise.id)}
+        >
+          {t('Show')}
         </button>
         <button 
           type='button'

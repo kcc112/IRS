@@ -58,6 +58,13 @@ export function EnterprisesIndex() {
     dispatch(showModal());
   };
 
+  const redirectToEnterpriseShow = (id: string) => {
+    history.push(compile(routes.irs.enterprises.show)({ id: id }),{
+      backgroundLocation: location,
+    });
+    dispatch(showModal());
+  };
+
   if (!enterprises) return <></>;
 
   return (
@@ -67,6 +74,7 @@ export function EnterprisesIndex() {
         enterprises={enterprises}
         onRedirectToEnterpriseEdit={redirectToEnterpriseEdit}
         onRedirectToEnterpriseDelete={redirectToEnterpriseDelete}
+        onRedirectToEnterpriseShow={redirectToEnterpriseShow}
       />
     </div>
   );

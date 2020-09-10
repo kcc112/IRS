@@ -14,6 +14,7 @@ export function defineAbilitiesFor(user?: CurrentUser): Ability {
 
   if (user.role === AppRolesConst.ADMIN) {
     can(Actions.VIEW, Subjects.ENTERPRISES);
+    can(Actions.VIEW, Subjects.ENTERPRISE);
     can(Actions.VIEW, Subjects.COMMENTS);
     can(Actions.VIEW, Subjects.USERS);
     can(Actions.VIEW, Subjects.ISSUES);

@@ -11,6 +11,7 @@ import {
 } from '../../../api/payloads';
 
 export const enterprisesFetch = createAction('fetch enterprises trigger');
+export const enterpriseFetch = createAction<{id: string}>('fetch enterprise trigger');
 export const enterprisesClear = createAction('clear enterprises');
 export const enterpriseClear = createAction('clear enterprise');
 export const enterprisesFetchSuccessfully = createAction<EnterprisesIndex[]>('enterprises fetch successfully');

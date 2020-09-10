@@ -10,12 +10,14 @@ interface Props {
   enterprises: EnterprisesIndex[];
   onRedirectToEnterpriseEdit: (id: string) => void;
   onRedirectToEnterpriseDelete: (id: string) => void;
+  onRedirectToEnterpriseShow: (id: string) => void;
 }
 
 export function EnterprisesGridList({ 
   enterprises,
   onRedirectToEnterpriseEdit,
   onRedirectToEnterpriseDelete,
+  onRedirectToEnterpriseShow,
 }: Props) {
   const classes = useStyles();
 
@@ -28,6 +30,7 @@ export function EnterprisesGridList({
               enterprise={enterprise}
               onRedirectToEnterpriseEdit={onRedirectToEnterpriseEdit}
               onRedirectToEnterpriseDelete={onRedirectToEnterpriseDelete}
+              onRedirectToEnterpriseShow={onRedirectToEnterpriseShow}
             />
           </GridListTile>
         ))}

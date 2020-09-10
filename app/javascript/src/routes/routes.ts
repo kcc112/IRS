@@ -5,6 +5,7 @@ const routes = {
       index: '/irs/enterprises',
       create: '/irs/enterprise/create',
       edit: '/irs/enterprise/:id/edit',
+      show: '/irs/enterprise/:id',
       delete: '/irs/enterprise/:id/delete',
     },
     users: {
