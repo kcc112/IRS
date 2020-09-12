@@ -4,5 +4,5 @@ class UserSerializer
 
   belongs_to :enterprise, serializer: EnterpriseSerializer
   
-  has_one :user_informations, serializer: UserInformationsSerializer
+  has_one :user_informations, serializer: UserInformations::UserInformationsSerializer
 end

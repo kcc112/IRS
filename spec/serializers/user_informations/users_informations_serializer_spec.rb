@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe UserInformationsSerializer, type: :serializer do
+RSpec.describe UserInformations::UserInformationsSerializer, type: :serializer do
 
   describe '#serializable_hash' do
     let(:user) { create :user }
     let(:user_informations) { create :user_informations, user_id: user.id }
-    subject { UserInformationsSerializer.new(user_informations).serializable_hash }
+    subject { UserInformations::UserInformationsSerializer.new(user_informations).serializable_hash }
     
     context 'when single object passed' do
       it 'should serialize basic attributes' do
