@@ -1,4 +1,5 @@
 import { IResponseBase } from '../../../api/types';
+import { AppRolesConst } from '../../../session/redux/types';
 
 export interface UsersInformationsState {
   entities: {
@@ -14,6 +15,8 @@ export interface UserInformationsShow extends IResponseBase {
     surname: string;
     phone_number: string;
     email: string;
+    role: keyof typeof AppRolesConst;
+    createdAt: string;
   }
 }
 
@@ -23,6 +26,10 @@ export interface UsersInformationsIndex extends IResponseBase {
     surname: string;
     phone_number: string;
     email: string;
+    role: keyof typeof AppRolesConst;
+    createdAt: string;
+    enterpriseId: string;
+    enterpriseName: string;
   }
 }
 

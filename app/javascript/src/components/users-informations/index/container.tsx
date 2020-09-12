@@ -50,6 +50,18 @@ export function UsersInformationsIndex() {
               <div>
                 {userInformations.attributes.email}
               </div>
+              <div>
+                {userInformations.attributes.role}
+              </div>
+              <div>
+                {userInformations.attributes.createdAt}
+              </div>
+              <div>
+                {userInformations.attributes.enterpriseId}
+              </div>
+              <div>
+                {userInformations.attributes.enterpriseName}
+              </div>
             </div>
           );
         })
