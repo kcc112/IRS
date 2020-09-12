@@ -9,9 +9,9 @@ export const mapJSONToUsersInformationsIndex = (response: IResponse): UsersInfor
   if (!Array.isArray(data)) return [];
 
   return data.map(entity => {
-    const users = getRelatedObjectsByType(entity, included, 'user');
-    
-    const enterprises = getRelatedObjectsByType(users[0], included, 'enterprise');
+    const user = getRelatedObjectsByType(entity, included, 'user');
+    const enterpriseEntity = getRelatedObjectsByType(user[0], included, 'enterprise');
+    const enterprise = enterpriseEntity[0] ? included.find(obj => obj.id === enterpriseEntity[0].id) : undefined;
 
     return {
       id: entity.id,
@@ -20,11 +20,11 @@ export const mapJSONToUsersInformationsIndex = (response: IResponse): UsersInfor
         name: entity.attributes.name ? entity.attributes.name : '',
         surname: entity.attributes.surname ? entity.attributes.surname : '',
         phone_number: entity.attributes.phone_number ? entity.attributes.phone_number  : '',
-        email: users[0] ? users[0].attributes.email : '', 
-        role: users[0] ? users[0].attributes.role.toUpperCase() : '', 
-        createdAt: users[0] ? formatDate(users[0].attributes.created_at) : '',
-        enterpriseId: enterprises[0] ? enterprises[0].id : '',
-        enterpriseName: enterprises[0] ? enterprises[0].attributes.name : '', 
+        email: user[0] ? user[0].attributes.email : '', 
+        role: user[0] ? user[0].attributes.role.toUpperCase() : '', 
+        createdAt: user[0] ? formatDate(user[0].attributes.created_at) : '',
+        enterpriseId: enterprise ? enterprise.id : '',
+        enterpriseName: enterprise ? enterprise.attributes.name : '', 
       }
     }
   });

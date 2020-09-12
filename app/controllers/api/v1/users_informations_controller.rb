@@ -33,7 +33,7 @@ class Api::V1::UsersInformationsController < ApplicationController
 
     def index_serializer_options
       {
-        include: %i[user]
+        include: %i[user user.enterprise]
       }
     end
 

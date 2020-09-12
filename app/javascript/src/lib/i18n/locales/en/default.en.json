@@ -19,5 +19,10 @@
   "No": "No",
   "Enterprise deleted successfully": "Enterprise deleted successfully",
   "Couldn't find Enterprise": "Couldn't find Enterprise",
-  "Show": "Show"
+  "Show": "Show",
+  "Email": "Email",
+  "Created at": "Created at",
+  "User name": "User Name",
+  "Phone number": "Phone number",
+  "Role": "Role"
 }
