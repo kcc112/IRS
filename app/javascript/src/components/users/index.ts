@@ -1,1 +1,0 @@
-export { UsersIndex } from './container';

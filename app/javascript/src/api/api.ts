@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios';
 
 import paths from './paths';
-import { EnterpriseEditPayload, EnterpriseCreatePayload } from './payloads';
+import { EnterpriseEditPayload, EnterpriseCreatePayload, UserInformationsEditPayload } from './payloads';
 
 export const axiosInstance = axios.create({
   baseURL: paths.baseUrl,
@@ -40,6 +40,16 @@ export const api = (axiosIns => {
     },
     async deleteEnterprise(id: string) {
       return axiosInstance.delete(paths.enterprises.delete(id));
+    },
+
+    async fetchUsersInformations() {
+      return axiosInstance.get(paths.usersInformations.index);
+    },
+    async showUserInformations(id: string) {
+      return axiosInstance.get(paths.usersInformations.show(id));
+    },
+    async editUserInformations(id: string, payload: UserInformationsEditPayload) {
+      return axiosInstance.put(paths.usersInformations.edit(id), payload);
     },
   };
 })(axiosInstance);

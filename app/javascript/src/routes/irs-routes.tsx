@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 import routes from './routes';
 import { EnterprisesIndex } from '../components/enterprises/index';
-import { UsersIndex } from '../components/users';
+import { UsersInformationsIndex } from '../components/users-informations/index';
 import { IssuesIndex } from '../components/issues';
 import { CommentsIndex } from '../components/comments';
 import defineAbilitiesFor from '../session/abilities';
@@ -54,7 +54,7 @@ export function IrsRoutes() {
           render={() =>
             <CanRender
               render={abilities.can(Actions.VIEW, Subjects.USERS)}
-              component={<UsersIndex />}
+              component={<UsersInformationsIndex />}
             />
           }
         />

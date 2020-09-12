@@ -17,6 +17,11 @@ const paths = {
     show: (id: string) => `/api/v1/enterprises/${id}`,
     edit: (id: string) => `/api/v1/enterprises/${id}`,
     delete: (id: string) => `/api/v1/enterprises/${id}`,
+  },
+  usersInformations: {
+    index: '/api/v1/users_informations',
+    show: (id: string) => `/api/v1/users_informations/${id}`,
+    edit: (id: string) => `/api/v1/users_informations/${id}`,
   }
 };
 

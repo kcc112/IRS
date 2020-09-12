@@ -1,0 +1,1 @@
+export { UsersInformationsIndex } from './container';

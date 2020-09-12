@@ -5,7 +5,7 @@ export interface EnterprisesState {
     enterprises: EnterprisesIndex[];
     enterprise: EnterpriseShow;
   },
-  eventAccumulator: EnterpriseEvent[]
+  eventAccumulator: EnterpriseEvent[];
 }
 
 export interface EnterpriseShow extends IResponseBase {
