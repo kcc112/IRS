@@ -47,6 +47,9 @@ export function UsersInformationsIndex() {
           return (
             <div key={userInformations.id}>
               {`${index} ${userInformations.attributes.name} ${userInformations.attributes.surname}`}
+              <div>
+                {userInformations.attributes.email}
+              </div>
             </div>
           );
         })

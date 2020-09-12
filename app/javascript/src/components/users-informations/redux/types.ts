@@ -13,6 +13,7 @@ export interface UserInformationsShow extends IResponseBase {
     name: string;
     surname: string;
     phone_number: string;
+    email: string;
   }
 }
 
@@ -21,6 +22,7 @@ export interface UsersInformationsIndex extends IResponseBase {
     name: string;
     surname: string;
     phone_number: string;
+    email: string;
   }
 }
 

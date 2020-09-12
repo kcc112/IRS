@@ -1,5 +1,6 @@
 export type IEntityType =
-  | 'enterprise';
+  | 'enterprise'
+  | 'user'
 
 export interface IResponseBase {
   id: string;
