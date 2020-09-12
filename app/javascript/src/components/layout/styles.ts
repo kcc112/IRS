@@ -33,6 +33,7 @@ export const useStyles = makeStyles({
   },
   body: {
     minHeight: '95%',
+    borderLeft: `1px solid ${coloursRGBA.grayLighter}`,
   },
   alert: {
     justifyContent: 'center',
