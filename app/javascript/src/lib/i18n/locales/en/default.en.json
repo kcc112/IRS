@@ -24,5 +24,14 @@
   "Created at": "Created at",
   "User name": "User Name",
   "Phone number": "Phone number",
-  "Role": "Role"
+  "Role": "Role",
+  "Edit user informations": "Edit user informations",
+  "Name is required": "Name is required",
+  "Surname is required": "Surname is required",
+  "Phone number is required": "Phone number is required",
+  "Name has wrong format": "Name has wrong format",
+  "Surname has wrong format": "Surname has wrong format",
+  "Name": "Name",
+  "Surname": "Surname",
+  "Wrong phone number format": "Wrong phone number format"
 }

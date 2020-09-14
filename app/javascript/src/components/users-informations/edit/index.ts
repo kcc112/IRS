@@ -1,0 +1,1 @@
+export { UserInformationsEdit } from './container';

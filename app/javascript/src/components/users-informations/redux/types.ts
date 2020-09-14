@@ -13,10 +13,7 @@ export interface UserInformationsShow extends IResponseBase {
   attributes: {
     name: string;
     surname: string;
-    phone_number: string;
-    email: string;
-    role: keyof typeof AppRolesConst;
-    createdAt: string;
+    phoneNumber: string;
   }
 }
 

@@ -9,5 +9,6 @@ export const mapJSONToCurrentUser = (response: ICurrentUser): CurrentUser => {
     name:	response.data.name,
     surname: response.data.surname,
     enterprise: response.data.enterprise,
+    userInformationsId: response.data.user_informations_id,
   };
 };

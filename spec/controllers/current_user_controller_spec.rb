@@ -23,6 +23,7 @@ RSpec.describe Api::V1::Session::CurrentUserController , type: :controller do
           name:	nil,
           surname: nil,
           enterprise: enterprise.name,
+          user_informations_id: user.user_informations_id
         )
       end
     end

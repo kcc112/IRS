@@ -24,7 +24,7 @@ export function Sidebar() {
   };
 
   const redirectToUsersIndex = () => {
-    history.push(routes.irs.users.index);
+    history.push(routes.irs.usersInformations.index);
   };
 
   return (

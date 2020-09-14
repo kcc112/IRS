@@ -37,5 +37,6 @@ export interface ICurrentUser {
     name: string;
     surname: string;
     enterprise: string;
+    user_informations_id: string;
   }
 }

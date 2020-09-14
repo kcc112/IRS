@@ -28,7 +28,7 @@ class Api::V1::UsersInformationsController < ApplicationController
     end
 
     def user_informations_params
-      params.require(:user_informations).permit(:name, :surname, :phone_number)  
+      params.require(:users_information).permit(:name, :surname, :phone_number)  
     end
 
     def index_serializer_options

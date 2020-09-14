@@ -16,10 +16,11 @@ export function defineAbilitiesFor(user?: CurrentUser): Ability {
     can(Actions.VIEW, Subjects.ENTERPRISES);
     can(Actions.VIEW, Subjects.ENTERPRISE);
     can(Actions.VIEW, Subjects.COMMENTS);
-    can(Actions.VIEW, Subjects.USERS);
+    can(Actions.VIEW, Subjects.USERS_INFORMATIONS);
     can(Actions.VIEW, Subjects.ISSUES);
 
     can(Actions.EDIT, Subjects.ENTERPRISE);
+    can(Actions.EDIT, Subjects.USER_INFORMATIONS);
 
     can(Actions.CREATE, Subjects.ENTERPRISE);
 
@@ -28,11 +29,16 @@ export function defineAbilitiesFor(user?: CurrentUser): Ability {
 
   if (user.role === AppRolesConst.NOTIFIER) {
     cannot(Actions.VIEW, Subjects.ENTERPRISES);
-    cannot(Actions.VIEW, Subjects.USERS);
+    cannot(Actions.VIEW, Subjects.USERS_INFORMATIONS);
     can(Actions.VIEW, Subjects.COMMENTS);
     can(Actions.VIEW, Subjects.ISSUES);
+
+    can(Actions.EDIT, Subjects.USER_INFORMATIONS);
   }
 
+  if (user.role === AppRolesConst.RECEIVER) {
+    can(Actions.EDIT, Subjects.USER_INFORMATIONS);
+  }
 
   return new Ability(rules);
 };

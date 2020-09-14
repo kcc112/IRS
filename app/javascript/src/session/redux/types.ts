@@ -22,6 +22,7 @@ export interface CurrentUser {
   name:	string;
   surname: string;
   enterprise: string;
+  userInformationsId: string;
 }
 
 export enum Actions {
@@ -36,7 +37,8 @@ export enum Subjects {
   ENTERPRISE = 'ENTERPRISE',
   ISSUES = 'ISSUES',
   COMMENTS = 'COMMENTS',
-  USERS = 'USERS',
+  USERS_INFORMATIONS = 'USERS_INFORMATIONS',
+  USER_INFORMATIONS = 'USER_INFORMATIONS',
 }
 
 export interface SessionState {

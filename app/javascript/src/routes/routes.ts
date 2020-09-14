@@ -8,8 +8,9 @@ const routes = {
       show: '/irs/enterprise/:id',
       delete: '/irs/enterprise/:id/delete',
     },
-    users: {
-      index: '/irs/users',
+    usersInformations: {
+      index: '/irs/users_informations',
+      edit: '/irs/users_informations/:id/edit',
     },
     issues: {
       index: '/irs/issues',

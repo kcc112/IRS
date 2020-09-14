@@ -5,7 +5,7 @@ export const resolveIsActive = (page: string, pathname: string): boolean => {
     case 'enterprises':
       return pathname.includes(routes.irs.enterprises.index);
     case 'users':
-      return pathname.includes(routes.irs.users.index);
+      return pathname.includes(routes.irs.usersInformations.index);
     case 'issues':
       return pathname.includes(routes.irs.issues.index);
     default:
