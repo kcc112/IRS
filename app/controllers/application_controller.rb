@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
   rescue_from Pundit::NotAuthorizedError, with: :unauthorized
+  rescue_from ArgumentError, with: :record_invalid
 
   private
 

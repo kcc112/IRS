@@ -7,8 +7,7 @@ Rails.application.routes.draw do
 
       namespace :session do
         resources :current_user, only: [:index]
-        resources :roles, only: [:index]
-        put :change_role
+        resources :roles, only: [:index, :update]
       end
 
       resources :enterprises, only: [:index, :show, :create, :update, :destroy]

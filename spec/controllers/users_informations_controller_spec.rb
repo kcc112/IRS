@@ -46,8 +46,9 @@ RSpec.describe Api::V1::UsersInformationsController, type: :controller do
 
   describe 'PUT #udate' do
     let(:user) { create :user }
-    let(:valid_attributes) { { id: user.user_informations.id, user_informations: attributes_for(:user_informations, name: 'Test') } }
-    let(:invalid_attributes) { { id: user.user_informations.id, user_informations: attributes_for(:user_informations, name: 'Test1') } }
+    let(:user_informations) { create :user_informations }
+    let(:valid_attributes) { { id: user.user_informations.id, users_information: attributes_for(:user_informations, name: 'Test') } }
+    let(:invalid_attributes) { { id: user.user_informations.id, users_information: attributes_for(:user_informations, name: 'Test1') } }
 
     context 'valid attributes' do
       subject { put :update, params: valid_attributes }
