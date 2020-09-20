@@ -59,7 +59,6 @@ export function FormContainer({ onHandleSubmit }: Props) {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const { isValid, errors } = validate(formObject, schema);
-    console.log(isValid, errors)
     setErrors(errors);
     if (isValid) onHandleSubmit(formObject);
   };

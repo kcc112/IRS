@@ -1,3 +1,5 @@
+import { Role } from '../session/redux/types';
+
 export type IEntityType =
   | 'enterprise'
   | 'user'
@@ -40,3 +42,9 @@ export interface ICurrentUser {
     user_informations_id: string;
   }
 }
+
+export interface IRoles {
+  data: {
+    roles: Role[]
+  },
+};

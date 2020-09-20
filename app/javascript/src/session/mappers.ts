@@ -1,5 +1,5 @@
-import { CurrentUser, AppRoles } from './redux/types';
-import { ICurrentUser } from '../api/types';
+import { CurrentUser, AppRoles, Role } from './redux/types';
+import { ICurrentUser, IRoles } from '../api/types';
 
 export const mapJSONToCurrentUser = (response: ICurrentUser): CurrentUser => {
   return {
@@ -11,4 +11,12 @@ export const mapJSONToCurrentUser = (response: ICurrentUser): CurrentUser => {
     enterprise: response.data.enterprise,
     userInformationsId: response.data.user_informations_id,
   };
+};
+
+export const mapJSONToRoleArray = (response: IRoles): Role[] => {
+  const { data } = response;
+
+  return data.roles.map(role => {
+    return { id: role.id, role: role.role }
+  })
 };
