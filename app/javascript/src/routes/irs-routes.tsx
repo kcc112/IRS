@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import routes from './routes';
 import { EnterprisesIndex } from '../components/enterprises/index';
 import { UsersInformationsIndex } from '../components/users-informations/index';
-import { IssuesIndex } from '../components/issues';
+import { IssuesIndex } from '../components/issues/index';
 import { CommentsIndex } from '../components/comments';
 import defineAbilitiesFor from '../session/abilities';
 import { Actions, Subjects } from '../session/redux/types';

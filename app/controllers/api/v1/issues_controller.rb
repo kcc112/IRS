@@ -46,7 +46,7 @@ class Api::V1::IssuesController < ApplicationController
     end 
 
     def issue_create_params
-      params.require(:issue).permit(:description, :issue_type, :reported_by_id )
+      params.require(:issue).permit(:description, :issue_type, :reported_by_id)
     end
 
     def issue_update_params

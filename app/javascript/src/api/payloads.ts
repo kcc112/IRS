@@ -8,6 +8,17 @@ export interface EnterpriseCreatePayload {
   description: string;
 }
 
+export interface IssueEditPayload {
+  description: string;
+  issue_type: string;
+}
+
+export interface IssueCreatePayload {
+  description: string;
+  issue_type: string;
+  reported_by_id: string;
+}
+
 export interface UserInformationsEditPayload {
   name: string;
   surname: string;
