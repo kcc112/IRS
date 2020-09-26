@@ -6,6 +6,7 @@ const paths = {
   session: {
     roles: {
       index: '/api/v1/session/roles',
+      edit: (id: string) => `/api/v1/session/roles/${id}`,
     },
     currentUser: {
       index: '/api/v1/session/current_user',

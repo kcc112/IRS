@@ -33,5 +33,6 @@
   "Surname has wrong format": "Surname has wrong format",
   "Name": "Name",
   "Surname": "Surname",
-  "Wrong phone number format": "Wrong phone number format"
+  "Wrong phone number format": "Wrong phone number format",
+  "User role updated successfully": "User role updated successfully"
 }

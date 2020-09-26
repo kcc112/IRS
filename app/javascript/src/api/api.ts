@@ -1,7 +1,12 @@
 import axios, { AxiosRequestConfig } from 'axios';
 
 import paths from './paths';
-import { EnterpriseEditPayload, EnterpriseCreatePayload, UserInformationsEditPayload } from './payloads';
+import { 
+  EnterpriseEditPayload,
+  EnterpriseCreatePayload,
+  UserInformationsEditPayload,
+  UserRoleEditPayload 
+} from './payloads';
 
 export const axiosInstance = axios.create({
   baseURL: paths.baseUrl,
@@ -25,6 +30,9 @@ export const api = (axiosIns => {
     },
     async fetchCurentUser() {
       return axiosInstance.get(paths.session.currentUser.index);
+    },
+    async editUserRole(id: string, payload: UserRoleEditPayload) {
+      return axiosInstance.put(paths.session.roles.edit(id), payload);
     },
     async fetchEnterprises() {
       return axiosInstance.get(paths.enterprises.index);

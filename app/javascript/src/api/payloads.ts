@@ -13,3 +13,9 @@ export interface UserInformationsEditPayload {
   surname: string;
   phone_number: string;
 }
+
+export interface UserRoleEditPayload {
+  role: {
+    value: string;
+  };
+}

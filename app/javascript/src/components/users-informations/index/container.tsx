@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useStyles } from './styles';
 import { selectUsersInformations, selectUserInformationsEvent } from '../redux/selectors';
 import { UserInformationsEvent } from '../redux/types';
-import { fetchUsersInformations, clearUsersInformations } from './actions';
+import { fetchUsersInformations, clearUsersInformations, editRole } from './actions';
 import { removeEventFromAccumulator } from '../redux/actions';
 import { SimpleTable } from './components/table-list/table-list';
 
@@ -25,22 +25,29 @@ export function UsersInformationsIndex() {
       dispatch(fetchUsersInformations());
       dispatch(removeEventFromAccumulator(event));
     }
-  }, [dispatch, event]);
+  }, [dispatch, events]);
 
   useEffect(() => {
     if (usersInformations.length === 0) dispatch(fetchUsersInformations());
   }, [dispatch, usersInformations])
 
-  useEffect( () => () => {
+  useEffect(() => () => {
     dispatch(clearUsersInformations());
   }, [dispatch]);
+
+  const handleEditRole = (value: string, userId: string) => {
+    dispatch(editRole(userId, value));
+  };
 
   if (!usersInformations) return <></>;
 
   return (
     <div className={classes.container}>
       <div className={classes.title}>{t('Users')}</div>
-      <SimpleTable usersInformations={usersInformations}/>
+      <SimpleTable 
+        usersInformations={usersInformations}
+        onHandleEditRole={handleEditRole}
+      />
     </div>
   );
 }

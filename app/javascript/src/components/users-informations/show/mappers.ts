@@ -3,7 +3,6 @@ import { UserInformationsShow } from '../redux/types';
 
 export const mapJSONToUserInformationsShow = (response: IResponse): UserInformationsShow | undefined => {
   const { data } = response;
-
   if (Array.isArray(data)) return undefined;
 
   return {

@@ -17,10 +17,12 @@ import { Role } from '../../../../../session/redux/types';
 
 interface Props {
   usersInformations: UsersInformationsIndex[];
+  onHandleEditRole: (value: string, userId: string) => void;
 }
 
 export function SimpleTable({ 
   usersInformations,
+  onHandleEditRole,
 }: Props) {
   const { t } = useTranslation();
   const classes = useStyles();
@@ -30,13 +32,16 @@ export function SimpleTable({
     return roles.map(role => {
       return ({
         value: role.role,
-        id: role.role
+        id: role.id
       });
     });
   };
 
-  const handleChange = (value: string) => {
-  }
+  const handleChange = (value: string, userId: string) => {
+    onHandleEditRole(value, userId);
+  };
+
+  if (!roles) return <></>;
 
   return (
     <TableContainer className={classes.container}>
@@ -52,7 +57,7 @@ export function SimpleTable({
           </TableRow>
         </TableHead>
         <TableBody>
-          {usersInformations.map((userInformations) => (
+          {usersInformations.map(userInformations => (
             <TableRow key={userInformations.id}>
               <TableCell>
                 {userInformations.attributes.email}
@@ -67,10 +72,10 @@ export function SimpleTable({
                 <SimpleSelect
                   value={{
                     value: userInformations.attributes.role.toLocaleLowerCase(),
-                    id: userInformations.attributes.role.toLocaleLowerCase()
+                    id: roles.filter(role => role.role === userInformations.attributes.role.toLocaleLowerCase())[0].id,
                   }}
                   options={resolveRoles(roles)}
-                  onChange={handleChange}
+                  onChange={(value: string) => handleChange(value, userInformations.attributes.userId)}
                 />
               </TableCell>
             </TableRow>

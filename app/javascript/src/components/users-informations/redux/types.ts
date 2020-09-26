@@ -27,6 +27,7 @@ export interface UsersInformationsIndex extends IResponseBase {
     createdAt: string;
     enterpriseId: string;
     enterpriseName: string;
+    userId: string;
   }
 }
 

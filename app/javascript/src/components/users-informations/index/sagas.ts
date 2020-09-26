@@ -7,7 +7,7 @@ import {
   usersInformationsFetchSuccessfully
 } from '../redux/actions';
 import { api } from '../../../api/api';
-import { mapJSONToUsersInformationsIndex } from './mappers';
+import { mapJSONToUsersInformationsIndexArray } from './mappers';
 import {
   apiRequestIncrement,
   apiRequestDecrement,
@@ -17,8 +17,9 @@ import {
 export function* onUsersInformationsFetch() {
   try {
     yield put(apiRequestIncrement());
+    
     const { data } = yield call(api.fetchUsersInformations);
-    const usersInformations = mapJSONToUsersInformationsIndex(data);
+    const usersInformations = mapJSONToUsersInformationsIndexArray(data);
 
     yield put(usersInformationsFetchSuccessfully(usersInformations));
     yield put(apiRequestDecrement());
