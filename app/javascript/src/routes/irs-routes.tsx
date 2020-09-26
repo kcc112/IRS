@@ -19,6 +19,7 @@ import { AppLocation } from '../app/types';
 import { EnterpriseDelete } from '../components/enterprises/delete';
 import { EnterpriseShow } from '../components/enterprises/show';
 import { UserInformationsEdit } from '../components/users-informations/edit';
+import { Home } from '../components/home';
 
 export function IrsRoutes() {
   const location = useLocation<AppLocation>();
@@ -39,6 +40,16 @@ export function IrsRoutes() {
   return (
     <>
       <Switch location={resolveBackgroundPath()}>
+        <Route
+          exact
+          path={routes.irs.root}
+          render={() =>
+            <CanRender
+              render={abilities.can(Actions.VIEW, Subjects.HOME)}
+              component={<Home />}
+            />
+          }
+        />
         <Route
           exact
           path={routes.irs.enterprises.index}

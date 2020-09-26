@@ -8,6 +8,8 @@ import { Sidebar } from './components/sidebar';
 import { Loader } from '../shared/loader/loader';
 import { Alert } from '../shared/alerts';
 import { selectShowAlert } from '../app/redux/selectors';
+import { selectCurrentUser } from '../../session/redux/selectors';
+import defineAbilitiesFor from '../../session/abilities';
 
 interface Props {
   routes: React.ReactNode;
@@ -20,6 +22,8 @@ export function IrsLayout({
 }: Props) {
   const classes = useStyles();
   const isAlertVisable = useSelector(selectShowAlert); 
+  const currentUser = useSelector(selectCurrentUser);
+  const abilities = defineAbilitiesFor(currentUser);
 
   return (
     <div className={classes.root} >
@@ -27,11 +31,11 @@ export function IrsLayout({
         {isAlertVisable && <Alert /> } 
       </div>
       <div className={classes.header}>
-        <Header />
+        <Header abilities={abilities} />
       </div>
       <div className={classes.main}>
         <nav className={classes.sidebar}>
-          <Sidebar />
+          <Sidebar abilities={abilities} />
         </nav>
         <div className={classes.container}>
           <div className={classes.body}>

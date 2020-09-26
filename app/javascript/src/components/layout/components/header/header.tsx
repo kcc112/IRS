@@ -5,14 +5,20 @@ import AddIcon from '@material-ui/icons/Add';
 import { useDispatch, useSelector } from 'react-redux';
 import { compile } from 'path-to-regexp';
 import PermIdentityIcon from '@material-ui/icons/PermIdentity';
+import { Ability } from '@casl/ability';
 
 import { useStyles } from './styles';
 import paths from '../../../../api/paths';
 import routes from '../../../../routes/routes';
 import { showModal } from './actions';
 import { selectCurrentUser } from '../../../../session/redux/selectors';
+import { Actions, Subjects } from '../../../../session/redux/types';
 
-export function Header() {
+interface Props {
+  abilities: Ability
+}
+
+export function Header({ abilities }: Props) {
   const classes = useStyles();
   const location = useLocation();
   const history = useHistory();
@@ -45,12 +51,16 @@ export function Header() {
         </div>
       </div>
       <div className={classes.logout}>
-        <button type="button" className={'button'}  onClick={redirectToCreateEnterprise}>
-          <AddIcon />
-        </button>
-        <button type="button" className={'button'}  onClick={redirectToEditUserInformations}>
-          <PermIdentityIcon />
-        </button>
+        { abilities.can(Actions.CREATE, Subjects.ENTERPRISE) && (
+          <button type="button" className={'button'}  onClick={redirectToCreateEnterprise}>
+            <AddIcon />
+          </button>
+        )}
+        { abilities.can(Actions.EDIT, Subjects.USER_INFORMATIONS) && (
+          <button type="button" className={'button'}  onClick={redirectToEditUserInformations}>
+            <PermIdentityIcon />
+          </button>
+        )}
         <a rel="nofollow" data-method="delete" href={paths.devise.delete}>
           <ExitToAppIcon />
         </a>

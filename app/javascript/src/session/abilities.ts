@@ -13,6 +13,7 @@ export function defineAbilitiesFor(user?: CurrentUser): Ability {
   if (!user) return new Ability(rules);
 
   if (user.role === AppRolesConst.ADMIN) {
+    can(Actions.VIEW, Subjects.HOME);
     can(Actions.VIEW, Subjects.ENTERPRISES);
     can(Actions.VIEW, Subjects.ENTERPRISE);
     can(Actions.VIEW, Subjects.COMMENTS);
@@ -28,6 +29,7 @@ export function defineAbilitiesFor(user?: CurrentUser): Ability {
   }
 
   if (user.role === AppRolesConst.NOTIFIER) {
+    can(Actions.VIEW, Subjects.HOME);
     cannot(Actions.VIEW, Subjects.ENTERPRISES);
     cannot(Actions.VIEW, Subjects.USERS_INFORMATIONS);
     can(Actions.VIEW, Subjects.COMMENTS);
@@ -37,6 +39,9 @@ export function defineAbilitiesFor(user?: CurrentUser): Ability {
   }
 
   if (user.role === AppRolesConst.RECEIVER) {
+    can(Actions.VIEW, Subjects.HOME);
+    cannot(Actions.VIEW, Subjects.ENTERPRISES);
+    cannot(Actions.VIEW, Subjects.USERS_INFORMATIONS);
     can(Actions.EDIT, Subjects.USER_INFORMATIONS);
   }
 
