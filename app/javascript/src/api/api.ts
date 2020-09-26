@@ -30,6 +30,8 @@ axiosInstance.interceptors.response.use((resopnse: AxiosResponse) => {
     dispatch(currentUserFetch());
     dispatch(rolesFetch());
     window.location.replace(routes.irs.root);
+  } else {
+    throw error;
   }
 });
 
