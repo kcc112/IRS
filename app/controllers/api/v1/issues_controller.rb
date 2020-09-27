@@ -3,7 +3,13 @@ class Api::V1::IssuesController < ApplicationController
   before_action :authorize_user, only: [:index, :show, :create]
 
   def index
-    @issues = Issue.all
+    if current_user.admin?
+      @issues = Issue.all
+    elsif !current_user.enterprise_id.nil? && !current_user.admin?
+      @issues = Issue.associated_with_enterprise current_user.enterprise_id
+    else
+      @issues = []
+    end
     render json: IssueSerializer.new(@issues)
   end
 

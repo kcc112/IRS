@@ -4,7 +4,9 @@ RSpec.describe Api::V1::IssuesController, type: :controller do
   login_admin
 
   describe 'GET #index' do
-    let(:user) { create :user, role: :notifier }
+    let(:enterprise) { create :enterprise }
+    let(:user) { create :user, role: :notifier, enterprise_id: enterprise.id }
+    let(:user_second) { create :user, role: :notifier }
     let!(:issue) { create :issue, reported_by_id: user.id }
     subject { get :index }
     
@@ -12,8 +14,24 @@ RSpec.describe Api::V1::IssuesController, type: :controller do
       it { is_expected.to be_successful }
     end
 
-    context 'issues' do
+    context 'admin request' do
       it 'should return issues list' do
+        subject
+        expect(assigns(:issues).count).to eq 1
+      end
+    end
+
+    context 'user without enterprise request' do
+      before { sign_in user_second }
+      it 'should return empty list of issues' do
+        subject
+        expect(assigns(:issues).count).to eq 0
+      end
+    end
+
+    context 'user with enterprise request' do
+      before { sign_in user }
+      it 'should return empty list of issues' do
         subject
         expect(assigns(:issues).count).to eq 1
       end

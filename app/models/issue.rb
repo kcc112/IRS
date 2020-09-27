@@ -8,4 +8,8 @@ class Issue < ApplicationRecord
   has_many :comments, dependent: :destroy
 
   validates :description, presence: true
+
+  scope :associated_with_enterprise , -> (enterprise_id) { 
+    self.joins(:reported_by).where(users: { enterprise_id: enterprise_id })
+  }
 end

@@ -10,7 +10,7 @@ export const mapJSONToUsersInformationsIndexArray = (response: IResponse): Users
 
   return data.map(entity => {
     const [user] = getRelatedObjectsByType(entity, included, 'user');
-    const [enterpriseEntity] = getRelatedObjectsByType(user[0], included, 'enterprise');
+    const [enterpriseEntity] = getRelatedObjectsByType(user, included, 'enterprise');
     const enterprise = enterpriseEntity ? included.find(obj => obj.id === enterpriseEntity.id) : undefined;
 
     return {
