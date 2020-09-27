@@ -21,8 +21,11 @@ export function IrsApp() {
 
   useEffect(() => {
     if (!currentUser) dispatch(fetchCurrentUser());
+  }, [dispatch, currentUser]);
+
+  useEffect(() => {
     if (roles.length === 0) dispatch(fetchRoles());
-  }, [dispatch, currentUser, roles]);
+  }, [dispatch, roles]);
 
   return (
     <>
