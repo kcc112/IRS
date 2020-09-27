@@ -3,6 +3,23 @@ require 'rails_helper'
 RSpec.describe Api::V1::IssuesController, type: :controller do
   login_admin
 
+  describe 'GET #index' do
+    let(:user) { create :user, role: :notifier }
+    let!(:issue) { create :issue, reported_by_id: user.id }
+    subject { get :index }
+    
+    describe 'succesfull response' do
+      it { is_expected.to be_successful }
+    end
+
+    context 'issues' do
+      it 'should return issues list' do
+        subject
+        expect(assigns(:issues).count).to eq 1
+      end
+    end
+  end
+
   describe 'GET #show' do
     let(:user) { create :user }
     let(:issue) { create :issue, reported_by_id: user.id }

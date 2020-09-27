@@ -1,6 +1,11 @@
 class Api::V1::IssuesController < ApplicationController
   before_action :set_issue, only: [:show, :update, :destroy, :assign_receiver, :resolve_issue]
-  before_action :authorize_user, only: [:show, :create]
+  before_action :authorize_user, only: [:index, :show, :create]
+
+  def index
+    @issues = Issue.all
+    render json: IssueSerializer.new(@issues)
+  end
 
   def show
     render json: IssueSerializer.new(@issue)

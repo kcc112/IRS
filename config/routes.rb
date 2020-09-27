@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
       resources :enterprises, only: [:index, :show, :create, :update, :destroy]
       
-      resources :issues, only: [:show, :create, :update, :destroy] do
+      resources :issues, only: [:index, :show, :create, :update, :destroy] do
         member do
           put :resolve_issue
           put :assign_receiver
