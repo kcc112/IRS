@@ -73,5 +73,9 @@ export const api = (axiosIns => {
     async editUserInformations(id: string, payload: UserInformationsEditPayload) {
       return axiosInstance.put(paths.usersInformations.edit(id), payload);
     },
+
+    async fetchIssues() {
+      return axiosInstance.get(paths.issues.index);
+    },
   };
 })(axiosInstance);

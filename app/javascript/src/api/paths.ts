@@ -23,6 +23,9 @@ const paths = {
     index: '/api/v1/users_informations',
     show: (id: string) => `/api/v1/users_informations/${id}`,
     edit: (id: string) => `/api/v1/users_informations/${id}`,
+  },
+  issues: {
+    index: '/api/v1/issues',
   }
 };
 

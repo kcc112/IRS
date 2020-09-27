@@ -7,6 +7,7 @@ import { watchEnterpriseDelete } from '../components/enterprises/delete/sagas';
 import { watchEnterpriseShow } from '../components/enterprises/show/sagas';
 import { watchUsersInformationsIndex } from '../components/users-informations/index/sagas';
 import { watchUserInformationsEdit } from '../components/users-informations/edit/sagas';
+import { watchIssuesIndex } from '../components/issues/index/sagas';
 
 export function* rootSaga() {
   yield all([
@@ -17,5 +18,6 @@ export function* rootSaga() {
     watchEnterpriseShow(),
     watchUsersInformationsIndex(),
     watchUserInformationsEdit(),
+    watchIssuesIndex(),
   ]);
 }

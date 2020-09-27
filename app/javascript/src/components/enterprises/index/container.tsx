@@ -34,7 +34,7 @@ export function EnterprisesIndex() {
       dispatch(fetchEnterprises());
       dispatch(removeEventFromAccumulator(event));
     }
-  }, [dispatch, event]);
+  }, [dispatch, events]);
 
   useEffect(() => {
     if (enterprises.length === 0) dispatch(fetchEnterprises());
