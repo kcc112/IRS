@@ -7,6 +7,7 @@ import { selectIssuesIndex, selectIssuesEvent } from '../redux/selectors';
 import { useStyles } from './styles';
 import { IssuesEvent } from '../redux/types';
 import { removeEventFromAccumulator } from '../redux/actions';
+import { IssuesGridList } from './components/grid-list/grid-list';
 
 export function IssuesIndex() {
   const { t } = useTranslation();
@@ -38,6 +39,9 @@ export function IssuesIndex() {
   return (
     <div className={classes.container}>
       <div className={classes.title}>{t('Issues')}</div>
+      <IssuesGridList  
+        issues={issues}
+      />
     </div>
   );
 }
