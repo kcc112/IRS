@@ -8,32 +8,38 @@ import { Modal } from '../../shared/modal/container';
 import { AppLocation } from '../../../app/types';
 import { CreateEditHeader } from './components/header';
 import { FormContainer } from './components/form';
-import { EnterpriseEditPayload } from '../../../api/payloads';
-import { createEnterprise, hideModal, fetchEnterprise, clearEnterprise, editEnterprise } from './actions';
+import { 
+  hideModal,
+  fetchIssue,
+  clearIssue,
+  createIssue,
+  editIssue
+} from './actions';
 import routes from '../../../routes/routes';
+import { IssueEditCreateFormObject } from './types';
 
 interface PathParams {
   id?: string;
 }
 
-export function EnterpriseCreateEdit() {
+export function IssueCreateEdit() {
   const { t } = useTranslation();
   const classes = useStyles({});
   const history = useHistory();
   const dispatch = useDispatch();
   const match = useRouteMatch<PathParams>();
   const location = useLocation<AppLocation>();
-  const [enterpriseId] = useState<string | undefined>(match && match.params.id ? match.params.id : undefined);
+  const [issueId] = useState<string | undefined>(match && match.params.id ? match.params.id : undefined);
 
   useEffect(() => {
-    const edit = matchPath(location.pathname, { path: routes.irs.enterprises.edit, exact: true });
-    if (edit !== null && enterpriseId) {
-      dispatch(fetchEnterprise(enterpriseId));
+    const edit = matchPath(location.pathname, { path: routes.irs.issues.edit, exact: true });
+    if (edit !== null && issueId) {
+      dispatch(fetchIssue(issueId));
     }
-  }, [dispatch, location.pathname, enterpriseId]);
+  }, [dispatch, location.pathname, issueId]);
 
   useEffect(() => () => {
-    dispatch(clearEnterprise());
+    dispatch(clearIssue());
   }, [dispatch]);
 
   const handleClose = () => {
@@ -42,17 +48,17 @@ export function EnterpriseCreateEdit() {
   };
 
   const resolveLocation = (): string => {
-    const edit = matchPath(location.pathname, { path: routes.irs.enterprises.edit, exact: true });
-    const create = matchPath(location.pathname, { path: routes.irs.enterprises.create, exact: true });
-    if (edit !== null) return t('Enterprise edit');
-    if (create !== null) return t('Enterprise create');
+    const edit = matchPath(location.pathname, { path: routes.irs.issues.edit, exact: true });
+    const create = matchPath(location.pathname, { path: routes.irs.issues.create, exact: true });
+    if (edit !== null) return t('Issue edit');
+    if (create !== null) return t('issue create');
   };
 
-  const handleSubmit = (formObject: EnterpriseEditPayload) => {
-    const edit = matchPath(location.pathname, { path: routes.irs.enterprises.edit, exact: true });
-    const create = matchPath(location.pathname, { path: routes.irs.enterprises.create, exact: true });
-    if (create !== null) dispatch(createEnterprise(formObject));
-    if (edit !== null && enterpriseId) dispatch(editEnterprise({ id: enterpriseId, formObject: formObject }));
+  const handleSubmit = (formObject: IssueEditCreateFormObject) => {
+    const edit = matchPath(location.pathname, { path: routes.irs.issues.edit, exact: true });
+    const create = matchPath(location.pathname, { path: routes.irs.issues.create, exact: true });
+    if (create !== null) dispatch(createIssue(formObject));
+    if (edit !== null && issueId) dispatch(editIssue({ id: issueId, formObject: formObject }));
     handleClose();
   };
 

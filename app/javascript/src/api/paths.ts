@@ -26,6 +26,10 @@ const paths = {
   },
   issues: {
     index: '/api/v1/issues',
+    create: '/api/v1/issues',
+    show: (id: string) => `/api/v1/issues/${id}`,
+    edit: (id: string) => `/api/v1/issues/${id}`,
+    delete: (id: string) => `/api/v1/issues/${id}`,
   }
 };
 

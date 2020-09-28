@@ -19,6 +19,8 @@ export function defineAbilitiesFor(user?: CurrentUser): Ability {
     can(Actions.VIEW, Subjects.COMMENTS);
     can(Actions.VIEW, Subjects.USERS_INFORMATIONS);
     can(Actions.VIEW, Subjects.ISSUES);
+    cannot(Actions.EDIT, Subjects.ISSUE);
+    cannot(Actions.CREATE, Subjects.ISSUE);
 
     can(Actions.EDIT, Subjects.ENTERPRISE);
     can(Actions.EDIT, Subjects.USER_INFORMATIONS);
@@ -34,6 +36,8 @@ export function defineAbilitiesFor(user?: CurrentUser): Ability {
     cannot(Actions.VIEW, Subjects.USERS_INFORMATIONS);
     can(Actions.VIEW, Subjects.COMMENTS);
     can(Actions.VIEW, Subjects.ISSUES);
+    can(Actions.EDIT, Subjects.ISSUE);
+    can(Actions.CREATE, Subjects.ISSUE);
 
     can(Actions.EDIT, Subjects.USER_INFORMATIONS);
   }
@@ -43,6 +47,9 @@ export function defineAbilitiesFor(user?: CurrentUser): Ability {
     cannot(Actions.VIEW, Subjects.ENTERPRISES);
     cannot(Actions.VIEW, Subjects.USERS_INFORMATIONS);
     can(Actions.EDIT, Subjects.USER_INFORMATIONS);
+    can(Actions.VIEW, Subjects.ISSUES);
+    cannot(Actions.EDIT, Subjects.ISSUE);
+    cannot(Actions.CREATE, Subjects.ISSUE);
   }
 
   return new Ability(rules);

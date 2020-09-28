@@ -20,6 +20,7 @@ import { EnterpriseDelete } from '../components/enterprises/delete';
 import { EnterpriseShow } from '../components/enterprises/show';
 import { UserInformationsEdit } from '../components/users-informations/edit';
 import { Home } from '../components/home';
+import { IssueCreateEdit } from '../components/issues/create-edit/container';
 
 export function IrsRoutes() {
   const location = useLocation<AppLocation>();
@@ -150,6 +151,30 @@ export function IrsRoutes() {
                 <CanRender
                   render={abilities.can(Actions.EDIT , Subjects.USER_INFORMATIONS)}
                   component={<UserInformationsEdit />}
+                />
+              }
+            />
+          )}
+          {(showModal || hasbackgroundLocation()) && (
+            <Route 
+              exact
+              path={routes.irs.issues.create}
+              render={() =>
+                <CanRender
+                  render={abilities.can(Actions.CREATE, Subjects.ISSUE)}
+                  component={<IssueCreateEdit />}
+                />
+              }
+            />
+          )}
+          {(showModal || hasbackgroundLocation()) && (
+            <Route 
+              exact
+              path={routes.irs.issues.edit}
+              render={() =>
+                <CanRender
+                  render={abilities.can(Actions.EDIT, Subjects.ISSUE)}
+                  component={<IssueCreateEdit />}
                 />
               }
             />

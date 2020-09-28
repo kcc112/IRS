@@ -14,6 +14,10 @@ const routes = {
     },
     issues: {
       index: '/irs/issues',
+      create: '/irs/issue/create',
+      edit: '/irs/issue/:id/edit',
+      show: '/irs/issue/:id',
+      delete: '/irs/issue/:id/delete',
     },
     comments: {
       index: '/irs/comments',

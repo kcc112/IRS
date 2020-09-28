@@ -34,5 +34,10 @@
   "Name": "Name",
   "Surname": "Surname",
   "Wrong phone number format": "Wrong phone number format",
-  "User role updated successfully": "User role updated successfully"
+  "User role updated successfully": "User role updated successfully",
+  "Issue updated successfully": "Issue updated successfully",
+  "Issue edit": "Issue edit",
+  "Issue create": "Issue create" ,
+  "Issue type is required": "Issue type is required",
+  "Issue description": "Issue description"
 }

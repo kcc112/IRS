@@ -8,7 +8,9 @@ import {
   EnterpriseEditPayload,
   EnterpriseCreatePayload,
   UserInformationsEditPayload,
-  UserRoleEditPayload, 
+  UserRoleEditPayload,
+  IssueCreatePayload,
+  IssueEditPayload 
 } from './payloads';
 
 export const axiosInstance = axios.create({
@@ -76,6 +78,18 @@ export const api = (axiosIns => {
 
     async fetchIssues() {
       return axiosInstance.get(paths.issues.index);
+    },
+    async createIssue(payload: IssueCreatePayload) {
+      return axiosInstance.post(paths.issues.create, payload);
+    },
+    async editIssue(id: string, payload: IssueEditPayload) {
+      return axiosInstance.put(paths.issues.edit(id), payload);
+    },
+    async showIssue(id: string) {
+      return axiosInstance.get(paths.issues.show(id));
+    },
+    async deleteIssue(id: string) {
+      return axiosInstance.delete(paths.issues.delete(id));
     },
   };
 })(axiosInstance);

@@ -33,6 +33,14 @@ export function Header({ abilities }: Props) {
     dispatch(showModal());
   };
 
+  const redirectToCreateIssue = () => {
+    history.push({
+      pathname: routes.irs.issues.create,
+      state: { backgroundLocation: location },
+    });
+    dispatch(showModal());
+  };
+
   const redirectToEditUserInformations= () => {
     if (currentUser) {
       history.push({
@@ -53,6 +61,11 @@ export function Header({ abilities }: Props) {
       <div className={classes.logout}>
         { abilities.can(Actions.CREATE, Subjects.ENTERPRISE) && (
           <button type="button" className={'button'}  onClick={redirectToCreateEnterprise}>
+            <AddIcon />
+          </button>
+        )}
+        { abilities.can(Actions.CREATE, Subjects.ISSUE) && (
+          <button type="button" className={'button'}  onClick={redirectToCreateIssue}>
             <AddIcon />
           </button>
         )}
