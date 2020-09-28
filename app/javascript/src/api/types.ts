@@ -3,6 +3,9 @@ import { Role } from '../session/redux/types';
 export type IEntityType =
   | 'enterprise'
   | 'user'
+  | 'reported_by'
+  | 'assigned_to'
+  | 'user_informations'
 
 export interface IResponseBase {
   id: string;

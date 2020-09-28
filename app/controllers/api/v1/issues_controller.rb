@@ -10,7 +10,7 @@ class Api::V1::IssuesController < ApplicationController
     else
       @issues = []
     end
-    render json: IssueSerializer.new(@issues)
+    render json: IssueSerializer.new(@issues, index_serializer_options)
   end
 
   def show
@@ -66,6 +66,12 @@ class Api::V1::IssuesController < ApplicationController
 
     def assign_receiver_params
       params.require(:issue).permit(:assigned_to_id)
+    end
+
+    def index_serializer_options
+      {
+        include: %i[assigned_to.user_informations reported_by.user_informations]
+      }
     end
 
 end

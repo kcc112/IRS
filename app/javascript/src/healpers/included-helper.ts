@@ -6,7 +6,7 @@ export const getRelatedObjectsByType = (data: IResponseObject, included: IRespon
   return included.filter(include => includedIds.indexOf(include.id) >= 0);
 }
 
-function getRelationshipContentAsArray(data: IResponseObject, type: IEntityType): IResponseBase[] {
+export function getRelationshipContentAsArray(data: IResponseObject, type: IEntityType): IResponseBase[] {
   if (
     data
     && type in data.relationships

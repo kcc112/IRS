@@ -12,14 +12,18 @@ export interface IssueShow extends IResponseBase {
   attributes: {
     issueType: string;
     description: string;
-    issueId: string;
     createdAt: string;
     updatedAt: string;
     reportedBy: {
       userId: string;
       userName: string;
       userSurname: string;
-    }
+    };
+    assignedTo: {
+      userId: string;
+      userName: string;
+      userSurname: string;
+    };
   }
 }
 
@@ -27,14 +31,18 @@ export interface IssuesIndex extends IResponseBase {
   attributes: {
     issueType: string;
     description: string;
-    issueId: string;
     createdAt: string;
     updatedAt: string;
     reportedBy: {
       userId: string;
       userName: string;
       userSurname: string;
-    }
+    };
+    assignedTo: {
+      userId: string;
+      userName: string;
+      userSurname: string;
+    };
   }
 }
 
