@@ -28,4 +28,8 @@ class IssuePolicy < ApplicationPolicy
     user.receiver? and record.assigned_to_id == user.id
   end
 
+  def issue_types?
+    true
+  end
+
 end

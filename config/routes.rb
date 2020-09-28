@@ -17,6 +17,7 @@ Rails.application.routes.draw do
           put :resolve_issue
           put :assign_receiver
         end
+        get :issue_types, on: :collection
       end
       
       resources :users_informations, only: [:index, :show, :update]

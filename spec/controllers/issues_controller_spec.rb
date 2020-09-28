@@ -227,5 +227,24 @@ RSpec.describe Api::V1::IssuesController, type: :controller do
       end
     end
   end
+
+  describe 'GET #issue_types' do
+    subject { get :issue_types } 
+
+    describe 'successful response' do
+      it { is_expected.to be_successful }
+    end
+
+    context 'issue_types' do
+      it 'should include all issue_types' do
+        subject
+        expect(response.body).to include_json(
+          types: [
+            { type: 'other', id: 0 },
+          ]
+        )
+      end
+    end
+  end
  
 end

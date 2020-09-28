@@ -1,6 +1,6 @@
 class Api::V1::IssuesController < ApplicationController
   before_action :set_issue, only: [:show, :update, :destroy, :assign_receiver, :resolve_issue]
-  before_action :authorize_user, only: [:index, :show, :create]
+  before_action :authorize_user, only: [:index, :show, :create, :issue_types]
 
   def index
     if current_user.admin?
@@ -45,6 +45,14 @@ class Api::V1::IssuesController < ApplicationController
     authorize @issue
     @issue.update!(status: :resolved)
     render json: IssueSerializer.new(@issue)
+  end
+
+  def issue_types
+    render json: { 
+      types: Issue.issue_types.map do |key, value|
+        { "type" => key, "id" => value }
+      end
+    }.to_json
   end
 
   private
