@@ -69,6 +69,8 @@ export function IssueCreateEdit() {
     handleClose();
   };
 
+  if (issuseTypes.length === 0) return <></>;
+
   return (
     <Modal
       onClose={handleClose}
@@ -84,6 +86,7 @@ export function IssueCreateEdit() {
         </section>
         <section>
           <FormContainer
+            issuseTypes={issuseTypes}
             onHandleSubmit={handleSubmit}
           />
         </section>

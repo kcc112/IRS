@@ -54,6 +54,12 @@ export interface IssuesTypes {
   type: string;
 }
 
+export enum IssueType {
+  OTHER = 'other',
+  EQUIPMENT = 'equipment',
+  AIR_CONDITIONING = 'air_conditioning',
+}
+
 export enum IssuesEvent {
   EDITED_SUCCESSFULLY = 'EDITED_SUCCESSFULLY',
   CREATED_SUCCESSFULLY = 'CREATED_SUCCESSFULLY',

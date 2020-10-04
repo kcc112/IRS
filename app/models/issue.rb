@@ -1,5 +1,5 @@
 class Issue < ApplicationRecord
-  enum issue_type: [:other]
+  enum issue_type: [:other, :equipment, :air_conditioning]
   enum status: [:unassigned, :assigned, :resolved]
   
   belongs_to :reported_by, class_name: 'User'

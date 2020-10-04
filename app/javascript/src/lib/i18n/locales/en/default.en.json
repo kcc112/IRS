@@ -39,5 +39,6 @@
   "Issue edit": "Issue edit",
   "Issue create": "Issue create" ,
   "Issue type is required": "Issue type is required",
-  "Issue description": "Issue description"
+  "Issue description": "Issue description",
+  "Issue created successfully": "Issue created successfully"
 }

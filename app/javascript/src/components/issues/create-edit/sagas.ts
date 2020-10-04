@@ -66,6 +66,7 @@ export function* onIssueCreate(action: Action<IssueCreatePayload>) {
     yield put(apiRequestIncrement());
     yield call(api.createIssue, payload);
     yield put(emitIssuesEvent(IssuesEvent.CREATED_SUCCESSFULLY));
+    yield put(showAlert({ message: 'Issue created successfully', type: AlertType.SUCCESS }));
   } catch (err) {
     const { response } = err;
     const data = response.data as ApiError;
