@@ -7,7 +7,10 @@ import {
   issueCreate,
   fetchIssueToEdit,
   issueEdit,
-  emitIssuesEvent, issueFetchSuccessfully
+  emitIssuesEvent,
+  issueFetchSuccessfully,
+  fetchIssuesTypes,
+  issuesTypesFetchSuccessfully
 } from '../redux/actions';
 import { api } from '../../../api/api';
 import { ApiError, ErrorTypes } from '../../../api/errors';
@@ -21,6 +24,7 @@ import { IssueCreatePayload, IssueEditPayload } from '../../../api/payloads';
 import { IssuesEvent } from '../redux/types';
 import { AlertType } from '../../shared/alerts/types';
 import { mapJSONToIssueShow } from '../show/mappers';
+import { mapJSONToIssuesTypesArray } from './mappers';
 
 export function* onEditIssue(action: Action<{ id: string; payload: IssueEditPayload }>) {
   try {
@@ -72,10 +76,24 @@ export function* onIssueCreate(action: Action<IssueCreatePayload>) {
   }
 }
 
-export function* watchEnterpriseCreateEdit() {
+export function* onFetchIssuesTypes() {
+  try {
+    yield put(apiRequestIncrement());
+    const { data } = yield call(api.fetchIssuesTypes);
+    const issuesTypes = mapJSONToIssuesTypesArray(data);
+    yield put(issuesTypesFetchSuccessfully(issuesTypes));
+  } catch (err) {
+    yield put(apiRequestError(err));
+  } finally {
+    yield put(apiRequestDecrement());
+  }
+}
+
+export function* watchIssueCreateEdit() {
   yield all([
     takeLatest(issueEdit, onEditIssue),
     takeLatest(issueCreate, onIssueCreate),
     takeLatest(fetchIssueToEdit, onFetchIssueToEdit),
+    takeLatest(fetchIssuesTypes, onFetchIssuesTypes),
   ]);
 }

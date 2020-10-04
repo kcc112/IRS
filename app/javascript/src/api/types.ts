@@ -1,4 +1,4 @@
-import { Role } from '../session/redux/types';
+import { IssuesTypes, Role } from '../session/redux/types';
 
 export type IEntityType =
   | 'enterprise'
@@ -50,4 +50,8 @@ export interface IRoles {
   data: {
     roles: Role[]
   },
+};
+
+export interface IIssuesTypes {
+  types: IssuesTypes[]
 };

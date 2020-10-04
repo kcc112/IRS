@@ -5,6 +5,7 @@ import {
   IssuesIndex,
   IssueShow,
   IssuesEvent,
+  IssuesTypes
 } from './types';
 
 export const selectIssuesIndex = createSelector<AppState, IssuesIndex[], IssuesIndex[]>(
@@ -20,4 +21,9 @@ export const selectIssue = createSelector<AppState, IssueShow | undefined, Issue
 export const selectIssuesEvent = createSelector<AppState, IssuesEvent[], IssuesEvent[]>(
   state => state.issues.eventAccumulator,
   eventAccumulator => eventAccumulator
+);
+
+export const selectIssuesTypes = createSelector<AppState, IssuesTypes[], IssuesTypes[]>(
+  state => state.issues.meta.issuesTypes,
+  issuesTypes => issuesTypes
 );

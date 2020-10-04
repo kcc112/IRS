@@ -5,6 +5,9 @@ export interface IssuesState {
     issues: IssuesIndex[];
     issue: IssueShow;
   },
+  meta: {
+    issuesTypes: IssuesTypes[];
+  }
   eventAccumulator: IssuesEvent[];
 }
 
@@ -44,6 +47,11 @@ export interface IssuesIndex extends IResponseBase {
       userSurname: string;
     };
   }
+}
+
+export interface IssuesTypes {
+  id: string;
+  type: string;
 }
 
 export enum IssuesEvent {

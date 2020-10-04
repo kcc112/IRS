@@ -2,7 +2,8 @@ import {
   issueCreate,
   fetchIssueToEdit,
   issueClear,
-  issueEdit
+  issueEdit,
+  fetchIssuesTypes
 } from '../redux/actions';
 import { hideModalSuccess } from '../../app/redux/actions';
 import { IssueEditCreateFormObject } from './types';
@@ -33,3 +34,5 @@ export const editIssue = (args: { id: string; formObject: IssueEditCreateFormObj
   };
   return issueEdit(payload);
 };
+
+export const issuesTypesFetch = () => fetchIssuesTypes();

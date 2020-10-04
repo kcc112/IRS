@@ -3,7 +3,8 @@ import { createAction } from 'redux-act';
 import { 
   IssuesIndex,
   IssueShow,
-  IssuesEvent
+  IssuesEvent, 
+  IssuesTypes
 } from './types';
 import { 
   IssueEditPayload,
@@ -25,6 +26,8 @@ export const fetchIssueToEdit = createAction<{id: string}>('fetch issue to edit'
 
 export const issueCreate = createAction<IssueCreatePayload>('create issue trigger');
 
+export const fetchIssuesTypes = createAction('fetch issues types trigger');
+export const issuesTypesFetchSuccessfully = createAction<IssuesTypes[]>('fetch issues types successfully'); 
 
 export const emitIssuesEvent = createAction<IssuesEvent>('emit issues event');
 export const removeEventFromAccumulator = createAction<IssuesEvent>('remove event from accumulator');

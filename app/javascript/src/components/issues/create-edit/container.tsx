@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useLocation, matchPath, useRouteMatch } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { useStyles } from './styles';
 import { Modal } from '../../shared/modal/container';
@@ -13,10 +13,12 @@ import {
   fetchIssue,
   clearIssue,
   createIssue,
-  editIssue
+  editIssue,
+  issuesTypesFetch
 } from './actions';
 import routes from '../../../routes/routes';
 import { IssueEditCreateFormObject } from './types';
+import { selectIssuesTypes } from '../redux/selectors';
 
 interface PathParams {
   id?: string;
@@ -29,14 +31,19 @@ export function IssueCreateEdit() {
   const dispatch = useDispatch();
   const match = useRouteMatch<PathParams>();
   const location = useLocation<AppLocation>();
+  const issuseTypes = useSelector(selectIssuesTypes);
   const [issueId] = useState<string | undefined>(match && match.params.id ? match.params.id : undefined);
+
+  useEffect(() => {
+    if (issuseTypes.length === 0) dispatch(issuesTypesFetch());
+  }, [dispatch, issuseTypes])
 
   useEffect(() => {
     const edit = matchPath(location.pathname, { path: routes.irs.issues.edit, exact: true });
     if (edit !== null && issueId) {
       dispatch(fetchIssue(issueId));
     }
-  }, [dispatch, location.pathname, issueId]);
+  }, [dispatch, location.pathname, issueId, issuseTypes]);
 
   useEffect(() => () => {
     dispatch(clearIssue());

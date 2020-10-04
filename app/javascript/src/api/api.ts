@@ -91,5 +91,8 @@ export const api = (axiosIns => {
     async deleteIssue(id: string) {
       return axiosInstance.delete(paths.issues.delete(id));
     },
+    async fetchIssuesTypes() {
+      return axiosInstance.get(paths.issues.issuesTypes);
+    },
   };
 })(axiosInstance);

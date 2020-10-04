@@ -15,6 +15,11 @@ export interface Role {
   role: keyof typeof AppRoles;
 }
 
+export interface IssuesTypes {
+  id: string;
+  type: string;
+}
+
 export interface CurrentUser {
   id: string;
   role:	keyof typeof AppRoles;
