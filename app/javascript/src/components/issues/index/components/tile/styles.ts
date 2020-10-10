@@ -23,15 +23,12 @@ export const useStyles = makeStyles({
     '-webkit-box-orient': 'vertical',
     '-webkit-line-clamp': 1,
   },
-  description: {
-    minHeight: '75px',
-    fontSize: '14px',
-    marginBottom: '10px',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    wordBreak: 'break-word',
-    display: '-webkit-box',
-    '-webkit-box-orient': 'vertical',
-    '-webkit-line-clamp': 5,
+  tileRow: {
+    display: 'flex',
+    padding: '2px 0',
   },
+  status: {
+    textTransform: 'uppercase',
+    paddingLeft: '4px',
+  }
 });

@@ -40,5 +40,7 @@
   "Issue create": "Issue create" ,
   "Issue type is required": "Issue type is required",
   "Issue description": "Issue description",
-  "Issue created successfully": "Issue created successfully"
+  "Issue created successfully": "Issue created successfully",
+  "Last updated": "Last updated",
+  "Reported by": "Reported by"
 }

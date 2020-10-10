@@ -36,6 +36,7 @@ export interface IssuesIndex extends IResponseBase {
     description: string;
     createdAt: string;
     updatedAt: string;
+    issueStatus: string;
     reportedBy: {
       userId: string;
       userName: string;

@@ -24,6 +24,7 @@ export const mapJSONToIssuesIndex = (response: IResponse): IssuesIndex[] => {
         description: entity.attributes.description ? entity.attributes.description : '',
         createdAt: formatDate(entity.attributes.created_at),
         updatedAt: formatDate(entity.attributes.updated_at),
+        issueStatus: entity.attributes.status,
         reportedBy: reportedByUserInfo ? {
           userId: reportedByUserInfo.id,
           userName: reportedByUserInfo.attributes.name,
