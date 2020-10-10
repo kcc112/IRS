@@ -9,6 +9,7 @@ import {
 import { 
   IssueEditPayload,
   IssueCreatePayload,
+  IssueAssignPayload
 } from '../../../api/payloads';
 
 export const issuesFetch = createAction('fetch issues trigger');
@@ -31,3 +32,8 @@ export const issuesTypesFetchSuccessfully = createAction<IssuesTypes[]>('fetch i
 
 export const emitIssuesEvent = createAction<IssuesEvent>('emit issues event');
 export const removeEventFromAccumulator = createAction<IssuesEvent>('remove event from accumulator');
+
+export const assignToIssue = createAction<{
+  id: string;
+  payload: IssueAssignPayload;
+}>('assign to issue');

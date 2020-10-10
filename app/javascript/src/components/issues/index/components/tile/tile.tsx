@@ -10,10 +10,12 @@ import { Actions, Subjects } from '../../../../../session/redux/types';
 
 interface Props {
   issue: IssuesIndex;
+  onRedirectToAssignToIssue: (id: string) => void;
 }
 
 export function Tile({ 
   issue,
+  onRedirectToAssignToIssue
 }: Props) {
   const { t } = useTranslation();
   const classes = useStyles();
@@ -52,11 +54,11 @@ export function Tile({
             {t('Edit')}
           </button>
         )}
-        { (abilities.can(Actions.ASSIGN, Subjects.ISSUE) && issue.attributes.issueType === IssueStatus.UNASSIGNED) && (
+        { (abilities.can(Actions.ASSIGN, Subjects.ISSUE) && issue.attributes.issueStatus === IssueStatus.UNASSIGNED) && (
           <button 
             type='button'
             className={`button ${classes.actionButton}`}
-            onClick={() => {}}
+            onClick={() => onRedirectToAssignToIssue(issue.id) }
           >
            {t('Assign to me')}
           </button>

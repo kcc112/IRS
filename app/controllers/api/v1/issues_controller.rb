@@ -1,5 +1,5 @@
 class Api::V1::IssuesController < ApplicationController
-  before_action :set_issue, only: [:show, :update, :destroy, :assign_receiver, :resolve_issue]
+  before_action :set_issue, only: [:show, :update, :destroy, :resolve_issue]
   before_action :authorize_user, only: [:index, :show, :create, :issue_types]
 
   def index
@@ -35,10 +35,19 @@ class Api::V1::IssuesController < ApplicationController
   end
 
   def assign_receiver
-    authorize @issue
-    @issue.status = :assigned
-    @issue.update!(assign_receiver_params)
-    render json: IssueSerializer.new(@issue)
+    Issue.transaction(isolation: :serializable) do
+      @issue = Issue.find(params[:id])
+      authorize @issue
+      if @issue.assigned_to_id.nil?
+        @issue.status = :assigned
+        @issue.update!(assign_receiver_params)
+        render json: IssueSerializer.new(@issue)
+      else
+        render json: { 
+          error: I18n.t('errors.someone_is_already_assigned_to_issue'), type: "issue_already_assigned"
+        }.to_json, status: :bad_request
+      end
+    end
   end
 
   def resolve_issue

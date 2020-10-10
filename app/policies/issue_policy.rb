@@ -21,7 +21,7 @@ class IssuePolicy < ApplicationPolicy
   end
 
   def assign_receiver?
-    user.receiver? and record.assigned_to_id.nil?
+    user.receiver? and user.enterprise_id === record.reported_by.enterprise_id
   end
 
   def resolve_issue?

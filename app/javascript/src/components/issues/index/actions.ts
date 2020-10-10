@@ -1,4 +1,4 @@
-import { issuesFetch, issuesClear } from '../redux/actions';
+import { issuesFetch, issuesClear, assignToIssue } from '../redux/actions';
 import { showModalSuccess } from '../../app/redux/actions';
 
 export const fetchIssues = () => issuesFetch();

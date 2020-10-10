@@ -30,3 +30,7 @@ export interface UserRoleEditPayload {
     value: string;
   };
 }
+
+export interface IssueAssignPayload {
+  assigned_to_id: string;
+}

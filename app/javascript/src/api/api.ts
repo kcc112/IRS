@@ -10,7 +10,8 @@ import {
   UserInformationsEditPayload,
   UserRoleEditPayload,
   IssueCreatePayload,
-  IssueEditPayload 
+  IssueEditPayload, 
+  IssueAssignPayload 
 } from './payloads';
 
 export const axiosInstance = axios.create({
@@ -93,6 +94,9 @@ export const api = (axiosIns => {
     },
     async fetchIssuesTypes() {
       return axiosInstance.get(paths.issues.issuesTypes);
+    },
+    async assignToIssues(id: string, payload: IssueAssignPayload) {
+      return axiosInstance.put(paths.issues.assign(id), payload);
     },
   };
 })(axiosInstance);

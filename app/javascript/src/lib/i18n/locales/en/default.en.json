@@ -42,5 +42,7 @@
   "Issue description": "Issue description",
   "Issue created successfully": "Issue created successfully",
   "Last updated": "Last updated",
-  "Reported by": "Reported by"
+  "Reported by": "Reported by",
+  "Successfully assigned to issue": "Successfully assigned to issue",
+  "Are you sure you want to be assigned to issue ?": "Are you sure you want to be assigned to issue ?"
 }
