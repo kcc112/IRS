@@ -9,7 +9,8 @@ import { watchUsersInformationsIndex } from '../components/users-informations/in
 import { watchUserInformationsEdit } from '../components/users-informations/edit/sagas';
 import { watchIssuesIndex } from '../components/issues/index/sagas';
 import { watchIssueCreateEdit } from '../components/issues/create-edit/sagas';
-import { watchAssignToIssue } from '../components/issues/assign-to/sagas';
+import { watchAssignToIssue } from '../components/issues/assign/sagas';
+import { watchResolveIssue } from '../components/issues/resolve/sagas';
 
 export function* rootSaga() {
   yield all([
@@ -23,5 +24,6 @@ export function* rootSaga() {
     watchIssuesIndex(),
     watchIssueCreateEdit(),
     watchAssignToIssue(),
+    watchResolveIssue(),
   ]);
 }

@@ -50,12 +50,20 @@ export function IssuesIndex() {
     dispatch(showModal());
   };
 
+  const redirectToResolveIssue = (id: string) => {
+    history.push(compile(routes.irs.issues.resolve)({ id: id }),{
+      backgroundLocation: location,
+    });
+    dispatch(showModal());
+  };
+
   return (
     <div className={classes.container}>
       <div className={classes.title}>{t('Issues')}</div>
       <IssuesGridList  
         issues={issues}
         onRedirectToAssignToIssue={redirectToAssignToIssue}
+        onRedirectToResolveIssue={redirectToResolveIssue}
       />
     </div>
   );

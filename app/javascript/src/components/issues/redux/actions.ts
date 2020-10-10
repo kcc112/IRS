@@ -37,3 +37,5 @@ export const assignToIssue = createAction<{
   id: string;
   payload: IssueAssignPayload;
 }>('assign to issue');
+
+export const resolveIssue = createAction<{ id: string; }>('resolve issue');

@@ -11,11 +11,13 @@ import { Actions, Subjects } from '../../../../../session/redux/types';
 interface Props {
   issue: IssuesIndex;
   onRedirectToAssignToIssue: (id: string) => void;
+  onRedirectToResolveIssue: (id: string) => void;
 }
 
 export function Tile({ 
   issue,
-  onRedirectToAssignToIssue
+  onRedirectToAssignToIssue,
+  onRedirectToResolveIssue
 }: Props) {
   const { t } = useTranslation();
   const classes = useStyles();
@@ -54,13 +56,26 @@ export function Tile({
             {t('Edit')}
           </button>
         )}
-        { (abilities.can(Actions.ASSIGN, Subjects.ISSUE) && issue.attributes.issueStatus === IssueStatus.UNASSIGNED) && (
+        { (abilities.can(Actions.ASSIGN, Subjects.ISSUE) &&
+           issue.attributes.issueStatus === IssueStatus.UNASSIGNED) && (
           <button 
             type='button'
             className={`button ${classes.actionButton}`}
             onClick={() => onRedirectToAssignToIssue(issue.id) }
           >
            {t('Assign to me')}
+          </button>
+        )}
+         { (abilities.can(Actions.RESOLVE, Subjects.ISSUE) && 
+            issue.attributes.assignedTo &&
+            issue.attributes.assignedTo.userId === currentUser.id &&
+            issue.attributes.issueStatus === IssueStatus.ASSIGNED) && (
+          <button 
+            type='button'
+            className={`button ${classes.actionButton}`}
+            onClick={() => onRedirectToResolveIssue(issue.id) }
+          >
+           {t('Resolve')}
           </button>
         )}
         <button 

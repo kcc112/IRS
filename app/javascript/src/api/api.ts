@@ -98,5 +98,8 @@ export const api = (axiosIns => {
     async assignToIssues(id: string, payload: IssueAssignPayload) {
       return axiosInstance.put(paths.issues.assign(id), payload);
     },
+    async resolveIssue(id: string) {
+      return axiosInstance.put(paths.issues.resolve(id));
+    },
   };
 })(axiosInstance);

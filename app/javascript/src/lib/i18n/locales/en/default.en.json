@@ -44,5 +44,8 @@
   "Last updated": "Last updated",
   "Reported by": "Reported by",
   "Successfully assigned to issue": "Successfully assigned to issue",
-  "Are you sure you want to be assigned to issue ?": "Are you sure you want to be assigned to issue ?"
+  "Are you sure you want to be assigned to issue ?": "Are you sure you want to be assigned to issue ?",
+  "Are you sure you want to resolve issue ?": "Are you sure you want to resolve issue ?",
+  "Successfully resolved issue": "Successfully resolved issue",
+  "Resolve": "Resolve"
 }

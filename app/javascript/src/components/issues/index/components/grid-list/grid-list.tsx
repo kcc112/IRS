@@ -9,11 +9,13 @@ import { Tile } from '../tile/tile';
 interface Props {
   issues: IssuesIndex[];
   onRedirectToAssignToIssue: (id: string) => void;
+  onRedirectToResolveIssue: (id: string) => void;
 }
 
 export function IssuesGridList({ 
   issues,
   onRedirectToAssignToIssue,
+  onRedirectToResolveIssue,
 }: Props) {
   const classes = useStyles();
 
@@ -25,6 +27,7 @@ export function IssuesGridList({
             <Tile 
               issue={issue}
               onRedirectToAssignToIssue={onRedirectToAssignToIssue}
+              onRedirectToResolveIssue={onRedirectToResolveIssue}
             />
           </GridListTile>
         ))}

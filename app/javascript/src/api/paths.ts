@@ -32,6 +32,7 @@ const paths = {
     delete: (id: string) => `/api/v1/issues/${id}`,
     issuesTypes: '/api/v1/issues/issue_types',
     assign: (id: string) => `/api/v1/issues/${id}/assign_receiver`,
+    resolve: (id: string) => `/api/v1/issues/${id}/resolve_issue`,
   }
 };
 

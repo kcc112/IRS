@@ -36,6 +36,7 @@ export enum Actions {
   EDIT = 'EDIT',
   DELETE  = 'DELETE',
   ASSIGN = 'ASSIGN',
+  RESOLVE = 'RESOLVE',
 }
 
 export enum Subjects {

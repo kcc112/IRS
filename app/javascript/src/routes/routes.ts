@@ -19,6 +19,7 @@ const routes = {
       show: '/irs/issue/:id',
       delete: '/irs/issue/:id/delete',
       assign: '/irs/issue/:id/assign',
+      resolve: '/irs/issue/:id/resolve',
     },
     comments: {
       index: '/irs/comments',
