@@ -61,6 +61,12 @@ export enum IssueType {
   AIR_CONDITIONING = 'air_conditioning',
 }
 
+export enum IssueStatus {
+  UNASSIGNED = 'unassigned',
+  ASSIGNED = 'assigned',
+  RESOLVED = 'resolved',
+}
+
 export enum IssuesEvent {
   EDITED_SUCCESSFULLY = 'EDITED_SUCCESSFULLY',
   CREATED_SUCCESSFULLY = 'CREATED_SUCCESSFULLY',

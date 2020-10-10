@@ -26,12 +26,16 @@ export const mapJSONToIssuesIndex = (response: IResponse): IssuesIndex[] => {
         updatedAt: formatDate(entity.attributes.updated_at),
         issueStatus: entity.attributes.status,
         reportedBy: reportedByUserInfo ? {
-          userId: reportedByUserInfo.id,
+          userId: !Array.isArray(reportedByUserInfo.relationships.user) && 
+                  !Array.isArray(reportedByUserInfo.relationships.user.data) ?
+                  reportedByUserInfo.relationships.user.data.id : '',
           userName: reportedByUserInfo.attributes.name,
           userSurname: reportedByUserInfo.attributes.surname,
         } : undefined,
         assignedTo: assignedToUserInfo ? {
-          userId: assignedToUserInfo.id,
+          userId: !Array.isArray(assignedToUserInfo.relationships.user) &&
+                  !Array.isArray(assignedToUserInfo.relationships.user.data) ?
+                  assignedToUserInfo.relationships.user.data.id : '',
           userName: assignedToUserInfo.attributes.name,
           userSurname: assignedToUserInfo.attributes.surname,
         } : undefined,

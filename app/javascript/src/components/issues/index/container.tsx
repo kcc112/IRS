@@ -27,8 +27,8 @@ export function IssuesIndex() {
   }, [dispatch, events]);
 
   useEffect(() => {
-    if (issues.length === 0) dispatch(fetchIssues());
-  }, [dispatch, issues])
+    dispatch(fetchIssues());
+  }, [dispatch])
 
   useEffect( () => () => {
     dispatch(clearIssues());

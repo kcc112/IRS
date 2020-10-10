@@ -1,8 +1,12 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 
-import { IssuesIndex } from '../../../redux/types';
+import { IssuesIndex, IssueStatus } from '../../../redux/types';
 import { useStyles } from './styles';
+import { selectCurrentUser } from '../../../../../session/redux/selectors';
+import defineAbilitiesFor from '../../../../../session/abilities';
+import { Actions, Subjects } from '../../../../../session/redux/types';
 
 interface Props {
   issue: IssuesIndex;
@@ -13,6 +17,8 @@ export function Tile({
 }: Props) {
   const { t } = useTranslation();
   const classes = useStyles();
+  const currentUser = useSelector(selectCurrentUser);
+  const abilities = defineAbilitiesFor(currentUser);
 
   return (
     <div className={classes.constainer}>
@@ -26,7 +32,7 @@ export function Tile({
         {`${t('Last updated')}: ${issue.attributes.updatedAt}`}
       </div>
       <div className={classes.tileRow}>
-        {`${t('Reported by')}: ${issue.attributes.reportedBy.userName} ${issue.attributes.reportedBy.userName}`}
+        {`${t('Reported by')}: ${issue.attributes.reportedBy.userName} ${issue.attributes.reportedBy.userSurname}`}
       </div>
       <div className={classes.tileRow}>
         <div>
@@ -35,6 +41,33 @@ export function Tile({
         <div className={classes.status}>
           {issue.attributes.issueStatus}
         </div>
+      </div>
+      <div className={classes.actionsContainer}>
+        { (abilities.can(Actions.EDIT, Subjects.ISSUE) && issue.attributes.reportedBy.userId === currentUser.id) && (
+          <button 
+            type='button'
+            className={`button ${classes.actionButton}`}
+            onClick={() => {}}
+          >
+            {t('Edit')}
+          </button>
+        )}
+        { (abilities.can(Actions.ASSIGN, Subjects.ISSUE) && issue.attributes.issueType === IssueStatus.UNASSIGNED) && (
+          <button 
+            type='button'
+            className={`button ${classes.actionButton}`}
+            onClick={() => {}}
+          >
+           {t('Assign to me')}
+          </button>
+        )}
+        <button 
+          type='button'
+          className={`button ${classes.actionButton}`}
+          onClick={() => {}}
+        >
+          {t('Show')}
+        </button>
       </div>
     </div>
   );

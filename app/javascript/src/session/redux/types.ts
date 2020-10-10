@@ -35,6 +35,7 @@ export enum Actions {
   VIEW = 'VIEW',
   EDIT = 'EDIT',
   DELETE  = 'DELETE',
+  ASSIGN = 'ASSIGN',
 }
 
 export enum Subjects {

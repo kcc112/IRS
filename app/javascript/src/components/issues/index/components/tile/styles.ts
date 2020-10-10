@@ -30,5 +30,15 @@ export const useStyles = makeStyles({
   status: {
     textTransform: 'uppercase',
     paddingLeft: '4px',
+  },
+  actionsContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: '20px',
+  },
+  actionButton: {
+    fontSize: '13px',
+    color: colours.white,
+    margin: '0 5px'
   }
 });

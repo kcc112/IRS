@@ -17,12 +17,10 @@ export function IssuesGridList({
 
   return (
     <div className={classes.root}>
-      <GridList cellHeight={160} className={classes.gridList} cols={5}>
+      <GridList cellHeight={190} className={classes.gridList} cols={5}>
         {issues.map( issue => (
           <GridListTile key={issue.id} className={classes.gridListTile}>
-            <Tile 
-              issue={issue}
-            />
+            <Tile issue={issue} />
           </GridListTile>
         ))}
       </GridList>
