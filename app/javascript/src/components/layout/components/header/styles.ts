@@ -5,7 +5,6 @@ import { colours } from '../../../../styles/colours';
 export const useStyles = makeStyles({
   container: {
     display: 'flex',
-    justifyContent: 'space-between',
   },
   logout: {
     marginRight: '10px',
@@ -15,6 +14,7 @@ export const useStyles = makeStyles({
     },
   },
   titleContainer: {
+    flex: 1,
     marginTop: '7px',
     marginLeft: '10px',
   },
@@ -23,4 +23,24 @@ export const useStyles = makeStyles({
     fontWeight: 600,
     letterSpacing: '2.8px',
   },
+  actionsContainer: {
+    display: 'flex',
+    flex: 9,
+    justifyContent: 'space-between',
+  },
+  userInfo: {
+    display: 'flex',
+  },
+  email: {
+    paddingTop: '7px',
+    marginRight: '15px',
+  },
+  roleContainer: {
+    paddingTop: '7px',
+    display: 'flex',
+  },
+  role: {
+    paddingLeft: '3px',
+    textTransform: 'uppercase',
+  }
 });

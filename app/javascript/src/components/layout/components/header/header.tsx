@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { compile } from 'path-to-regexp';
 import PermIdentityIcon from '@material-ui/icons/PermIdentity';
 import { Ability } from '@casl/ability';
+import { useTranslation } from 'react-i18next';
 
 import { useStyles } from './styles';
 import paths from '../../../../api/paths';
@@ -20,6 +21,7 @@ interface Props {
 
 export function Header({ abilities }: Props) {
   const classes = useStyles();
+  const { t } = useTranslation();
   const location = useLocation();
   const history = useHistory();
   const dispatch = useDispatch();
@@ -58,25 +60,40 @@ export function Header({ abilities }: Props) {
           IRS
         </div>
       </div>
-      <div className={classes.logout}>
-        { abilities.can(Actions.CREATE, Subjects.ENTERPRISE) && (
-          <button type="button" className={'button'}  onClick={redirectToCreateEnterprise}>
-            <AddIcon />
-          </button>
-        )}
-        { abilities.can(Actions.CREATE, Subjects.ISSUE) && (
-          <button type="button" className={'button'}  onClick={redirectToCreateIssue}>
-            <AddIcon />
-          </button>
-        )}
-        { abilities.can(Actions.EDIT, Subjects.USER_INFORMATIONS) && (
-          <button type="button" className={'button'}  onClick={redirectToEditUserInformations}>
-            <PermIdentityIcon />
-          </button>
-        )}
-        <a rel="nofollow" data-method="delete" href={paths.devise.delete}>
-          <ExitToAppIcon />
-        </a>
+      <div className={classes.actionsContainer}>
+        <div className={classes.userInfo}>
+          <div className={classes.email}>
+            {`${t('Email')}: ${currentUser ? currentUser.email : ''}`}
+          </div>
+          <div className={classes.roleContainer}>
+            <div>
+              {`${t('Role')}:`}
+            </div>
+            <div className={classes.role}>
+              {currentUser ? currentUser.role : ''}
+            </div>
+          </div>
+        </div>
+        <div className={classes.logout}>
+          { abilities.can(Actions.CREATE, Subjects.ENTERPRISE) && (
+            <button type="button" className={'button'}  onClick={redirectToCreateEnterprise}>
+              <AddIcon />
+            </button>
+          )}
+          { abilities.can(Actions.CREATE, Subjects.ISSUE) && (
+            <button type="button" className={'button'}  onClick={redirectToCreateIssue}>
+              <AddIcon />
+            </button>
+          )}
+          { abilities.can(Actions.EDIT, Subjects.USER_INFORMATIONS) && (
+            <button type="button" className={'button'}  onClick={redirectToEditUserInformations}>
+              <PermIdentityIcon />
+            </button>
+          )}
+          <a rel="nofollow" data-method="delete" href={paths.devise.delete}>
+            <ExitToAppIcon />
+          </a>
+        </div>
       </div>
     </div>
   );
