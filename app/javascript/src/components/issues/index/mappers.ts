@@ -1,7 +1,7 @@
 import { IResponse } from '../../../api/types';
 import { formatDate } from '../../../healpers/date-format-helper';
 import { getRelatedObjectsByType, getRelationshipContentAsArray } from '../../../healpers/included-helper';
-import { IssuesIndex } from '../redux/types';
+import { IssueEdit, IssuesIndex } from '../redux/types';
 
 export const mapJSONToIssuesIndex = (response: IResponse): IssuesIndex[] => {
   const { data, included } = response;
@@ -42,4 +42,21 @@ export const mapJSONToIssuesIndex = (response: IResponse): IssuesIndex[] => {
       },
     };
   });
+};
+
+export const mapJSONToIssueEdit = (response: IResponse): IssueEdit | undefined => {
+  const { data } = response;
+
+  if (Array.isArray(data)) return undefined;
+
+  return {
+    id: data.id,
+    type: data.type,
+    attributes: {
+      issueType: data.attributes.issue_type,
+      description: data.attributes.description ? data.attributes.description : '',
+      createdAt: formatDate(data.attributes.created_at),
+      updatedAt: formatDate(data.attributes.updated_at),
+    },
+  };
 };

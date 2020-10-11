@@ -10,12 +10,14 @@ interface Props {
   issues: IssuesIndex[];
   onRedirectToAssignToIssue: (id: string) => void;
   onRedirectToResolveIssue: (id: string) => void;
+  onRedirectToEditIssue: (id: string) => void;
 }
 
 export function IssuesGridList({ 
   issues,
   onRedirectToAssignToIssue,
   onRedirectToResolveIssue,
+  onRedirectToEditIssue,
 }: Props) {
   const classes = useStyles();
 
@@ -28,6 +30,7 @@ export function IssuesGridList({
               issue={issue}
               onRedirectToAssignToIssue={onRedirectToAssignToIssue}
               onRedirectToResolveIssue={onRedirectToResolveIssue}
+              onRedirectToEditIssue={onRedirectToEditIssue}
             />
           </GridListTile>
         ))}

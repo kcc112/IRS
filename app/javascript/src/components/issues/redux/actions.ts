@@ -4,7 +4,7 @@ import {
   IssuesIndex,
   IssueShow,
   IssuesEvent, 
-  IssuesTypes
+  IssuesTypes, IssueEdit
 } from './types';
 import { 
   IssueEditPayload,
@@ -24,6 +24,7 @@ export const issueEdit = createAction<{
   payload: IssueEditPayload;
 }>('edit issue trigger');
 export const fetchIssueToEdit = createAction<{id: string}>('fetch issue to edit');
+export const issueEditFetchSuccessfully = createAction<IssueEdit>('issue edit fetch successfully');
 
 export const issueCreate = createAction<IssueCreatePayload>('create issue trigger');
 

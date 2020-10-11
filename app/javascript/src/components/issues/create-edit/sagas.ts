@@ -8,9 +8,8 @@ import {
   fetchIssueToEdit,
   issueEdit,
   emitIssuesEvent,
-  issueFetchSuccessfully,
   fetchIssuesTypes,
-  issuesTypesFetchSuccessfully
+  issuesTypesFetchSuccessfully, issueEditFetchSuccessfully
 } from '../redux/actions';
 import { api } from '../../../api/api';
 import { ApiError, ErrorTypes } from '../../../api/errors';
@@ -23,8 +22,8 @@ import {
 import { IssueCreatePayload, IssueEditPayload } from '../../../api/payloads';
 import { IssuesEvent } from '../redux/types';
 import { AlertType } from '../../shared/alerts/types';
-import { mapJSONToIssueShow } from '../show/mappers';
 import { mapJSONToIssuesTypesArray } from './mappers';
+import { mapJSONToIssueEdit } from '../index/mappers';
 
 export function* onEditIssue(action: Action<{ id: string; payload: IssueEditPayload }>) {
   try {
@@ -50,8 +49,8 @@ export function* onFetchIssueToEdit(action: Action<{ id: string; }>) {
 
     yield put(apiRequestIncrement());
     const { data } = yield call(api.showIssue, id);
-    const issue = mapJSONToIssueShow(data);
-    if (issue) yield put(issueFetchSuccessfully(issue));
+    const issue = mapJSONToIssueEdit(data);
+    if (issue) yield put(issueEditFetchSuccessfully(issue));
   } catch (err) {
     yield put(apiRequestError(err));
   } finally {

@@ -4,6 +4,7 @@ export interface IssuesState {
   entities: {
     issues: IssuesIndex[];
     issue: IssueShow;
+    issueEdit: IssueEdit;
   },
   meta: {
     issuesTypes: IssuesTypes[];
@@ -47,6 +48,15 @@ export interface IssuesIndex extends IResponseBase {
       userName: string;
       userSurname: string;
     };
+  }
+}
+
+export interface IssueEdit extends IResponseBase {
+  attributes: {
+    issueType: string;
+    description: string;
+    createdAt: string;
+    updatedAt: string;
   }
 }
 

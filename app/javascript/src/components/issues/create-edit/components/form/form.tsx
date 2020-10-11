@@ -7,7 +7,7 @@ import { useStyles } from './styles';
 import { TextArea } from '../../../../shared/controls/textarea';
 import { validate, findErrorByFieldName } from '../../../../../healpers/validation-helper';
 import { ValidationError } from '../../../../../app/types';
-import { selectIssue } from '../../../redux/selectors';
+import { selectIssueEdit } from '../../../redux/selectors';
 import { IssueEditCreateFormObject } from '../../types';
 import SimpleSelect from '../../../../shared/dropdown/simple-select';
 import { IssuesTypes, IssueType } from '../../../redux/types';
@@ -33,7 +33,7 @@ export function FormContainer({
   const { t } = useTranslation();
   const [formObject, setformObject] = useState<IssueEditCreateFormObject>(defoultFormObject);
   const [errors, setErrors] = useState<ValidationError[]>([]);
-  const issue = useSelector(selectIssue);
+  const issue = useSelector(selectIssueEdit);
   const currentUser = useSelector(selectCurrentUser);
 
   useEffect(() => {

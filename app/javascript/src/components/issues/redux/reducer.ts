@@ -8,13 +8,15 @@ import {
   issueClear,
   removeEventFromAccumulator, 
   emitIssuesEvent,
-  issuesTypesFetchSuccessfully
+  issuesTypesFetchSuccessfully,
+  issueEditFetchSuccessfully
 } from './actions';
 
 const initialState: IssuesState = {
   entities: {
     issues: [],
     issue: undefined,
+    issueEdit: undefined,
   },
   meta: {
     issuesTypes: [],
@@ -61,6 +63,14 @@ issues.on(issuesTypesFetchSuccessfully, (state, issuesTypes) => ({
   meta: {
     ...state.meta,
     issuesTypes,
+  },
+}));
+
+issues.on(issueEditFetchSuccessfully, (state, issueEdit) => ({
+  ...state,
+  entities: {
+    ...state.entities,
+    issueEdit,
   },
 }));
 
