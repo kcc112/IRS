@@ -6,7 +6,7 @@ import { Footer } from './components/footer';
 import { Header } from './components/header';
 import { Sidebar } from './components/sidebar';
 import { Loader } from '../shared/loader/loader';
-import { Alert } from '../shared/alerts';
+import { AlertIrs } from '../shared/alerts';
 import { selectShowAlert } from '../app/redux/selectors';
 import { selectCurrentUser } from '../../session/redux/selectors';
 import defineAbilitiesFor from '../../session/abilities';
@@ -28,7 +28,7 @@ export function IrsLayout({
   return (
     <div className={classes.root} >
       <div className={classes.alert}>
-        {isAlertVisable && <Alert /> } 
+        {isAlertVisable && <AlertIrs /> } 
       </div>
       <div className={classes.header}>
         <Header abilities={abilities} />
