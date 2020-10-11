@@ -1,0 +1,1 @@
+export { IssueShowHeader } from './header';

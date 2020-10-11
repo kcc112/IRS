@@ -23,6 +23,7 @@ import { Home } from '../components/home';
 import { IssueCreateEdit } from '../components/issues/create-edit/container';
 import { AssignToIssue } from '../components/issues/assign/container';
 import { ResolveIssue } from '../components/issues/resolve';
+import { IssueShow } from '../components/issues/show';
 
 export function IrsRoutes() {
   const location = useLocation<AppLocation>();
@@ -201,6 +202,18 @@ export function IrsRoutes() {
                 <CanRender
                   render={abilities.can(Actions.RESOLVE, Subjects.ISSUE)}
                   component={<ResolveIssue />}
+                />
+              }
+            />
+          )}
+           {(showModal || hasbackgroundLocation()) && (
+            <Route 
+              exact
+              path={routes.irs.issues.show}
+              render={() =>
+                <CanRender
+                  render={abilities.can(Actions.VIEW, Subjects.ISSUE)}
+                  component={<IssueShow />}
                 />
               }
             />

@@ -4,7 +4,7 @@ import { colours } from '../../../../../styles/colours';
 
 export const useStyles = makeStyles({
   formRow: {
-    padding: '15px 0'
+    padding: '5px 0'
   },
   submitWrapper: {
     display: 'flex',

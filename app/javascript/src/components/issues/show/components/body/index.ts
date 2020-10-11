@@ -1,0 +1,1 @@
+export { IssueShowBody } from './body';

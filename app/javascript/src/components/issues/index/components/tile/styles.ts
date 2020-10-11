@@ -40,5 +40,13 @@ export const useStyles = makeStyles({
     fontSize: '13px',
     color: colours.white,
     margin: '0 5px'
+  },
+  userName: {
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    wordBreak: 'break-word',
+    display: '-webkit-box',
+    '-webkit-box-orient': 'vertical',
+    '-webkit-line-clamp': 1,
   }
 });

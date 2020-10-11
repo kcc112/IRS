@@ -13,13 +13,15 @@ interface Props {
   onRedirectToAssignToIssue: (id: string) => void;
   onRedirectToResolveIssue: (id: string) => void;
   onRedirectToEditIssue: (id: string) => void;
+  onRedirectToShowIssue: (id: string) => void;
 }
 
 export function Tile({ 
   issue,
   onRedirectToAssignToIssue,
   onRedirectToResolveIssue,
-  onRedirectToEditIssue
+  onRedirectToEditIssue,
+  onRedirectToShowIssue
 }: Props) {
   const { t } = useTranslation();
   const classes = useStyles();
@@ -38,7 +40,9 @@ export function Tile({
         {`${t('Last updated')}: ${issue.attributes.updatedAt}`}
       </div>
       <div className={classes.tileRow}>
-        {`${t('Reported by')}: ${issue.attributes.reportedBy.userName} ${issue.attributes.reportedBy.userSurname}`}
+        <div className={classes.userName}>
+          {`${t('Reported by')}: ${issue.attributes.reportedBy.userName} ${issue.attributes.reportedBy.userSurname}`}
+        </div>
       </div>
       <div className={classes.tileRow}>
         <div>
@@ -83,7 +87,7 @@ export function Tile({
         <button 
           type='button'
           className={`button ${classes.actionButton}`}
-          onClick={() => {}}
+          onClick={() => onRedirectToShowIssue(issue.id)}
         >
           {t('Show')}
         </button>

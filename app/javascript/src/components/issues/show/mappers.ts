@@ -23,6 +23,7 @@ export const mapJSONToIssueShow = (response: IResponse): IssueShow | undefined =
       description: data.attributes.description ? data.attributes.description : '',
       createdAt: formatDate(data.attributes.created_at),
       updatedAt: formatDate(data.attributes.updated_at),
+      issueStatus: data.attributes.status,
       reportedBy: reportedByUserInfo ? {
         userId: reportedByUserInfo.id,
         userName: reportedByUserInfo.attributes.name,

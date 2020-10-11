@@ -7,6 +7,7 @@ interface Props {
   children: ReactNode;
   visible: boolean;
   width?: string;
+  height?: string;
   className?: string;
   onClose: () => void;
 }
@@ -16,6 +17,7 @@ export function Modal({
   visible,
   className,
   width = '895px',
+  height,
   onClose,
 }: Props) {
   const classes = useStyles({});
@@ -31,7 +33,7 @@ export function Modal({
       <CSSTransition in={visible} timeout={{ enter: 300, exit: 300 }}>
         <div 
           className={`${classes.modal} ${className || ''}`}
-          style={{ maxWidth: width, minWidth: width }}
+          style={{ maxWidth: width, minWidth: width, minHeight: height, maxHeight: height }}
         >
           <div className={classes.body}>{children}</div>
         </div>

@@ -23,6 +23,7 @@ export function defineAbilitiesFor(user?: CurrentUser): Ability {
     cannot(Actions.CREATE, Subjects.ISSUE);
     cannot(Actions.ASSIGN, Subjects.ISSUE);
     cannot(Actions.RESOLVE, Subjects.ISSUE);
+    can(Actions.VIEW, Subjects.ISSUE);
 
     can(Actions.EDIT, Subjects.ENTERPRISE);
     can(Actions.EDIT, Subjects.USER_INFORMATIONS);
@@ -43,6 +44,7 @@ export function defineAbilitiesFor(user?: CurrentUser): Ability {
     can(Actions.CREATE, Subjects.ISSUE);
     cannot(Actions.ASSIGN, Subjects.ISSUE);
     cannot(Actions.RESOLVE, Subjects.ISSUE);
+    can(Actions.VIEW, Subjects.ISSUE);
 
 
     can(Actions.EDIT, Subjects.USER_INFORMATIONS);
@@ -58,6 +60,7 @@ export function defineAbilitiesFor(user?: CurrentUser): Ability {
     cannot(Actions.CREATE, Subjects.ISSUE);
     can(Actions.ASSIGN, Subjects.ISSUE);
     can(Actions.RESOLVE, Subjects.ISSUE);
+    can(Actions.VIEW, Subjects.ISSUE);
   }
 
   return new Ability(rules);

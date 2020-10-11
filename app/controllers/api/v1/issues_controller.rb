@@ -14,7 +14,7 @@ class Api::V1::IssuesController < ApplicationController
   end
 
   def show
-    render json: IssueSerializer.new(@issue)
+    render json: IssueSerializer.new(@issue, show_serializer_options)
   end
 
   def create
@@ -86,6 +86,12 @@ class Api::V1::IssuesController < ApplicationController
     end
 
     def index_serializer_options
+      {
+        include: %i[assigned_to.user_informations reported_by.user_informations]
+      }
+    end
+
+    def show_serializer_options
       {
         include: %i[assigned_to.user_informations reported_by.user_informations]
       }

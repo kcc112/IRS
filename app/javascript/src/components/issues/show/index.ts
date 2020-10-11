@@ -1,0 +1,1 @@
+export { IssueShow } from './container';
