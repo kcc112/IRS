@@ -7,7 +7,6 @@ import routes from './routes';
 import { EnterprisesIndex } from '../components/enterprises/index';
 import { UsersInformationsIndex } from '../components/users-informations/index';
 import { IssuesIndex } from '../components/issues/index';
-import { CommentsIndex } from '../components/comments';
 import defineAbilitiesFor from '../session/abilities';
 import { Actions, Subjects } from '../session/redux/types';
 import { CanRender } from './can-render';
@@ -24,6 +23,7 @@ import { IssueCreateEdit } from '../components/issues/create-edit/container';
 import { AssignToIssue } from '../components/issues/assign/container';
 import { ResolveIssue } from '../components/issues/resolve';
 import { IssueShow } from '../components/issues/show';
+import { CommentsList } from '../components/comments/comments-list';
 
 export function IrsRoutes() {
   const location = useLocation<AppLocation>();
@@ -81,16 +81,6 @@ export function IrsRoutes() {
             <CanRender
               render={abilities.can(Actions.VIEW, Subjects.ISSUES)}
               component={<IssuesIndex />}
-            />
-          }
-        />
-        <Route
-          exact
-          path={routes.irs.comments.index}
-          render={() =>
-            <CanRender
-              render={abilities.can(Actions.VIEW, Subjects.COMMENTS)}
-              component={<CommentsIndex />}
             />
           }
         />
@@ -206,7 +196,7 @@ export function IrsRoutes() {
               }
             />
           )}
-           {(showModal || hasbackgroundLocation()) && (
+          {(showModal || hasbackgroundLocation()) && (
             <Route 
               exact
               path={routes.irs.issues.show}
@@ -214,6 +204,18 @@ export function IrsRoutes() {
                 <CanRender
                   render={abilities.can(Actions.VIEW, Subjects.ISSUE)}
                   component={<IssueShow />}
+                />
+              }
+            />
+          )}
+          {(showModal || hasbackgroundLocation()) && (
+            <Route 
+              exact
+              path={routes.irs.comments.comments_list}
+              render={() =>
+                <CanRender
+                  render={abilities.can(Actions.VIEW, Subjects.COMMENTS)}
+                  component={<CommentsList />}
                 />
               }
             />

@@ -1,6 +1,6 @@
 class Api::V1::CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :update, :destroy]
-  before_action :authorize_user, only: [:show, :create]
+  before_action :authorize_user, only: [:show, :create, :issues_list]
 
   def show
     render json: CommentSerializer.new(@comment)
@@ -22,6 +22,11 @@ class Api::V1::CommentsController < ApplicationController
     @comment.destroy
   end
 
+  def issues_list
+    @comments = Comment.where(issue_id: params[:issue_id]).order(created_at: :desc)
+    render json: CommentSerializer.new(@comments, issues_list_serializer_options)
+  end
+
   private
     def set_comment
       @comment = Comment.find(params[:id])
@@ -37,6 +42,12 @@ class Api::V1::CommentsController < ApplicationController
 
     def issue_update_params
       params.require(:comment).permit(:comment)
+    end
+
+    def issues_list_serializer_options
+      {
+        include: %i[user.user_informations]
+      }
     end
 
 end

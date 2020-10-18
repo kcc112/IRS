@@ -16,4 +16,8 @@ class CommentPolicy < ApplicationPolicy
     user.admin? or record.user_id == user.id
   end
 
+  def issues_list?
+    true
+  end
+
 end

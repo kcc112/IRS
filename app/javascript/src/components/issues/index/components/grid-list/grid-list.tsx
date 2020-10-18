@@ -12,6 +12,7 @@ interface Props {
   onRedirectToResolveIssue: (id: string) => void;
   onRedirectToEditIssue: (id: string) => void;
   onRedirectToShowIssue: (id: string) => void;
+  onRedirectToIssueComments: (id: string) => void;
 }
 
 export function IssuesGridList({ 
@@ -20,6 +21,7 @@ export function IssuesGridList({
   onRedirectToResolveIssue,
   onRedirectToEditIssue,
   onRedirectToShowIssue,
+  onRedirectToIssueComments,
 }: Props) {
   const classes = useStyles();
 
@@ -34,6 +36,7 @@ export function IssuesGridList({
               onRedirectToResolveIssue={onRedirectToResolveIssue}
               onRedirectToEditIssue={onRedirectToEditIssue}
               onRedirectToShowIssue={onRedirectToShowIssue}
+              onRedirectToIssueComments={onRedirectToIssueComments}
             />
           </GridListTile>
         ))}

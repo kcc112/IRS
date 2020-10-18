@@ -22,7 +22,9 @@ Rails.application.routes.draw do
       
       resources :users_informations, only: [:index, :show, :update]
       
-      resources :comments, only: [:show, :create, :update, :destroy]
+      resources :comments, only: [:show, :create, :update, :destroy] do
+        get :issues_list, on: :collection, param: :id
+      end
     end
   end
 

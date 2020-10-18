@@ -6,6 +6,7 @@ export type IEntityType =
   | 'reported_by'
   | 'assigned_to'
   | 'user_informations'
+  | 'user_related'
 
 export interface IResponseBase {
   id: string;
@@ -55,3 +56,9 @@ export interface IRoles {
 export interface IIssuesTypes {
   types: IssuesTypes[]
 };
+
+export interface FilterParams {
+  issue_id?: string;
+}
+
+export interface IndexParams extends FilterParams {}

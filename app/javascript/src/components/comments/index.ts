@@ -1,1 +1,0 @@
-export { CommentsIndex } from './container';

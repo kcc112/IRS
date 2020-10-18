@@ -1,0 +1,1 @@
+export { CommentsListHeader } from './header';

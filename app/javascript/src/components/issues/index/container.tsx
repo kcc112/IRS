@@ -71,6 +71,13 @@ export function IssuesIndex() {
     dispatch(showModal());
   };
 
+  const redirectToIssueComments = (id: string) => {
+    history.push(compile(routes.irs.comments.comments_list)({ id: id }),{
+      backgroundLocation: location,
+    });
+    dispatch(showModal());
+  };
+
   return (
     <div className={classes.container}>
       <div className={classes.title}>{t('Issues')}</div>
@@ -80,6 +87,7 @@ export function IssuesIndex() {
         onRedirectToResolveIssue={redirectToResolveIssue}
         onRedirectToEditIssue={redirectToEditIssue}
         onRedirectToShowIssue={redirectToShowIssue}
+        onRedirectToIssueComments={redirectToIssueComments}
       />
     </div>
   );

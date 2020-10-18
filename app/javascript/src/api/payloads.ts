@@ -34,3 +34,13 @@ export interface UserRoleEditPayload {
 export interface IssueAssignPayload {
   assigned_to_id: string;
 }
+
+export interface CommentEditPayload {
+  comment: string;
+}
+
+export interface CommentCreatePayload {
+  comment: string;
+  user_id: string;
+  issue_id: string;
+}

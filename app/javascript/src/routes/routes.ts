@@ -22,7 +22,7 @@ const routes = {
       resolve: '/irs/issue/:id/resolve',
     },
     comments: {
-      index: '/irs/comments',
+      comments_list: '/irs/comments_list/:id',
     }
   },
 };

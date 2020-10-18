@@ -12,6 +12,7 @@ import { watchIssueCreateEdit } from '../components/issues/create-edit/sagas';
 import { watchAssignToIssue } from '../components/issues/assign/sagas';
 import { watchResolveIssue } from '../components/issues/resolve/sagas';
 import { watchIssueShow } from '../components/issues/show/sagas';
+import { watchCommentsList } from '../components/comments/comments-list/sagas';
 
 export function* rootSaga() {
   yield all([
@@ -27,5 +28,6 @@ export function* rootSaga() {
     watchAssignToIssue(),
     watchResolveIssue(),
     watchIssueShow(),
+    watchCommentsList(),
   ]);
 }

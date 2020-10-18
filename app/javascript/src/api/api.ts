@@ -13,6 +13,7 @@ import {
   IssueEditPayload, 
   IssueAssignPayload 
 } from './payloads';
+import { IndexParams } from './types';
 
 export const axiosInstance = axios.create({
   baseURL: paths.baseUrl,
@@ -101,5 +102,9 @@ export const api = (axiosIns => {
     async resolveIssue(id: string) {
       return axiosInstance.put(paths.issues.resolve(id));
     },
+
+    async fetchCommentsList(params?: IndexParams) {
+      return axiosInstance.get(paths.comments.comments_list, { params });
+    }
   };
 })(axiosInstance);

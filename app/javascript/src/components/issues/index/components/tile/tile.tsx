@@ -14,6 +14,7 @@ interface Props {
   onRedirectToResolveIssue: (id: string) => void;
   onRedirectToEditIssue: (id: string) => void;
   onRedirectToShowIssue: (id: string) => void;
+  onRedirectToIssueComments: (id: string) => void;
 }
 
 export function Tile({ 
@@ -21,7 +22,8 @@ export function Tile({
   onRedirectToAssignToIssue,
   onRedirectToResolveIssue,
   onRedirectToEditIssue,
-  onRedirectToShowIssue
+  onRedirectToShowIssue,
+  onRedirectToIssueComments,
 }: Props) {
   const { t } = useTranslation();
   const classes = useStyles();
@@ -90,6 +92,13 @@ export function Tile({
           onClick={() => onRedirectToShowIssue(issue.id)}
         >
           {t('Show')}
+        </button>
+        <button 
+          type='button'
+          className={`button ${classes.actionButton}`}
+          onClick={() => onRedirectToIssueComments(issue.id)}
+        >
+          {t('Comments')}
         </button>
       </div>
     </div>
