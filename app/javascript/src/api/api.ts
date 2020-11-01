@@ -11,7 +11,8 @@ import {
   UserRoleEditPayload,
   IssueCreatePayload,
   IssueEditPayload, 
-  IssueAssignPayload 
+  IssueAssignPayload, 
+  CommentCreatePayload
 } from './payloads';
 import { IndexParams } from './types';
 
@@ -105,6 +106,9 @@ export const api = (axiosIns => {
 
     async fetchCommentsList(params?: IndexParams) {
       return axiosInstance.get(paths.comments.comments_list, { params });
-    }
+    },
+    async createComment(payload: CommentCreatePayload) {
+      return axiosInstance.post(paths.comments.create, payload);
+    },
   };
 })(axiosInstance);

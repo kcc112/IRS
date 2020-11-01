@@ -36,11 +36,11 @@ export interface IssueAssignPayload {
 }
 
 export interface CommentEditPayload {
-  comment: string;
+  content: string;
 }
 
 export interface CommentCreatePayload {
-  comment: string;
+  content: string;
   user_id: string;
   issue_id: string;
 }

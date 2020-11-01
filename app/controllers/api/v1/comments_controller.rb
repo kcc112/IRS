@@ -37,11 +37,11 @@ class Api::V1::CommentsController < ApplicationController
     end
 
     def issue_create_params
-      params.require(:comment).permit(:comment, :user_id, :issue_id)
+      params.require(:comment).permit(:content, :user_id, :issue_id)
     end
 
     def issue_update_params
-      params.require(:comment).permit(:comment)
+      params.require(:comment).permit(:content)
     end
 
     def issues_list_serializer_options

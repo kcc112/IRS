@@ -36,6 +36,7 @@ const paths = {
   },
   comments: {
     comments_list: '/api/v1/comments/issues_list',
+    create: '/api/v1/comments',
   }
 };
 

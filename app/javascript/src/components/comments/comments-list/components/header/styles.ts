@@ -5,7 +5,7 @@ import { colours } from '../../../../../styles/colours';
 export const useStyles = makeStyles({
   container: {
     display: 'flex',
-    justifyContent: 'flex-end',
+    justifyContent: 'space-between',
     alignItems: 'center',
   },
   closeButton: {
@@ -13,5 +13,8 @@ export const useStyles = makeStyles({
       color: colours.white,
       fontSize: '30px',
     },
+  },
+  title: {
+    fontSize: '20px',
   },
 });

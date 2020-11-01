@@ -22,4 +22,5 @@ export interface CommentsIndex extends IResponseBase {
 
 export enum CommentsEvent {
   REFRESH = 'REFRESH',
+  CREATED_SUCCESSFULLY = 'CREATED_SUCCESSFULLY '
 }

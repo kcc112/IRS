@@ -17,7 +17,7 @@ export const mapJSONToCommentsIndex = (response: IResponse): CommentsIndex[] => 
       id: entity.id,
       type: entity.type,
       attributes: {
-        comment: entity.attributes.comment,
+        comment: entity.attributes.content,
         createdAt: formatDate(entity.attributes.created_at),
         updatedAt: formatDate(entity.attributes.updated_at),
         commentOwner: relatedUserInfo ? {
