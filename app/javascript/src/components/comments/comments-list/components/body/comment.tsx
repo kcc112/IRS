@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 import { CommentsIndex } from '../../../redux/types';
 import { useStyles } from './styles';
@@ -15,7 +16,6 @@ export function CommentContainer({
   comment,
   onRedirectToCommentDelet
 }: Params) {
-  const { t } = useTranslation();
   const classes = useStyles({});
 
   return (
@@ -24,7 +24,7 @@ export function CommentContainer({
         <div className={classes.userName}>
           {`${comment.attributes.commentOwner.name} ${comment.attributes.commentOwner.surname}`}
         </div>
-        <div>
+        <div className={classes.actionsContiner}>
           <div>{comment.attributes.updatedAt}</div>
           { comment.attributes.commentOwner.id === userId && (
             <button 
@@ -32,7 +32,7 @@ export function CommentContainer({
               className={`button ${classes.actionButton}`}
               onClick={() => onRedirectToCommentDelet(comment.id)}
             >
-              {t('Delete')}
+              <DeleteIcon />
             </button>
           )}  
         </div>

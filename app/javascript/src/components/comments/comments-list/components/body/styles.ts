@@ -33,6 +33,13 @@ export const useStyles = makeStyles({
   actionButton: {
     fontSize: '13px',
     color: colours.white,
-    margin: '0 2px'
+    margin: '0 2px',
+    '& > svg': {
+      padding: '0 0 0 5px',
+      fontSize: '17px',
+    },
+  },
+  actionsContiner: {
+    display: 'flex',
   }
 });
