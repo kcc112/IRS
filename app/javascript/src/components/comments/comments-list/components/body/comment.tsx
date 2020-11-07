@@ -1,20 +1,23 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 
 import { CommentsIndex } from '../../../redux/types';
 import { useStyles } from './styles';
+import { AppRolesConst, CurrentUser } from '../../../../../session/redux/types';
 
 interface Params {
-  userId: string;
+  user: CurrentUser;
   comment: CommentsIndex;
   onRedirectToCommentDelet: (id: string) => void;
+  onEditComment: (id: string) => void;
 }
 
 export function CommentContainer({
-  userId,
+  user,
   comment,
-  onRedirectToCommentDelet
+  onRedirectToCommentDelet,
+  onEditComment,
 }: Params) {
   const classes = useStyles({});
 
@@ -26,7 +29,7 @@ export function CommentContainer({
         </div>
         <div className={classes.actionsContiner}>
           <div>{comment.attributes.updatedAt}</div>
-          { comment.attributes.commentOwner.id === userId && (
+          { comment.attributes.commentOwner.id === user.id && (
             <button 
               type='button'
               className={`button ${classes.actionButton}`}
@@ -34,7 +37,16 @@ export function CommentContainer({
             >
               <DeleteIcon />
             </button>
-          )}  
+          )}
+          { ( comment.attributes.commentOwner.id === user.id || user.role === AppRolesConst.ADMIN ) && (
+            <button 
+              type='button'
+              className={`button ${classes.actionButton}`}
+              onClick={() => onEditComment(comment.id)}
+            >
+              <EditIcon />
+            </button>
+          )} 
         </div>
       </div>
       <div className={classes.comment}>

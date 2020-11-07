@@ -1,1 +1,0 @@
-export { CommentCreate } from './container';

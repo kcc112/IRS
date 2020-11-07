@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { CommentCreatePayload } from '../../../../../api/payloads';
+import { CommentCreatePayload, CommentEditPayload } from '../../../../../api/payloads';
 import { TextArea } from '../../../../shared/controls/textarea';
+import { CommentsIndex } from '../../../redux/types';
 import { useStyles } from './styles';
 
 interface Params {
   issueId: string;
   userId: string;
-  onHandleSubmit: (formObject: CommentCreatePayload) => void;
+  comment: CommentsIndex;
+  onHandleCreate: (formObject: CommentCreatePayload) => void;
+  onHandleEdit: (id: string, formObject: CommentEditPayload) => void;
 }
 
 const defoultFormObject: CommentCreatePayload = {
@@ -17,10 +20,12 @@ const defoultFormObject: CommentCreatePayload = {
   issue_id: '',
 }
 
-export function CreateForm({
+export function CreateEditForm({
   issueId,
   userId,
-  onHandleSubmit
+  comment,
+  onHandleCreate,
+  onHandleEdit
 }: Params) {
   const { t } = useTranslation();
   const classes = useStyles();
@@ -28,7 +33,7 @@ export function CreateForm({
 
   useEffect(() => {
     setformObject({
-      content: '',
+      content: comment ? comment.attributes.comment : '',
       user_id: userId,
       issue_id: issueId
     })
@@ -43,7 +48,8 @@ export function CreateForm({
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    onHandleSubmit(formObject);
+    if (comment) onHandleEdit(comment.id,  {content: formObject.content });
+    else onHandleCreate(formObject);
   };
 
   return (
@@ -62,9 +68,16 @@ export function CreateForm({
         />
       </div>
       <div className={classes.submitWrapper}>
-        <button type='submit' className={`button ${classes.formSubmit}`}>
-          {t('Submit')}
-        </button>
+        { comment ? (
+            <button type='submit' className={`button ${classes.formSubmit}`}>
+              {t('Edit')}
+            </button>
+          ) : (
+            <button type='submit' className={`button ${classes.formSubmit}`}>
+              {t('Submit')}
+            </button>
+          )
+        }
       </div>
     </form>
   );

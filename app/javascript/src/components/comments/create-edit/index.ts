@@ -1,0 +1,1 @@
+export { CommentCreateEdit as CommentCreate } from './container';

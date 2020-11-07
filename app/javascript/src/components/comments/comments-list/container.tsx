@@ -7,7 +7,7 @@ import { AppLocation } from '../../../app/types';
 import routes from '../../../routes/routes';
 import { selectCurrentUser } from '../../../session/redux/selectors';
 import { Modal } from '../../shared/modal/container';
-import { CommentCreate } from '../create/container';
+import { CommentCreateEdit } from '../create-edit/container';
 import { removeEventFromAccumulator } from '../redux/actions';
 import { selectCommentsEvent, selectIndexComments } from '../redux/selectors';
 import { CommentsEvent } from '../redux/types';
@@ -29,6 +29,8 @@ export function CommentsList() {
   const comments = useSelector(selectIndexComments);
   const user = useSelector(selectCurrentUser);
   const events = useSelector(selectCommentsEvent);
+  const [edit, setEdit] = useState<boolean>(false);
+  const [currentCommentId, setCurrentCommentId] = useState<string | undefined>(undefined);
   const [issueId] = useState<string | undefined>(match && match.params.id ? match.params.id : undefined);
 
   useEffect(() => {
@@ -52,6 +54,12 @@ export function CommentsList() {
     dispatch(hideModal());
   };
 
+  const editComment = (commentId: string) => {
+    if (!edit) setEdit(true);
+    if (commentId === currentCommentId) setEdit(false);
+    setCurrentCommentId(commentId);
+  }
+
   const redirectToCommentDelete = (id: string) => {
     history.replace(compile(routes.irs.comments.delete)({ id: id }),{
       previousLocation: location,
@@ -74,18 +82,28 @@ export function CommentsList() {
           />
         </section>
         <section className={classes.createContainer}>
-          <CommentCreate
+          <CommentCreateEdit
             issueId={issueId}
             userId={user.id}
+            setEdit={setEdit}
           />
         </section>
         <section className={classes.commentWrapper}>
           { comments.map(comment => {
-            return (
+            return (edit && comment.id === currentCommentId) ? (
+              <CommentCreateEdit
+                issueId={issueId}
+                key={comment.id}
+                userId={user.id}
+                comment={comment}
+                setEdit={setEdit}
+              />
+            ) : (
               <CommentContainer 
                 comment={comment}
                 key={comment.id}
-                userId={user.id}
+                user={user}
+                onEditComment={editComment}
                 onRedirectToCommentDelet={redirectToCommentDelete}
               />
             )

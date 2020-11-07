@@ -12,7 +12,8 @@ import {
   IssueCreatePayload,
   IssueEditPayload, 
   IssueAssignPayload, 
-  CommentCreatePayload
+  CommentCreatePayload,
+  CommentEditPayload
 } from './payloads';
 import { IndexParams } from './types';
 
@@ -109,6 +110,9 @@ export const api = (axiosIns => {
     },
     async createComment(payload: CommentCreatePayload) {
       return axiosInstance.post(paths.comments.create, payload);
+    },
+    async editComment(id: string, payload: CommentEditPayload) {
+      return axiosInstance.put(paths.comments.edit(id), payload);
     },
     async deleteComment(id: string) {
       return axiosInstance.delete(paths.comments.delete(id));
