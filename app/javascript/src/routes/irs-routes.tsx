@@ -24,6 +24,7 @@ import { AssignToIssue } from '../components/issues/assign/container';
 import { ResolveIssue } from '../components/issues/resolve';
 import { IssueShow } from '../components/issues/show';
 import { CommentsList } from '../components/comments/comments-list';
+import { CommentDelete } from '../components/comments/delete';
 
 export function IrsRoutes() {
   const location = useLocation<AppLocation>();
@@ -216,6 +217,18 @@ export function IrsRoutes() {
                 <CanRender
                   render={abilities.can(Actions.VIEW, Subjects.COMMENTS)}
                   component={<CommentsList />}
+                />
+              }
+            />
+          )}
+          {(showModal || hasbackgroundLocation()) && (
+            <Route 
+              exact
+              path={routes.irs.comments.delete}
+              render={() =>
+                <CanRender
+                  render={abilities.can(Actions.DELETE, Subjects.COMMENTS)}
+                  component={<CommentDelete />}
                 />
               }
             />

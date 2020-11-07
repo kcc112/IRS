@@ -1,1 +1,1 @@
-export  { EnterprisesGridList } from './grid-list';
+export  { IssuesGridList } from './grid-list';

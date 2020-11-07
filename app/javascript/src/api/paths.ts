@@ -37,6 +37,7 @@ const paths = {
   comments: {
     comments_list: '/api/v1/comments/issues_list',
     create: '/api/v1/comments',
+    delete: (id: string) => `/api/v1/comments/${id}`,
   }
 };
 

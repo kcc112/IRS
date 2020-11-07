@@ -1,5 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 
+import { colours } from '../../../../../styles/colours';
+
 export const useStyles = makeStyles({
   container: {
     padding: '10px 0',
@@ -28,4 +30,9 @@ export const useStyles = makeStyles({
     '-webkit-box-orient': 'vertical',
     '-webkit-line-clamp': 3,
   },
+  actionButton: {
+    fontSize: '13px',
+    color: colours.white,
+    margin: '0 2px'
+  }
 });

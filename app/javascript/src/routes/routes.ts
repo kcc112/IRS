@@ -23,6 +23,7 @@ const routes = {
     },
     comments: {
       comments_list: '/irs/comments_list/:id',
+      delete: '/irs/comments/:id/delete',
     }
   },
 };

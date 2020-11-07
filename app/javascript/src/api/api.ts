@@ -110,5 +110,8 @@ export const api = (axiosIns => {
     async createComment(payload: CommentCreatePayload) {
       return axiosInstance.post(paths.comments.create, payload);
     },
+    async deleteComment(id: string) {
+      return axiosInstance.delete(paths.comments.delete(id));
+    },
   };
 })(axiosInstance);
