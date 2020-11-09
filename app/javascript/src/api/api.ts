@@ -80,6 +80,13 @@ export const api = (axiosIns => {
       return axiosInstance.put(paths.usersInformations.edit(id), payload);
     },
 
+    async activateUser(id: string) {
+      return axiosInstance.put(paths.users.activate(id));
+    },
+    async deactivateUser(id: string) {
+      return axiosInstance.put(paths.users.deactivate(id));
+    },
+
     async fetchIssues() {
       return axiosInstance.get(paths.issues.index);
     },

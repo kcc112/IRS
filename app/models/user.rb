@@ -15,6 +15,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :trackable
 
+  def active_for_authentication?
+    super && !deactivated
+  end
+
   private
     def create_user_informations
       self.build_user_informations.save(validate: false)

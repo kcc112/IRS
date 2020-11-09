@@ -25,6 +25,13 @@ Rails.application.routes.draw do
       resources :comments, only: [:show, :create, :update, :destroy] do
         get :issues_list, on: :collection, param: :id
       end
+
+      resources :users, only: [:deactivate, :activate] do
+        member do
+          put :deactivate
+          put :activate
+        end
+      end
     end
   end
 

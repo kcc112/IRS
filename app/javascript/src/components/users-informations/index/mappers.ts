@@ -26,6 +26,7 @@ export const mapJSONToUsersInformationsIndexArray = (response: IResponse): Users
         enterpriseId: enterprise ? enterprise.id : '',
         enterpriseName: enterprise ? enterprise.attributes.name : '',
         userId: user ? user.id : '',
+        deactivated: user ? user.attributes.deactivated : true,
       }
     }
   });

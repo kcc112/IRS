@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useStyles } from './styles';
 import { selectUsersInformations, selectUserInformationsEvent } from '../redux/selectors';
 import { UserInformationsEvent } from '../redux/types';
-import { fetchUsersInformations, clearUsersInformations, editRole } from './actions';
+import { fetchUsersInformations, clearUsersInformations, editRole, activateUser, deactivateUser } from './actions';
 import { removeEventFromAccumulator } from '../redux/actions';
 import { SimpleTable } from './components/table-list/table-list';
 
@@ -39,14 +39,24 @@ export function UsersInformationsIndex() {
     dispatch(editRole(userId, value));
   };
 
+  const handleActivateUser = (id: string, callback: () => void) => {
+    dispatch(activateUser(id, callback));
+  };
+
+  const handleDeactivateUser = (id: string, callback: () => void) => {
+    dispatch(deactivateUser(id, callback));
+  };
+
   if (!usersInformations) return <></>;
 
   return (
     <div className={classes.container}>
       <div className={classes.title}>{t('Users')}</div>
-      <SimpleTable 
+      <SimpleTable
         usersInformations={usersInformations}
         onHandleEditRole={handleEditRole}
+        onHandleDeactivateUser={handleDeactivateUser}
+        onHandleActivateUser={handleActivateUser}
       />
     </div>
   );

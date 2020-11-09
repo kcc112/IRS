@@ -1,7 +1,7 @@
 class UserInformations::UserRelatedSerializer
   include FastJsonapi::ObjectSerializer
   set_type :user
-  attributes :email, :role
+  attributes :email, :role, :deactivated
 
   attribute :created_at do |object|
     object.created_at.to_i

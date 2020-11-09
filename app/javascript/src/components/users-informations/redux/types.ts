@@ -28,6 +28,7 @@ export interface UsersInformationsIndex extends IResponseBase {
     enterpriseId: string;
     enterpriseName: string;
     userId: string;
+    deactivated: boolean;
   }
 }
 

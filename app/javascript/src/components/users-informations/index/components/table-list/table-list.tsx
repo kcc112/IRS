@@ -14,15 +14,20 @@ import SimpleSelect from '../../../../shared/dropdown/simple-select';
 import { selectRoles } from '../../../../../session/redux/selectors';
 import { Option } from '../../../../../app/types';
 import { Role } from '../../../../../session/redux/types';
+import { IRSCheckbox } from '../../../../shared/controls/checkbox/checkbox';
 
 interface Props {
   usersInformations: UsersInformationsIndex[];
   onHandleEditRole: (value: string, userId: string) => void;
+  onHandleDeactivateUser: (id: string, callback: () => void) => void;
+  onHandleActivateUser: (id: string, callback: () => void) => void;
 }
 
 export function SimpleTable({ 
   usersInformations,
   onHandleEditRole,
+  onHandleDeactivateUser,
+  onHandleActivateUser
 }: Props) {
   const { t } = useTranslation();
   const classes = useStyles();
@@ -54,6 +59,7 @@ export function SimpleTable({
             <TableCell>{t('User name')}</TableCell>
             <TableCell>{t('Phone number')}</TableCell>
             <TableCell>{t('Role')}</TableCell>
+            <TableCell>{t('Deactivate')}</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -77,6 +83,13 @@ export function SimpleTable({
                   options={resolveRoles(roles)}
                   onChange={(value: string) => handleChange(value, userInformations.attributes.userId)}
                 />
+              </TableCell>
+              <TableCell>
+                <IRSCheckbox 
+                  isChecked={userInformations.attributes.deactivated}
+                  check={(callback: () => void) => onHandleDeactivateUser(userInformations.attributes.userId, callback)}
+                  uncheck={(callback: () => void) => onHandleActivateUser(userInformations.attributes.userId, callback)}
+                /> 
               </TableCell>
             </TableRow>
           ))}

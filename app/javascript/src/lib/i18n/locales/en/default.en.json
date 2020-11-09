@@ -54,5 +54,8 @@
   "Comment created successfully": "Comment created successfully",
   "Comment deleted successfully": "Comment deleted successfully",
   "Couldn't find comment": "Couldn't find comment",
-  "Comment updated successfully": "Comment updated successfully"
+  "Comment updated successfully": "Comment updated successfully",
+  "Deactivate": "Deactivate",
+  "User deactivated successfully": "User deactivated successfully",
+  "User activated successfully": "User activated successfully"
 }
