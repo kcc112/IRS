@@ -4,13 +4,23 @@ class Api::V1::UsersController < ApplicationController
 
   def deactivate
     authorize @user
-    @user.update!(deactivated: true) unless @user.deactivated
+
+    if !@user.deactivated
+      @user.update!(deactivated: true)
+      AdminMailer.with(user: @user).lock_user_email.deliver_later
+    end
+
     render json: { success: true }
   end
 
   def activate
     authorize @user
-    @user.update!(deactivated: false) unless !@user.deactivated
+
+    if @user.deactivated
+      @user.update!(deactivated: false)
+      UserMailer.with(user: @user).unlock_user_email.deliver_later
+    end
+
     render json: { success: true }
   end
 
