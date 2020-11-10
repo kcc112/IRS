@@ -7,7 +7,7 @@ class Api::V1::UsersController < ApplicationController
 
     if !@user.deactivated
       @user.update!(deactivated: true)
-      AdminMailer.with(user: @user).lock_user_email.deliver_later
+      UserMailer.with(user: @user).lock_user_email.deliver_later
     end
 
     render json: { success: true }

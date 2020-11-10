@@ -53,6 +53,7 @@ class Api::V1::IssuesController < ApplicationController
   def resolve_issue
     authorize @issue
     @issue.update!(status: :resolved)
+    UserMailer.with(issue: @issue).resolve_issue_email.deliver_later
     render json: IssueSerializer.new(@issue)
   end
 
