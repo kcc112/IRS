@@ -1,3 +1,5 @@
+import * as process from 'process';
+
 const paths = {
   baseUrl: process.env.REACT_APP_API_BASEURL,
   devise: {
