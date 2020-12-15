@@ -39,3 +39,5 @@ yarn-debug.log*
 #erd
 erd.jpg
 erd.pdf
+
+/config/credentials/production.key
