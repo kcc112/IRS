@@ -1,6 +1,7 @@
-import { usersInformationsFetch, usersInformationsClear, userActivate, userDeactivate } from '../redux/actions';
+import { usersInformationsFetch, usersInformationsClear } from '../redux/actions';
 import { showModalSuccess } from '../../app/redux/actions';
 import { roleEdit } from '../../../session/redux/actions';
+import { userActivate, userDeactivate } from '../../users/redux/actions';
 
 export const fetchUsersInformations = () => usersInformationsFetch();
 

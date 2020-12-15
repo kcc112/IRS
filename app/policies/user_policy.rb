@@ -8,4 +8,8 @@ class UserPolicy < ApplicationPolicy
     user.admin?
   end
 
+  def assign_user_to_enterprise?
+    user.admin?
+  end
+
 end

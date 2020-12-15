@@ -13,7 +13,8 @@ import {
   IssueEditPayload, 
   IssueAssignPayload, 
   CommentCreatePayload,
-  CommentEditPayload
+  CommentEditPayload,
+  AssignUserPayload
 } from './payloads';
 import { IndexParams } from './types';
 
@@ -85,6 +86,9 @@ export const api = (axiosIns => {
     },
     async deactivateUser(id: string) {
       return axiosInstance.put(paths.users.deactivate(id));
+    },
+    async assignUserToEnterprise(id: string, payload: AssignUserPayload) {
+      return axiosInstance.put(paths.users.assign(id), payload);
     },
 
     async fetchIssues() {

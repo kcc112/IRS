@@ -22,6 +22,7 @@ const paths = {
   users: {
     activate: (id: string) =>`/api/v1/users/${id}/activate`,
     deactivate: (id: string) => `/api/v1/users/${id}/deactivate`,
+    assign: (id: string) => `api/v1/users/${id}/assign_user_to_enterprise`,
   },
   usersInformations: {
     index: '/api/v1/users_informations',

@@ -44,3 +44,7 @@ export interface CommentCreatePayload {
   user_id: string;
   issue_id: string;
 }
+
+export interface AssignUserPayload {
+  enterprise_id: string;
+}

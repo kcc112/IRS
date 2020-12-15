@@ -1,10 +1,8 @@
 class Api::V1::UsersController < ApplicationController
-  before_action :set_user, only: [:deactivate, :activate]
-  before_action :authorize_user, only: [:deactivate, :activate]
+  before_action :set_user, only: [:deactivate, :activate, :assign_user_to_enterprise]
+  before_action :authorize_user, only: [:deactivate, :activate, :assign_user_to_enterprise]
 
   def deactivate
-    authorize @user
-
     if !@user.deactivated
       @user.update!(deactivated: true)
       UserMailer.with(user: @user).lock_user_email.deliver_later
@@ -14,14 +12,18 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def activate
-    authorize @user
-
     if @user.deactivated
       @user.update!(deactivated: false)
       UserMailer.with(user: @user).unlock_user_email.deliver_later
     end
 
     render json: { success: true }
+  end
+
+  def assign_user_to_enterprise
+    @enterprise = Enterprise.find(params[:enterprise_id])
+    @user.update!(enterprise: @enterprise)
+    render json: EnterpriseSerializer.new(@enterprise)
   end
 
   private
@@ -31,6 +33,6 @@ class Api::V1::UsersController < ApplicationController
 
     def authorize_user
       authorize User
-    end 
+    end
 
 end

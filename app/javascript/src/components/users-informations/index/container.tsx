@@ -1,18 +1,24 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory, useLocation } from 'react-router-dom';
+import { compile } from 'path-to-regexp';
 
 import { useStyles } from './styles';
 import { selectUsersInformations, selectUserInformationsEvent } from '../redux/selectors';
 import { UserInformationsEvent } from '../redux/types';
-import { fetchUsersInformations, clearUsersInformations, editRole, activateUser, deactivateUser } from './actions';
+import { fetchUsersInformations, clearUsersInformations, editRole, activateUser, deactivateUser, showModal } from './actions';
 import { removeEventFromAccumulator } from '../redux/actions';
 import { SimpleTable } from './components/table-list/table-list';
+import routes from '../../../routes/routes';
+import { AppLocation } from '../../../app/types';
 
 export function UsersInformationsIndex() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const classes = useStyles({});
+  const location = useLocation<AppLocation>();
+  const history = useHistory();
   const usersInformations = useSelector(selectUsersInformations);
   const events = useSelector(selectUserInformationsEvent);
 
@@ -47,6 +53,13 @@ export function UsersInformationsIndex() {
     dispatch(deactivateUser(id, callback));
   };
 
+  const redirectToAssignUser = (id: string) => {
+    history.push(compile(routes.irs.users.assign)({ id: id }),{
+      backgroundLocation: location,
+    });
+    dispatch(showModal());
+  };
+
   if (!usersInformations) return <></>;
 
   return (
@@ -57,6 +70,7 @@ export function UsersInformationsIndex() {
         onHandleEditRole={handleEditRole}
         onHandleDeactivateUser={handleDeactivateUser}
         onHandleActivateUser={handleActivateUser}
+        onRedirectToAssignUser={redirectToAssignUser}
       />
     </div>
   );

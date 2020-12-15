@@ -21,13 +21,15 @@ interface Props {
   onHandleEditRole: (value: string, userId: string) => void;
   onHandleDeactivateUser: (id: string, callback: () => void) => void;
   onHandleActivateUser: (id: string, callback: () => void) => void;
+  onRedirectToAssignUser: (id: string) => void;
 }
 
 export function SimpleTable({ 
   usersInformations,
   onHandleEditRole,
   onHandleDeactivateUser,
-  onHandleActivateUser
+  onHandleActivateUser,
+  onRedirectToAssignUser
 }: Props) {
   const { t } = useTranslation();
   const classes = useStyles();
@@ -60,6 +62,7 @@ export function SimpleTable({
             <TableCell>{t('Phone number')}</TableCell>
             <TableCell>{t('Role')}</TableCell>
             <TableCell>{t('Deactivate')}</TableCell>
+            <TableCell>{t('Assign')}</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -90,6 +93,15 @@ export function SimpleTable({
                   check={(callback: () => void) => onHandleDeactivateUser(userInformations.attributes.userId, callback)}
                   uncheck={(callback: () => void) => onHandleActivateUser(userInformations.attributes.userId, callback)}
                 /> 
+              </TableCell>
+              <TableCell>
+                <button 
+                  type='submit'
+                  className={`button`}
+                  onClick={() => onRedirectToAssignUser(userInformations.attributes.userId)}
+                >
+                  {t('Submit')}
+                </button>
               </TableCell>
             </TableRow>
           ))}

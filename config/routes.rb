@@ -30,6 +30,7 @@ Rails.application.routes.draw do
         member do
           put :deactivate
           put :activate
+          put :assign_user_to_enterprise
         end
       end
     end

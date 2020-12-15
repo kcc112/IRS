@@ -48,6 +48,7 @@ export enum Subjects {
   USERS_INFORMATIONS = 'USERS_INFORMATIONS',
   USER_INFORMATIONS = 'USER_INFORMATIONS',
   HOME = 'HOME',
+  USERS = 'USERS',
 }
 
 export interface SessionState {

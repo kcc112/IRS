@@ -15,7 +15,8 @@ import { watchIssueShow } from '../components/issues/show/sagas';
 import { watchCommentsList } from '../components/comments/comments-list/sagas';
 import { watchCommentCreateEdit } from '../components/comments/create-edit/sagas';
 import { watchCommentDelete } from '../components/comments/delete/sagas';
-import { watchUserActivateDeactivate } from '../components/users-informations/activate-deactivate/sagas';
+import { watchUserActivateDeactivate } from '../components/users/activate-deactivate/sagas';
+import { watchAssignUserToEnterprise } from '../components/users/assign/sagas';
 
 export function* rootSaga() {
   yield all([
@@ -35,5 +36,6 @@ export function* rootSaga() {
     watchCommentCreateEdit(),
     watchCommentDelete(),
     watchUserActivateDeactivate(),
+    watchAssignUserToEnterprise(),
   ]);
 }

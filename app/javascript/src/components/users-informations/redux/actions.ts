@@ -25,12 +25,3 @@ export const fetchUserInformationsToEdit = createAction<{id: string}>('fetch use
 
 export const emitUserInformationsEvent = createAction<UserInformationsEvent>('emit users informations event');
 export const removeEventFromAccumulator = createAction<UserInformationsEvent>('remove event from accumulator');
-
-export const userActivate = createAction<{
-  id: string;
-  succesfullCallback: () => void;
-}>('activate user');
-export const userDeactivate = createAction<{
-  id: string;
-  succesfullCallback: () => void;
-}>('deactivate user');
