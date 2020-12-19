@@ -14,14 +14,43 @@
  *= require_self
  */
 
+ @import "bootstrap/scss/bootstrap";
+
 html, body {
   margin: 0;
   height: 100%;
   background-color: #212121;
-  & > div {
+  & > div:last-of-type {
     height: 100%;
   };
   overflow-x: hidden;
   color: white;
+}
+
+.alert {
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 35%;
+  right: 35%;
+  text-align: center;
+}
+
+.irs-card-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.irs-card {
+  padding: 50px;
+  background-color:#474747;
+  border-radius: 10%;
+}
+
+.irs-action {
+  padding-top: 15px;
+  padding-bottom: 10px;
 }
 

@@ -13,7 +13,7 @@ class User < ApplicationRecord
   
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :trackable
+         :trackable, :confirmable
 
   def active_for_authentication?
     super && !deactivated
