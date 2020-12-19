@@ -60,7 +60,25 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "IRS_production"
 
+  config.action_mailer.raise_delivery_errors = true
+
   config.action_mailer.perform_caching = false
+
+  config.action_mailer.delivery_method = :smtp
+
+  config.action_mailer.default_url_options = { host: Rails.application.credentials.stmp[:mail_host] }
+
+  config.action_mailer.perform_deliveries = true
+
+  config.action_mailer.smtp_settings = {
+    user_name:            Rails.application.credentials.stmp[:sendmail_username],
+    password:             Rails.application.credentials.stmp[:sendmail_password],
+    domain:               Rails.application.credentials.stmp[:mail_host],
+    address:              'smtp.gmail.com',
+    port:                 '587',
+    authentication:       :plain,
+    enable_starttls_auto: true
+  }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
