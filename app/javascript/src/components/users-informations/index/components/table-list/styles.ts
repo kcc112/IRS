@@ -35,4 +35,7 @@ export const useStyles = makeStyles({
       },
     },
   },
+  assignButton: {
+    color: colours.white
+  }
 });

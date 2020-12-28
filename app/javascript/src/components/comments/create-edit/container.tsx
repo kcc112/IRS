@@ -11,13 +11,15 @@ interface Params {
   userId: string;
   comment?: CommentsIndex;
   setEdit: (edit: boolean) => void;
+  setCurrentCommentId: (commentId: string) => void;
 }
 
 export function CommentCreateEdit({
   issueId,
   userId,
   comment,
-  setEdit
+  setEdit,
+  setCurrentCommentId
 }: Params) {
   const dispatch = useDispatch();
 
@@ -28,6 +30,7 @@ export function CommentCreateEdit({
   const onHandleEdit = (id: string, formObject: CommentEditPayload) => {
     dispatch(editComment(id, formObject));
     setEdit(false);
+    setCurrentCommentId(undefined);
   };
 
   return (

@@ -23,7 +23,13 @@ html, body {
   & > div:last-of-type {
     height: 100%;
   };
+  overflow-y: scroll;
   overflow-x: hidden;
+  -webkit-scrollbar: {
+    display: none,
+  };
+  -ms-overflow-style: none;
+  scrollbar-width: none;
   color: white;
 }
 

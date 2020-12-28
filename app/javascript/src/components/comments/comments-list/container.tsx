@@ -55,7 +55,7 @@ export function CommentsList() {
   };
 
   const editComment = (commentId: string) => {
-    if (!edit) setEdit(true);
+    setEdit(true);
     if (commentId === currentCommentId) setEdit(false);
     setCurrentCommentId(commentId);
   }
@@ -72,7 +72,7 @@ export function CommentsList() {
     <Modal
       onClose={handleClose}
       width='450px'
-      height='350px'
+      height='380px'
       visible
     >
       <div className={classes.container}>
@@ -86,6 +86,7 @@ export function CommentsList() {
             issueId={issueId}
             userId={user.id}
             setEdit={setEdit}
+            setCurrentCommentId={setCurrentCommentId}
           />
         </section>
         <section className={classes.commentWrapper}>
@@ -97,6 +98,7 @@ export function CommentsList() {
                 userId={user.id}
                 comment={comment}
                 setEdit={setEdit}
+                setCurrentCommentId={setCurrentCommentId}
               />
             ) : (
               <CommentContainer 

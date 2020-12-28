@@ -8,5 +8,19 @@ export const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    overflowY: 'scroll',
+    overflowX: 'hidden',
+    '-webkit-scrollbar': {
+      display: 'none',
+    },
+    '-ms-overflow-style': 'none',
+    scrollbarWidth: 'none',
   },
+  row: {
+    display: 'flex'
+  },
+  assignButton: {
+    color: colours.white,
+    padding: '5px'
+  }
 });

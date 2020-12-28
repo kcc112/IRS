@@ -9,5 +9,8 @@ export const useStyles = makeStyles({
     textAlign: 'center',
     padding: '20px 0',
     fontSize: '35px',
-  }
+  },
+  footer: {
+    height: '70px'
+  },
 });

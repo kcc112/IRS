@@ -17,8 +17,6 @@ RSpec.describe Enterprise, type: :model do
   describe 'validations' do
     it { is_expected.to validate_presence_of :name }
     it { is_expected.to validate_uniqueness_of :name }
-    it { should_not allow_values('1', 'ą', '@').for(:name) }
-    it { should allow_values('kamil', 'kAmil', 'Kamil').for(:name) }
   end
 
   describe 'relations' do

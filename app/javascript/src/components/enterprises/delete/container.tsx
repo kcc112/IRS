@@ -35,7 +35,7 @@ export function EnterpriseDelete() {
   return (
     <Modal
       onClose={handleClose}
-      width='450px'
+      width='455px'
       visible
     >
       <div className={classes.container}>

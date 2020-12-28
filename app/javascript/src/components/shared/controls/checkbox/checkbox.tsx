@@ -23,6 +23,9 @@ export function IRSCheckbox({
     <Checkbox
       checked={checked}
       color="primary"
+      style ={{
+        color: "white",
+      }}
       onChange={handleChange}
       inputProps={{ 'aria-label': 'primary checkbox' }}
     />

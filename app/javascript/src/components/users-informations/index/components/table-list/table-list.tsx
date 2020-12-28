@@ -97,10 +97,10 @@ export function SimpleTable({
               <TableCell>
                 <button 
                   type='submit'
-                  className={`button`}
+                  className={`button ${classes.assignButton}`}
                   onClick={() => onRedirectToAssignUser(userInformations.attributes.userId)}
                 >
-                  {t('Submit')}
+                  {t('Assign')}
                 </button>
               </TableCell>
             </TableRow>

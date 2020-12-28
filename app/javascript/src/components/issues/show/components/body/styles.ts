@@ -10,6 +10,11 @@ export const useStyles = makeStyles({
     minHeight: '108px',
     overflowY: 'scroll',
     overflowX: 'hidden',
+    '-webkit-scrollbar': {
+      display: 'none',
+    },
+    '-ms-overflow-style': 'none',
+    scrollbarWidth: 'none',
   },
   row: {
     margin: '3px 0',

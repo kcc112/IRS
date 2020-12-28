@@ -9,6 +9,13 @@ export const useStyles = makeStyles(() => createStyles({
     '& textarea': {
       fontSize: '13px',
       color: colours.white,
+      overflowY: 'scroll',
+      overflowX: 'hidden',
+      '-webkit-scrollbar': {
+        display: 'none',
+      },
+      '-ms-overflow-style': 'none',
+      scrollbarWidth: 'none',
     },
     '& fieldset': {
       border: 'none',

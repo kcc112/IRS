@@ -72,6 +72,7 @@ export function UsersInformationsIndex() {
         onHandleActivateUser={handleActivateUser}
         onRedirectToAssignUser={redirectToAssignUser}
       />
+      <div className={classes.footer}/>
     </div>
   );
 }
