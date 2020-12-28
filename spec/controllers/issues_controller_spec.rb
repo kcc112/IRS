@@ -190,7 +190,7 @@ RSpec.describe Api::V1::IssuesController, type: :controller do
       let(:attributes) { { id: issue.id, issue: attributes_for(:issue, assigned_to_id: user.id) } }
       subject { put :assign_receiver, params: attributes }
 
-      it { is_expected.to have_http_status :forbidden }
+      it { is_expected.to have_http_status :bad_request }
       it 'should not update issue' do
         subject
         expect(issue.reload.assigned_to_id).to_not eq(user.id)

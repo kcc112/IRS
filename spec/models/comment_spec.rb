@@ -5,7 +5,7 @@ RSpec.describe Comment, type: :model do
   describe 'attributes' do
     it 'should have proper attributes' do
       expect(subject.attributes).to include(
-        'comment',
+        'content',
         'created_at',
         'id',
         'issue_id',
@@ -16,7 +16,7 @@ RSpec.describe Comment, type: :model do
   end
 
   describe 'validations' do
-    it { is_expected.to validate_presence_of :comment }
+    it { is_expected.to validate_presence_of :content }
   end
 
   describe 'relations' do

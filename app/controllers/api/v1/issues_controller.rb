@@ -35,18 +35,16 @@ class Api::V1::IssuesController < ApplicationController
   end
 
   def assign_receiver
-    Issue.transaction(isolation: :serializable) do
-      @issue = Issue.find(params[:id])
-      authorize @issue
-      if @issue.assigned_to_id.nil?
-        @issue.status = :assigned
-        @issue.update!(assign_receiver_params)
-        render json: IssueSerializer.new(@issue)
-      else
-        render json: { 
-          error: I18n.t('errors.someone_is_already_assigned_to_issue'), type: "issue_already_assigned"
-        }.to_json, status: :bad_request
-      end
+    @issue = Issue.lock.find(params[:id])
+    authorize @issue
+    if @issue.assigned_to_id.nil?
+      @issue.status = :assigned
+      @issue.update!(assign_receiver_params)
+      render json: IssueSerializer.new(@issue)
+    else
+      render json: { 
+        error: I18n.t('errors.someone_is_already_assigned_to_issue'), type: "issue_already_assigned"
+      }.to_json, status: :bad_request
     end
   end
 

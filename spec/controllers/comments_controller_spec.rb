@@ -6,7 +6,7 @@ RSpec.describe Api::V1::CommentsController, type: :controller do
   describe 'GET #show' do
     let(:user) { create :user, role: :notifier }
     let(:issue) { create :issue, reported_by_id: user.id }
-    let(:comment) { create :comment, issue: issue, user: user }
+    let(:comment) { create :comment, issue_id: issue.id, user_id: user.id }
 
     context 'valid id' do
       subject { get :show, params: { id: comment.id } }
@@ -42,7 +42,7 @@ RSpec.describe Api::V1::CommentsController, type: :controller do
     let(:user) { create :user, role: :notifier }
     let(:issue) { create :issue, reported_by_id: user.id }
     let(:comment) { create :comment, issue_id: issue.id, user_id: user.id }
-    let(:valid_attributes) { { id: comment.id, comment: attributes_for(:comment, issue_id: issue.id, comment: 'Test') } }
+    let(:valid_attributes) { { id: comment.id, comment: attributes_for(:comment, issue_id: issue.id, content: 'Test') } }
     let(:invalid_attributes) { { id: comment.id, comment: attributes_for(:comment, issue_id: issue.id, user_id: '1') } }
     before { @request.env["devise.mapping"] = Devise.mappings[:user] }
     before { sign_in user }
@@ -52,7 +52,7 @@ RSpec.describe Api::V1::CommentsController, type: :controller do
       it { is_expected.to be_successful }
       it 'should update comment' do
         subject
-        expect(comment.reload.comment).to eq('Test')
+        expect(comment.reload.content).to eq('Test')
       end
     end
 
@@ -71,7 +71,7 @@ RSpec.describe Api::V1::CommentsController, type: :controller do
       it { is_expected.to have_http_status :forbidden }
       it 'should not update comment' do
         subject
-        expect(comment.reload.comment).to_not eq('Test')
+        expect(comment.reload.content).to_not eq('Test')
       end
     end
   end

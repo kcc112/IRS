@@ -25,7 +25,7 @@ RSpec.describe Issue, type: :model do
     it { is_expected.to belong_to :reported_by }
     it { is_expected.to belong_to(:assigned_to).optional }
     it { is_expected.to have_many(:comments).dependent(:destroy) }
-    it { should define_enum_for(:issue_type).with_values([:other]) }
+    it { should define_enum_for(:issue_type).with_values([:other, :equipment, :air_conditioning]) }
     it { should define_enum_for(:status).with_values([:unassigned, :assigned, :resolved]) }
   end
 end
